@@ -74,4 +74,16 @@ versions:
 
 
       Ce tissu bleu royal est absolument magnifique (même si pas évident à capturer en photo 😉) et se marie parfaitement avec le blanc à petits motifs bleus et jaunes.
+  - name: Mon tout premier sac à langer nomade
+    details: >-
+      Mon tout premier sac à langer, toujours fidèle au poste ! 
+
+      À 3 ans et demi, mon petit lou n’est pas encore prêt à s’en passer, et moi non plus ! 
+
+
+      Avec son oreiller repositionnable et son design ultra-pratique, ce sac est toujours mon allié incontournable, même après toutes ces années. 
+
+      Il m’accompagne dans chaque aventure, que ce soit pour un pique-nique improvisé ou un séjour chez Mamine. Comme quoi, certains indispensables ne perdent jamais leur magie
+    gallery:
+      - /assets/sacmathis.png
 ---
