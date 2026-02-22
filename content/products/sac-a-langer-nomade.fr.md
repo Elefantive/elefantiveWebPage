@@ -43,7 +43,7 @@ intro: >-
 
   Contactez moi pour concevoir ensemble votre sac à langer !
 versions:
-  - name: Le sac a langer nomade
+  - name: Septembre 2024
     gallery:
       - /assets/sac-a-langer-2.jpg
       - /assets/sac-a-langer-3.jpg
@@ -52,25 +52,10 @@ versions:
       - /assets/sac-a-langer-6.jpg
       - /assets/sac-a-langer-square.mp4
       - /assets/sac-a-langer-cropped.mp4
-    details: |-
-      * Poche pour les habits de rechange
-      * Poche zippee, a porter de main pour tout le necessaire (amovible)
-      * 3 poches de chaque cote
-      * Oreiller ajustable en hauteur pour suivre la croissance de bebe
-      * Liens pour toujours avoir une petite distraction a porter de main
-      * Une petite poche zippee exterieure pour les petites urgentes
+    details: >-
+      Version avec un léger feutre gris tout doux à l'extérieur. Très passe
+      partout.
 
-      **Dimensions : 25 x 25 cm (ferme)**
 
-      Commande ton sac a tes gouts !
-  - gallery:
-      - /assets/sac-a-langer-1.jpg
-      - /assets/sac-a-langer-cropped.mp4
-    name: ghfgh
-    details: fghfh
-  - gallery:
-      - /assets/sac-a-langer-4.jpg
-      - /assets/sac-a-langer-square.mp4
-    name: fghh
-    details: gfhfgh
+      Intérieur en coton thème "jungle".
 ---
