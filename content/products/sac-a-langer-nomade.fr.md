@@ -1,5 +1,6 @@
 ---
-title: Le sac a langer nomade
+title: Le sac a langer nomade test
+date: 2024-09-21T00:00:00.000Z
 image: /assets/sac-a-langer-1.jpg
 featured: true
 description: L'equipement indispensable des jeunes parents ! Pour un change

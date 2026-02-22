@@ -1,5 +1,6 @@
 ---
 title: "Handgewebter Korb"
+date: 2024-03-05T00:00:00.000Z
 image: "/assets/placeholder-basket.jpg"
 featured: true
 description: "Ein stabiler handgewebter Korb, perfekt zur Aufbewahrung oder als Dekoration."

@@ -1,5 +1,6 @@
 ---
 title: "Panier tressé à la main"
+date: 2024-03-05T00:00:00.000Z
 image: "/assets/placeholder-basket.jpg"
 featured: true
 description: "Un panier tressé à la main solide, parfait pour le rangement ou la décoration."

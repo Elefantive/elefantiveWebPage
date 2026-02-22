@@ -1,5 +1,6 @@
 ---
 title: "Handmade Ceramic Mug"
+date: 2024-01-15T00:00:00.000Z
 image: "/assets/placeholder-mug.jpg"
 featured: true
 description: "A unique handmade ceramic mug, perfect for your morning coffee or tea."

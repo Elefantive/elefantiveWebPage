@@ -1,5 +1,6 @@
 ---
 title: "Hand-Woven Basket"
+date: 2024-03-05T00:00:00.000Z
 image: "/assets/placeholder-basket.jpg"
 featured: true
 description: "A sturdy hand-woven basket, perfect for storage or decoration."

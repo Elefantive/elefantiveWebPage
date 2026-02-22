@@ -1,5 +1,6 @@
 ---
 title: "Coș împletit manual"
+date: 2024-03-05T00:00:00.000Z
 image: "/assets/placeholder-basket.jpg"
 featured: true
 description: "Un coș împletit manual rezistent, perfect pentru depozitare sau decorare."

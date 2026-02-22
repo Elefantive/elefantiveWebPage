@@ -1,5 +1,6 @@
 ---
 title: "Lumânare artizanală din soia"
+date: 2024-02-10T00:00:00.000Z
 image: "/assets/placeholder-candle.jpg"
 featured: true
 description: "O lumânare din soia frumos turnată manual cu uleiuri esențiale naturale."

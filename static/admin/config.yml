@@ -23,9 +23,11 @@ collections:
     folder: "content/products"
     create: true
     slug: "{{slug}}"
+    sortable_fields: ["title", "date"]
     i18n: true
     fields:
       - { label: "Title", name: "title", widget: "string", i18n: true }
+      - { label: "Publish Date", name: "date", widget: "datetime", i18n: duplicate }
       - { label: "Price", name: "price", widget: "string", required: false, i18n: duplicate }
       - { label: "Main Image", name: "image", widget: "image", required: false, i18n: duplicate }
       - { label: "Featured", name: "featured", widget: "boolean", default: false, i18n: duplicate }

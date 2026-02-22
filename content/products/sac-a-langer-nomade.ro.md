@@ -1,6 +1,7 @@
 ---
 title: Geanta de infasat nomada
 price: null
+date: 2024-09-21T00:00:00.000Z
 image: /assets/sac-a-langer-1.jpg
 featured: true
 description: Echipamentul indispensabil pentru parintii tineri! Pentru un schimb
