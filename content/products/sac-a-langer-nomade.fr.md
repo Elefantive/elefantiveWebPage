@@ -13,24 +13,33 @@ videos:
 featured: true
 description: L'equipement indispensable des jeunes parents ! Pour un change
   confortable et efficace.
-intro: L'equipement indispensable des jeunes parents ! Pour un change
+intro: |-
+  L'equipement indispensable des jeunes parents ! Pour un change
   confortable et efficace. Sans compromis et tout terrain, le sac vous
   accompagnera des la naissance jusqu'a ce que l'enfant soit propre.
----
 
-- Ouverture facile, meme avec bebe dans les bras
-- Acces total
-- Sur un lit, par terre, dans la voiture, dans les toilettes publics, etc...
-- Matelas molletonne impermeable avec lange amovible
-- Un petit coup d'eponge suffit
-- Lavable egalement en machine
-- Meme en vadrouille, le change se fait toujours au propre
-- Poche pour les habits de rechange
-- Poche zippee, a porter de main pour tout le necessaire (amovible)
-- 3 poches de chaque cote
-- Oreiller ajustable en hauteur pour suivre la croissance de bebe
-- Liens pour toujours avoir une petite distraction a porter de main
-- Une petite poche zippee exterieure pour les petites urgences
+
+
+  * Ouverture facile, meme avec bebe dans les bras
+
+  * Acces total
+
+  * Sur un lit, par terre, dans la voiture, dans les toilettes publics, etc...
+
+  * Matelas molletonne impermeable avec lange amovible
+
+  * Un petit coup d'eponge suffit
+
+  * Lavable egalement en machine
+
+  * Meme en vadrouille, le change se fait toujours au propre
+---
+* Poche pour les habits de rechange
+* Poche zippee, a porter de main pour tout le necessaire (amovible)
+* 3 poches de chaque cote
+* Oreiller ajustable en hauteur pour suivre la croissance de bebe
+* Liens pour toujours avoir une petite distraction a porter de main
+* Une petite poche zippee exterieure pour les petites urgentes
 
 **Dimensions : 25 x 25 cm (ferme)**
 

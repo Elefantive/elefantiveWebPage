@@ -31,7 +31,7 @@ collections:
       - { label: "Videos", name: "videos", widget: "list", field: { label: "Video", name: "video", widget: "file" }, required: false, i18n: true }
       - { label: "Featured", name: "featured", widget: "boolean", default: false, i18n: duplicate }
       - { label: "Short Description (card)", name: "description", widget: "string", i18n: true }
-      - { label: "Intro Text (detail page)", name: "intro", widget: "text", required: false, i18n: true }
+      - { label: "Intro Text (detail page)", name: "intro", widget: "markdown", required: false, i18n: true }
       - { label: "Details", name: "body", widget: "markdown", i18n: true }
 
   # ==========================================
