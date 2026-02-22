@@ -1,9 +1,12 @@
 {{ define "main" }}
 <article class="product-detail">
   <div class="container">
+    {{/* ===== COMMON: Title ===== */}}
     <div class="product-detail-header">
       <h1>{{ .Title }}</h1>
     </div>
+
+    {{/* ===== COMMON: Hero (intro + main image) ===== */}}
     <div class="product-hero">
       <div class="product-hero-text">
         {{ with .Params.intro }}
@@ -22,68 +25,152 @@
       </div>
       {{ end }}
     </div>
-    <div class="product-detail-grid">
-      <div class="product-detail-media">
-        {{/* Main display area with nav arrows */}}
-        <div class="media-main-wrap">
-          <div class="media-main" onclick="openLightbox()">
-            {{ with .Params.image }}
-            <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="media-main-img">
-            {{ else }}
-            <div class="product-image product-image--placeholder product-image--large">
-              <span>&#9733;</span>
+
+    {{/* Helper: video extensions */}}
+    {{/* ===== TOP-LEVEL CONTENT (always shown if present) ===== */}}
+    {{ $hasTopContent := or .Params.gallery .Content }}
+    {{ $versionOffset := 0 }}
+    {{ if $hasTopContent }}
+    <div class="product-version" data-version="0">
+      <div class="product-detail-grid">
+        <div class="product-detail-media">
+          <div class="media-main-wrap">
+            <div class="media-main" onclick="openLightbox(0)">
+              {{ with .Params.image }}
+              <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="media-main-img">
+              {{ else }}
+              <div class="product-image product-image--placeholder product-image--large">
+                <span>&#9733;</span>
+              </div>
+              {{ end }}
             </div>
+            {{ if .Params.gallery }}
+            <button class="media-nav media-nav--prev" onclick="verPrev(event, 0)">&#10094;</button>
+            <button class="media-nav media-nav--next" onclick="verNext(event, 0)">&#10095;</button>
             {{ end }}
           </div>
-          {{ if or .Params.gallery .Params.videos }}
-          <button class="media-nav media-nav--prev" onclick="mainPrev(event)">&#10094;</button>
-          <button class="media-nav media-nav--next" onclick="mainNext(event)">&#10095;</button>
+
+          {{ if .Params.gallery }}
+          <div class="media-thumbs">
+            {{ with .Params.image }}
+            <div class="thumb thumb--active" onclick="verShow(0, 0)" data-type="image">
+              <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
+            </div>
+            {{ end }}
+            {{ range $i, $item := .Params.gallery }}
+            {{ $ext := path.Ext $item }}
+            {{ $isVideo := or (eq $ext ".mp4") (eq $ext ".webm") (eq $ext ".mov") (eq $ext ".MP4") }}
+            {{ $idx := $i }}{{ if $.Params.image }}{{ $idx = add $i 1 }}{{ end }}
+            {{ if $isVideo }}
+            <div class="thumb thumb--video" onclick="verShow(0, {{ $idx }})" data-type="video">
+              <video src="{{ $item | relURL }}" preload="metadata" muted></video>
+              <span class="thumb-play">&#9654;</span>
+            </div>
+            {{ else }}
+            <div class="thumb" onclick="verShow(0, {{ $idx }})" data-type="image">
+              <img src="{{ $item | relURL }}" alt="{{ $.Title }}" loading="lazy">
+            </div>
+            {{ end }}
+            {{ end }}
+          </div>
           {{ end }}
         </div>
 
-        {{/* Thumbnails: main image + gallery + videos */}}
-        {{ if or .Params.gallery .Params.videos }}
-        <div class="media-thumbs">
-          {{ with .Params.image }}
-          <div class="thumb thumb--active" onclick="showImage(this, '{{ . | relURL }}')" data-type="image">
-            <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
-          </div>
+        <div class="product-detail-info">
+          {{ with .Params.price }}
+          <p class="product-detail-price">{{ site.Params.priceLabel }}: {{ site.Params.currency }} {{ . }}</p>
           {{ end }}
-          {{ range .Params.gallery }}
-          <div class="thumb" onclick="showImage(this, '{{ . | relURL }}')" data-type="image">
-            <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
+          <div class="product-detail-description">
+            {{ .Content }}
           </div>
-          {{ end }}
-          {{ range .Params.videos }}
-          <div class="thumb thumb--video" onclick="showVideo(this, '{{ . | relURL }}')" data-type="video">
-            <video src="{{ . | relURL }}" preload="metadata" muted></video>
-            <span class="thumb-play">&#9654;</span>
-          </div>
+          {{ $subject := printf "%s: %s" site.Params.orderSubject .Title }}
+          {{ $body := printf "%s%s" site.Params.orderBody .Title }}
+          <a href="mailto:{{ site.Params.email }}?subject={{ $subject | urlquery }}&body={{ $body | urlquery }}"
+             class="btn btn-primary btn-order">
+            {{ site.Params.orderButtonText }}
+          </a>
+          {{ if not .Params.versions }}
+          <a href="{{ .Parent.RelPermalink }}" class="btn btn-secondary">&larr; {{ site.Params.allProductsText }}</a>
           {{ end }}
         </div>
-        {{ end }}
-      </div>
-
-      <div class="product-detail-info">
-        {{ with .Params.price }}
-        <p class="product-detail-price">{{ site.Params.priceLabel }}: {{ site.Params.currency }} {{ . }}</p>
-        {{ end }}
-        <div class="product-detail-description">
-          {{ .Content }}
-        </div>
-        {{ $subject := printf "%s: %s" site.Params.orderSubject .Title }}
-        {{ $body := printf "%s%s" site.Params.orderBody .Title }}
-        <a href="mailto:{{ site.Params.email }}?subject={{ $subject | urlquery }}&body={{ $body | urlquery }}"
-           class="btn btn-primary btn-order">
-          {{ site.Params.orderButtonText }}
-        </a>
-        <a href="{{ .Parent.RelPermalink }}" class="btn btn-secondary">&larr; {{ site.Params.allProductsText }}</a>
       </div>
     </div>
+    {{ $versionOffset = 1 }}
+    {{ end }}
+
+    {{/* ===== NAMED VERSIONS (shown after top-level content) ===== */}}
+    {{ range $vi, $version := .Params.versions }}
+    {{ $idx := add $vi $versionOffset }}
+    <div class="product-version" data-version="{{ $idx }}">
+      <h2 class="product-version-title">{{ $version.name }}</h2>
+      <div class="product-detail-grid">
+        <div class="product-detail-media">
+          <div class="media-main-wrap">
+            <div class="media-main" onclick="openLightbox({{ $idx }})">
+              {{ if $version.gallery }}
+              {{ $first := index $version.gallery 0 }}
+              {{ $firstExt := path.Ext $first }}
+              {{ $firstIsVideo := or (eq $firstExt ".mp4") (eq $firstExt ".webm") (eq $firstExt ".mov") (eq $firstExt ".MP4") }}
+              {{ if $firstIsVideo }}
+              <video src="{{ $first | relURL }}" class="media-main-video" preload="metadata" muted></video>
+              {{ else }}
+              <img src="{{ $first | relURL }}" alt="{{ $version.name }}" class="media-main-img">
+              {{ end }}
+              {{ else }}
+              <div class="product-image product-image--placeholder product-image--large">
+                <span>&#9733;</span>
+              </div>
+              {{ end }}
+            </div>
+            {{ if $version.gallery }}
+            {{ if gt (len $version.gallery) 1 }}
+            <button class="media-nav media-nav--prev" onclick="verPrev(event, {{ $idx }})">&#10094;</button>
+            <button class="media-nav media-nav--next" onclick="verNext(event, {{ $idx }})">&#10095;</button>
+            {{ end }}
+            {{ end }}
+          </div>
+
+          {{ if $version.gallery }}
+          <div class="media-thumbs">
+            {{ range $gi, $item := $version.gallery }}
+            {{ $ext := path.Ext $item }}
+            {{ $isVideo := or (eq $ext ".mp4") (eq $ext ".webm") (eq $ext ".mov") (eq $ext ".MP4") }}
+            {{ if $isVideo }}
+            <div class="thumb thumb--video{{ if eq $gi 0 }} thumb--active{{ end }}" onclick="verShow({{ $idx }}, {{ $gi }})" data-type="video">
+              <video src="{{ $item | relURL }}" preload="metadata" muted></video>
+              <span class="thumb-play">&#9654;</span>
+            </div>
+            {{ else }}
+            <div class="thumb{{ if eq $gi 0 }} thumb--active{{ end }}" onclick="verShow({{ $idx }}, {{ $gi }})" data-type="image">
+              <img src="{{ $item | relURL }}" alt="{{ $version.name }}" loading="lazy">
+            </div>
+            {{ end }}
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+
+        <div class="product-detail-info">
+          <div class="product-detail-description">
+            {{ $version.details | markdownify }}
+          </div>
+          {{ $subject := printf "%s: %s — %s" site.Params.orderSubject $.Title $version.name }}
+          {{ $body := printf "%s%s — %s" site.Params.orderBody $.Title $version.name }}
+          <a href="mailto:{{ site.Params.email }}?subject={{ $subject | urlquery }}&body={{ $body | urlquery }}"
+             class="btn btn-primary btn-order">
+            {{ site.Params.orderButtonText }}
+          </a>
+          {{ if eq $vi (sub (len $.Params.versions) 1) }}
+          <a href="{{ $.Parent.RelPermalink }}" class="btn btn-secondary">&larr; {{ site.Params.allProductsText }}</a>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    {{ end }}
   </div>
 </article>
 
-{{/* Lightbox overlay with carousel */}}
+{{/* Lightbox overlay (shared) */}}
 <div class="lightbox" id="lightbox" onclick="lbClick(event)">
   <button class="lightbox-close" onclick="lbClose()">&times;</button>
   <button class="lightbox-prev" onclick="lbPrev(event)">&#10094;</button>
@@ -93,88 +180,98 @@
 </div>
 
 <script>
-var mediaItems = [];
-var currentIndex = 0;
-var lbIndex = 0;
-
+// Build media items per version section
+var versions = [];
 (function() {
-  var thumbs = document.querySelectorAll('.thumb');
-  thumbs.forEach(function(t) {
-    var type = t.getAttribute('data-type');
-    if (type === 'image') {
-      var img = t.querySelector('img');
-      if (img) mediaItems.push({ type: 'image', src: img.src });
-    } else if (type === 'video') {
-      var vid = t.querySelector('video');
-      if (vid) mediaItems.push({ type: 'video', src: vid.src });
-    }
+  var sections = document.querySelectorAll('.product-version');
+  sections.forEach(function(section) {
+    var items = [];
+    var thumbs = section.querySelectorAll('.thumb');
+    thumbs.forEach(function(t) {
+      var type = t.getAttribute('data-type');
+      if (type === 'image') {
+        var img = t.querySelector('img');
+        if (img) items.push({ type: 'image', src: img.src });
+      } else if (type === 'video') {
+        var vid = t.querySelector('video');
+        if (vid) items.push({ type: 'video', src: vid.src });
+      }
+    });
+    versions.push({ items: items, currentIndex: 0 });
   });
 })();
 
-function showByIndex(idx) {
-  if (!mediaItems.length) return;
-  currentIndex = idx;
-  var item = mediaItems[idx];
-  var main = document.querySelector('.media-main');
+var activeLbVersion = 0;
+var lbIndex = 0;
+
+function verShow(vi, idx) {
+  var ver = versions[vi];
+  if (!ver || !ver.items.length) return;
+  ver.currentIndex = idx;
+  var item = ver.items[idx];
+  var section = document.querySelectorAll('.product-version')[vi];
+  var main = section.querySelector('.media-main');
   if (item.type === 'image') {
     main.innerHTML = '<img src="' + item.src + '" alt="" class="media-main-img">';
   } else {
     main.innerHTML = '<video src="' + item.src + '" controls playsinline autoplay class="media-main-video"></video>';
   }
-  var thumbs = document.querySelectorAll('.thumb');
+  var thumbs = section.querySelectorAll('.thumb');
   thumbs.forEach(function(t, i) {
     t.classList.toggle('thumb--active', i === idx);
   });
 }
 
-function showImage(thumb, src) {
-  var thumbs = Array.from(document.querySelectorAll('.thumb'));
-  showByIndex(thumbs.indexOf(thumb));
-}
-
-function showVideo(thumb, src) {
-  var thumbs = Array.from(document.querySelectorAll('.thumb'));
-  showByIndex(thumbs.indexOf(thumb));
-}
-
-function mainNext(e) {
+function verNext(e, vi) {
   if (e) { e.stopPropagation(); e.preventDefault(); }
-  showByIndex((currentIndex + 1) % mediaItems.length);
+  var ver = versions[vi];
+  if (!ver || !ver.items.length) return;
+  verShow(vi, (ver.currentIndex + 1) % ver.items.length);
 }
 
-function mainPrev(e) {
+function verPrev(e, vi) {
   if (e) { e.stopPropagation(); e.preventDefault(); }
-  showByIndex((currentIndex - 1 + mediaItems.length) % mediaItems.length);
+  var ver = versions[vi];
+  if (!ver || !ver.items.length) return;
+  verShow(vi, (ver.currentIndex - 1 + ver.items.length) % ver.items.length);
 }
 
-function openLightbox() {
-  lbIndex = currentIndex;
+function openLightbox(vi) {
+  activeLbVersion = vi;
+  var ver = versions[vi];
+  if (!ver || !ver.items.length) return;
+  lbIndex = ver.currentIndex;
   lbShow();
   document.getElementById('lightbox').classList.add('lightbox--open');
   document.body.style.overflow = 'hidden';
 }
 
 function lbShow() {
-  if (!mediaItems.length) return;
-  var item = mediaItems[lbIndex];
+  var ver = versions[activeLbVersion];
+  if (!ver || !ver.items.length) return;
+  var item = ver.items[lbIndex];
   var content = document.getElementById('lightbox-content');
   if (item.type === 'image') {
     content.innerHTML = '<img src="' + item.src + '" alt="">';
   } else {
     content.innerHTML = '<video src="' + item.src + '" controls playsinline autoplay></video>';
   }
-  document.getElementById('lightbox-counter').textContent = (lbIndex + 1) + ' / ' + mediaItems.length;
+  document.getElementById('lightbox-counter').textContent = (lbIndex + 1) + ' / ' + ver.items.length;
 }
 
 function lbNext(e) {
   if (e) e.stopPropagation();
-  lbIndex = (lbIndex + 1) % mediaItems.length;
+  var ver = versions[activeLbVersion];
+  if (!ver) return;
+  lbIndex = (lbIndex + 1) % ver.items.length;
   lbShow();
 }
 
 function lbPrev(e) {
   if (e) e.stopPropagation();
-  lbIndex = (lbIndex - 1 + mediaItems.length) % mediaItems.length;
+  var ver = versions[activeLbVersion];
+  if (!ver) return;
+  lbIndex = (lbIndex - 1 + ver.items.length) % ver.items.length;
   lbShow();
 }
 

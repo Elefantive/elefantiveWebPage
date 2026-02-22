@@ -1,6 +1,6 @@
 ---
 title: "Cană ceramică artizanală"
-image: "/images/placeholder-mug.jpg"
+image: "/assets/placeholder-mug.jpg"
 featured: true
 description: "O cană ceramică artizanală unică, perfectă pentru cafeaua sau ceaiul de dimineață."
 ---

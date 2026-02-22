@@ -13,7 +13,7 @@ summaryLength = 20
 [params]
   email = "your-email@example.com"
   description = "Handcrafted products made with love"
-  images = ["/images/og-default.jpg"]
+  images = ["/assets/og-default.jpg"]
   currency = "€"
 
 [languages]

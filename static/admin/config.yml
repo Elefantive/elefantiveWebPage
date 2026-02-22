@@ -5,8 +5,8 @@ backend:
   repo: YOUR_GITHUB_USERNAME/elefantive   # <-- CHANGE THIS to your GitHub repo
   branch: main
 
-media_folder: "static/images"
-public_folder: "/images"
+media_folder: "static/assets"
+public_folder: "/assets"
 
 i18n:
   structure: multiple_files
@@ -27,12 +27,18 @@ collections:
       - { label: "Title", name: "title", widget: "string", i18n: true }
       - { label: "Price", name: "price", widget: "string", required: false, i18n: duplicate }
       - { label: "Main Image", name: "image", widget: "image", required: false, i18n: duplicate }
-      - { label: "Gallery Images", name: "gallery", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false, i18n: true }
-      - { label: "Videos", name: "videos", widget: "list", field: { label: "Video", name: "video", widget: "file" }, required: false, i18n: true }
       - { label: "Featured", name: "featured", widget: "boolean", default: false, i18n: duplicate }
       - { label: "Short Description (card)", name: "description", widget: "string", i18n: true }
       - { label: "Intro Text (detail page)", name: "intro", widget: "markdown", required: false, i18n: true }
-      - { label: "Details", name: "body", widget: "markdown", i18n: true }
+      - label: "Versions"
+        name: "versions"
+        widget: "list"
+        required: false
+        i18n: true
+        fields:
+          - { label: "Version Name", name: "name", widget: "string" }
+          - { label: "Gallery (images & videos)", name: "gallery", widget: "list", field: { label: "File", name: "file", widget: "file" }, required: false }
+          - { label: "Details", name: "details", widget: "markdown" }
 
   # ==========================================
   # ABOUT PAGE — with language tabs

@@ -416,6 +416,24 @@ h3 { font-size: 1.3rem; }
   margin-bottom: 0;
 }
 
+/* Version sections */
+.product-version {
+  margin-bottom: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--color-primary-light);
+}
+
+.product-version:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.product-version-title {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+}
+
 .product-detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

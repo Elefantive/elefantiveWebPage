@@ -1,6 +1,6 @@
 ---
 title: "Handgewebter Korb"
-image: "/images/placeholder-basket.jpg"
+image: "/assets/placeholder-basket.jpg"
 featured: true
 description: "Ein stabiler handgewebter Korb, perfekt zur Aufbewahrung oder als Dekoration."
 ---

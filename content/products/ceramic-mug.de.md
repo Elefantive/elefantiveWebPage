@@ -1,6 +1,6 @@
 ---
 title: "Handgemachte Keramiktasse"
-image: "/images/placeholder-mug.jpg"
+image: "/assets/placeholder-mug.jpg"
 featured: true
 description: "Eine einzigartige handgemachte Keramiktasse, perfekt für Ihren Morgenkaffee oder Tee."
 ---

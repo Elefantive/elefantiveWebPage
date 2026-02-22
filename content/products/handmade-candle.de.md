@@ -1,6 +1,6 @@
 ---
 title: "Handgemachte Sojakerze"
-image: "/images/placeholder-candle.jpg"
+image: "/assets/placeholder-candle.jpg"
 featured: true
 description: "Eine wunderschön handgegossene Sojakerze mit natürlichen ätherischen Ölen."
 ---

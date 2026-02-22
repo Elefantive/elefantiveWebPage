@@ -1,6 +1,6 @@
 ---
 title: "Hand-Woven Basket"
-image: "/images/placeholder-basket.jpg"
+image: "/assets/placeholder-basket.jpg"
 featured: true
 description: "A sturdy hand-woven basket, perfect for storage or decoration."
 ---

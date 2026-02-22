@@ -1,6 +1,6 @@
 ---
 title: "Handmade Soy Candle"
-image: "/images/placeholder-candle.jpg"
+image: "/assets/placeholder-candle.jpg"
 featured: true
 description: "A beautifully hand-poured soy candle with natural essential oils."
 ---

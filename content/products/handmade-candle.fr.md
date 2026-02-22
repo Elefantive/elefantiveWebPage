@@ -1,6 +1,6 @@
 ---
 title: "Bougie artisanale en soja"
-image: "/images/placeholder-candle.jpg"
+image: "/assets/placeholder-candle.jpg"
 featured: true
 description: "Une bougie en soja magnifiquement coulée à la main avec des huiles essentielles naturelles."
 ---

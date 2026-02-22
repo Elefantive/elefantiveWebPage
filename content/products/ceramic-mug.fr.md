@@ -1,6 +1,6 @@
 ---
 title: "Tasse en céramique artisanale"
-image: "/images/placeholder-mug.jpg"
+image: "/assets/placeholder-mug.jpg"
 featured: true
 description: "Une tasse en céramique artisanale unique, parfaite pour votre café ou thé du matin."
 ---
