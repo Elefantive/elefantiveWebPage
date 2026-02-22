@@ -10,8 +10,8 @@ public_folder: "/images"
 
 i18n:
   structure: multiple_files
-  locales: [en, de, fr, ro]
-  default_locale: en
+  locales: [fr, en, de, ro]
+  default_locale: fr
 
 collections:
   # ==========================================
