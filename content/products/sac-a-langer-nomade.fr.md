@@ -103,5 +103,6 @@ versions:
       d’ouverture/fermeture du sac fonctionne avec: une bande scratch ajustable
       pour fermer le sac , simple et efficace, et une boucle bretelle réglable
       pour fermer le rabat. Pratique et modulable au quotidien !"
-    gallery: []
+    gallery:
+      - /assets/visite-guidée-sac-à-langer-nomade-fermeture_bbd.mp4
 ---
