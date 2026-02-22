@@ -1,8 +1,9 @@
 ---
 title: The Nomad Diaper Bag
-price: null
 date: 2024-09-21T00:00:00.000Z
-image: /assets/sac-a-langer-1.jpg
+price: null
+image: /assets/main_sac-à-langer.jpg
+draft: true
 featured: true
 description: The essential gear for young parents! For a comfortable and
   efficient diaper change.
