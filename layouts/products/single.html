@@ -4,6 +4,11 @@
 {{ $oeSubject := "" }}{{ with $oe }}{{ $oeSubject = replace (.Params.subject | default "") "{{product}}" $.Title }}{{ end }}
 {{ $oeBody := "" }}{{ with $oe }}{{ $oeBody = replace (.Params.emailBody | default "") "{{product}}" $.Title }}{{ end }}
 {{ $oeBtnText := "" }}{{ with $oe }}{{ $oeBtnText = .Params.buttonText | default site.Params.orderButtonText }}{{ else }}{{ $oeBtnText = site.Params.orderButtonText }}{{ end }}
+{{ $oeSubjectEnc := replace $oeSubject " " "%20" }}
+{{ $oeBodyEnc := replace $oeBody " " "%20" }}
+{{ $oeBodyEnc = replace $oeBodyEnc "(" "%28" }}
+{{ $oeBodyEnc = replace $oeBodyEnc ")" "%29" }}
+{{ $oeHref := printf "mailto:%s?subject=%s&body=%s" $oeEmail $oeSubjectEnc $oeBodyEnc | safeURL }}
 <article class="product-detail">
   <div class="container">
     {{/* ===== COMMON: Title ===== */}}
@@ -17,7 +22,7 @@
         {{ with .Params.intro }}
         <div class="product-intro">{{ . | markdownify }}</div>
         {{ end }}
-        <a href="mailto:{{ $oeEmail }}?subject={{ $oeSubject | urlquery }}&body={{ $oeBody | urlquery }}"
+        <a href="{{ $oeHref }}"
            class="btn btn-primary btn-order">
           {{ $oeBtnText }}
         </a>
@@ -86,11 +91,9 @@
           <div class="product-detail-description">
             {{ .Content }}
           </div>
-          {{ $subject := printf "%s: %s" site.Params.orderSubject .Title }}
-          {{ $body := printf "%s%s" site.Params.orderBody .Title }}
-          <a href="mailto:{{ site.Params.email }}?subject={{ $subject | urlquery }}&body={{ $body | urlquery }}"
+          <a href="{{ $oeHref }}"
              class="btn btn-primary btn-order">
-            {{ site.Params.orderButtonText }}
+            {{ $oeBtnText }}
           </a>
         </div>
       </div>
@@ -166,7 +169,7 @@
       {{ with $footer }}
       <div class="product-footer-text">{{ .Content }}</div>
       {{ end }}
-      <a href="mailto:{{ $oeEmail }}?subject={{ $oeSubject | urlquery }}&body={{ $oeBody | urlquery }}"
+      <a href="{{ $oeHref }}"
          class="btn btn-primary btn-order">
         {{ $oeBtnText }}
       </a>
