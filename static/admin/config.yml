@@ -4,6 +4,7 @@ backend:
   name: github
   repo: Elefantive/elefantiveWebPage
   branch: main
+  site_domain: calm-bavarois-517955.netlify.app
 
 publish_mode: editorial_workflow
 
