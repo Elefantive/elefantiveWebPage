@@ -45,6 +45,7 @@ intro: >-
 versions:
   - name: Septembre 2024
     gallery:
+      - /assets/sac-a-langer-1.jpg
       - /assets/sac-a-langer-2.jpg
       - /assets/sac-a-langer-3.jpg
       - /assets/sac-a-langer-4.jpg
@@ -58,4 +59,31 @@ versions:
 
 
       Intérieur en coton thème "jungle".
+  - name: Octobre 2024
+    gallery:
+      - /assets/1.jpg
+      - /assets/2.jpg
+      - /assets/3.jpg
+      - /assets/4.jpg
+      - /assets/5.jpg
+      - /assets/6.jpg
+      - /assets/20241013_222512.jpg
+      - /assets/sac-à-langer-croper.mp4
+    details: >-
+      Un nouveau petit sac à langer pour une famille lyonnaise.
+
+
+      Ce tissu bleu royal est absolument magnifique (même si pas évident à capturer en photo 😉) et se marie parfaitement avec le blanc à petits motifs bleus et jaunes.
+  - name: Mon tout premier sac à langer nomade
+    details: >-
+      Mon tout premier sac à langer, toujours fidèle au poste ! 
+
+      À 3 ans et demi, mon petit lou n’est pas encore prêt à s’en passer, et moi non plus ! 
+
+
+      Avec son oreiller repositionnable et son design ultra-pratique, ce sac est toujours mon allié incontournable, même après toutes ces années. 
+
+      Il m’accompagne dans chaque aventure, que ce soit pour un pique-nique improvisé ou un séjour chez Mamine. Comme quoi, certains indispensables ne perdent jamais leur magie
+    gallery:
+      - /assets/sacmathis.png
 ---
