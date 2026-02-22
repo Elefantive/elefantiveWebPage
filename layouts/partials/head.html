@@ -6,3 +6,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+{{ if hugo.IsServer }}
+<script>
+(function(){
+  var lastCheck = '';
+  setInterval(function(){
+    fetch(window.location.href, {cache:'no-store'}).then(function(r){return r.text()}).then(function(html){
+      var title = html.match(/<title>(.*?)<\/title>/);
+      var body = html.length;
+      var check = (title ? title[1] : '') + body;
+      if(lastCheck && lastCheck !== check) window.location.reload();
+      lastCheck = check;
+    }).catch(function(){});
+  }, 2000);
+})();
+</script>
+{{ end }}
