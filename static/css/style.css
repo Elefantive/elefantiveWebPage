@@ -141,7 +141,7 @@ h3 { font-size: 1.3rem; }
 }
 
 .site-nav a:hover,
-.site-nav a.active {
+.site-nav a.active:not(.lang-link) {
   color: var(--color-primary);
   border-bottom-color: var(--color-primary);
 }
@@ -184,22 +184,22 @@ h3 { font-size: 1.3rem; }
 }
 
 .lang-link:hover {
-  color: var(--color-primary);
+  color: var(--color-text);
   background: var(--color-bg-warm);
 }
 
 .site-nav .lang-link.active,
 .lang-link.active {
-  color: var(--color-text);
-  background: var(--color-primary);
+  color: var(--color-white);
+  background: #6b6f6c;
   font-weight: 800;
   border-bottom-color: transparent;
 }
 
 .site-nav .lang-link.active:hover,
 .lang-link.active:hover {
-  color: var(--color-text);
-  background: var(--color-primary-dark);
+  color: var(--color-white);
+  background: var(--color-text);
   border-bottom-color: transparent;
 }
 
@@ -714,6 +714,18 @@ h3 { font-size: 1.3rem; }
 .site-footer p {
   font-size: 0.9rem;
   opacity: 0.8;
+}
+
+.site-footer a,
+.site-footer-content a {
+  color: #9a9e9b;
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer-content a:hover {
+  color: var(--color-white);
+  text-decoration: underline;
 }
 
 /* ============================================
