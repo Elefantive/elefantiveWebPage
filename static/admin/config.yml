@@ -15,10 +15,11 @@ i18n:
 
 collections:
   # ==========================================
-  # PRODUCTS — with language tabs
+  # PRODUCTS
   # ==========================================
   - name: "products"
     label: "Products"
+    label_singular: "Product"
     folder: "content/products"
     create: true
     slug: "{{slug}}"
@@ -40,9 +41,47 @@ collections:
           - { label: "Gallery (images & videos)", name: "gallery", widget: "list", field: { label: "File", name: "file", widget: "file" }, required: false }
           - { label: "Details", name: "details", widget: "markdown" }
 
+  - name: "product-footer"
+    label: "Product Footer"
+    folder: "content/product-footer"
+    create: false
+    i18n: true
+    fields:
+      - { label: "Title", name: "title", widget: "hidden", default: "Product Footer" }
+      - { label: "Footer Text", name: "body", widget: "markdown", i18n: true }
+
   # ==========================================
-  # ABOUT PAGE — with language tabs
+  # PAGES
   # ==========================================
+  - name: "separator"
+    label: "-------- Pages --------"
+    folder: "content/_separator"
+    create: false
+    fields:
+      - { label: "Title", name: "title", widget: "hidden" }
+
+  - name: "homepage"
+    label: "Homepage"
+    folder: "content/homepage"
+    create: false
+    i18n: true
+    fields:
+      - { label: "Title", name: "title", widget: "hidden", default: "Homepage" }
+      - { label: "Hero Title", name: "heroTitle", widget: "string", i18n: true }
+      - { label: "Hero Subtitle", name: "heroSubtitle", widget: "string", i18n: true }
+      - { label: "Additional Content", name: "body", widget: "markdown", required: false, i18n: true }
+
+  - name: "products-page"
+    label: "Products Page"
+    folder: "content/products-page"
+    create: false
+    i18n: true
+    fields:
+      - { label: "Title", name: "title", widget: "hidden", default: "Products Page" }
+      - { label: "Page Title", name: "pageTitle", widget: "string", i18n: true }
+      - { label: "Description", name: "pageDescription", widget: "string", required: false, i18n: true }
+      - { label: "Additional Content", name: "body", widget: "markdown", required: false, i18n: true }
+
   - name: "about"
     label: "About Page"
     folder: "content/about"
@@ -51,3 +90,12 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string", i18n: true }
       - { label: "Body", name: "body", widget: "markdown", i18n: true }
+
+  - name: "site-footer"
+    label: "Site Footer"
+    folder: "content/site-footer"
+    create: false
+    i18n: true
+    fields:
+      - { label: "Title", name: "title", widget: "hidden", default: "Site Footer" }
+      - { label: "Footer Content", name: "body", widget: "markdown", i18n: true }

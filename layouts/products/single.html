@@ -89,9 +89,6 @@
              class="btn btn-primary btn-order">
             {{ site.Params.orderButtonText }}
           </a>
-          {{ if not .Params.versions }}
-          <a href="{{ .Parent.RelPermalink }}" class="btn btn-secondary">&larr; {{ site.Params.allProductsText }}</a>
-          {{ end }}
         </div>
       </div>
     </div>
@@ -154,19 +151,26 @@
           <div class="product-detail-description">
             {{ $version.details | markdownify }}
           </div>
-          {{ $subject := printf "%s: %s — %s" site.Params.orderSubject $.Title $version.name }}
-          {{ $body := printf "%s%s — %s" site.Params.orderBody $.Title $version.name }}
-          <a href="mailto:{{ site.Params.email }}?subject={{ $subject | urlquery }}&body={{ $body | urlquery }}"
-             class="btn btn-primary btn-order">
-            {{ site.Params.orderButtonText }}
-          </a>
-          {{ if eq $vi (sub (len $.Params.versions) 1) }}
-          <a href="{{ $.Parent.RelPermalink }}" class="btn btn-secondary">&larr; {{ site.Params.allProductsText }}</a>
-          {{ end }}
         </div>
       </div>
     </div>
     {{ end }}
+
+    {{/* ===== FOOTER: order + back buttons ===== */}}
+    {{/* ===== FOOTER: editable text + order + back buttons ===== */}}
+    {{ $footer := site.GetPage "/product-footer" }}
+    <div class="product-footer">
+      {{ with $footer }}
+      <div class="product-footer-text">{{ .Content }}</div>
+      {{ end }}
+      {{ $subject := printf "%s: %s" site.Params.orderSubject .Title }}
+      {{ $body := printf "%s%s" site.Params.orderBody .Title }}
+      <a href="mailto:{{ site.Params.email }}?subject={{ $subject | urlquery }}&body={{ $body | urlquery }}"
+         class="btn btn-primary btn-order">
+        {{ site.Params.orderButtonText }}
+      </a>
+      <a href="{{ .Parent.RelPermalink }}" class="btn btn-secondary">&larr; {{ site.Params.allProductsText }}</a>
+    </div>
   </div>
 </article>
 

@@ -34,6 +34,7 @@ summaryLength = 20
       orderBody = "Hello, I am interested in ordering: "
       footerText = "Handcrafted with love"
       browseText = "Browse Products"
+      orderFooterText = "Interested? Order your custom version today!"
     [[languages.en.menus.main]]
       name = "Home"
       pageRef = "/"
@@ -64,6 +65,7 @@ summaryLength = 20
       orderBody = "Hallo, ich interessiere mich für eine Bestellung: "
       footerText = "Handgefertigt mit Liebe"
       browseText = "Produkte durchstöbern"
+      orderFooterText = "Interessiert? Bestellen Sie noch heute Ihre individuelle Version!"
     [[languages.de.menus.main]]
       name = "Startseite"
       pageRef = "/"
@@ -94,6 +96,7 @@ summaryLength = 20
       orderBody = "Bonjour, je suis intéressé(e) par la commande de : "
       footerText = "Fait main avec amour"
       browseText = "Parcourir les produits"
+      orderFooterText = "Intéressé(e) ? Commandez votre version personnalisée dès aujourd'hui !"
     [[languages.fr.menus.main]]
       name = "Accueil"
       pageRef = "/"
@@ -124,6 +127,7 @@ summaryLength = 20
       orderBody = "Bună ziua, sunt interesat(ă) de comanda: "
       footerText = "Lucrat manual cu dragoste"
       browseText = "Răsfoiește produsele"
+      orderFooterText = "Interesat(ă)? Comandă versiunea personalizată chiar azi!"
     [[languages.ro.menus.main]]
       name = "Acasă"
       pageRef = "/"

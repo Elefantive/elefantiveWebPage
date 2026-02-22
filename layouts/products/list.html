@@ -1,8 +1,10 @@
 {{ define "main" }}
+{{ $pp := site.GetPage "/products-page" }}
 <section class="page-header">
   <div class="container">
-    <h1>{{ site.Params.allProductsText }}</h1>
-    {{ with .Content }}<div class="page-description">{{ . }}</div>{{ end }}
+    <h1>{{ with $pp }}{{ .Params.pageTitle }}{{ else }}{{ site.Params.allProductsText }}{{ end }}</h1>
+    {{ with $pp }}{{ with .Params.pageDescription }}<div class="page-description"><p>{{ . }}</p></div>{{ end }}{{ end }}
+    {{ with $pp }}{{ with .Content }}<div class="page-description">{{ . }}</div>{{ end }}{{ end }}
   </div>
 </section>
 

@@ -1,8 +1,9 @@
 {{ define "main" }}
+{{ $home := site.GetPage "/homepage" }}
 <section class="hero">
   <div class="container">
-    <h1>{{ .Params.heroTitle | default site.Params.homeTitle }}</h1>
-    <p>{{ .Params.heroSubtitle | default site.Params.homeSubtitle }}</p>
+    <h1>{{ with $home }}{{ .Params.heroTitle }}{{ else }}{{ site.Params.homeTitle }}{{ end }}</h1>
+    <p>{{ with $home }}{{ .Params.heroSubtitle }}{{ else }}{{ site.Params.homeSubtitle }}{{ end }}</p>
     {{ $productsPage := .Site.GetPage "/products" }}
     <a href="{{ $productsPage.RelPermalink }}" class="btn btn-primary">{{ site.Params.browseText }}</a>
   </div>
@@ -29,11 +30,11 @@
   </div>
 </section>
 
-{{ with .Content }}
+{{ with $home }}{{ with .Content }}
 <section class="home-content">
   <div class="container">
     {{ . }}
   </div>
 </section>
-{{ end }}
+{{ end }}{{ end }}
 {{ end }}
