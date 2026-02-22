@@ -1,5 +1,6 @@
 ---
 title: The Nomad Diaper Bag
+price: null
 image: /images/sac-a-langer-1.jpg
 gallery:
   - /images/sac-a-langer-2.jpg

@@ -18,7 +18,7 @@
       </div>
       {{ with .Params.image }}
       <div class="product-hero-image">
-        <img src="{{ . | absURL }}" alt="{{ $.Title }}">
+        <img src="{{ . | relURL }}" alt="{{ $.Title }}">
       </div>
       {{ end }}
     </div>
@@ -28,7 +28,7 @@
         <div class="media-main-wrap">
           <div class="media-main" onclick="openLightbox()">
             {{ with .Params.image }}
-            <img src="{{ . | absURL }}" alt="{{ $.Title }}" class="media-main-img">
+            <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="media-main-img">
             {{ else }}
             <div class="product-image product-image--placeholder product-image--large">
               <span>&#9733;</span>
@@ -45,18 +45,18 @@
         {{ if or .Params.gallery .Params.videos }}
         <div class="media-thumbs">
           {{ with .Params.image }}
-          <div class="thumb thumb--active" onclick="showImage(this, '{{ . | absURL }}')" data-type="image">
-            <img src="{{ . | absURL }}" alt="{{ $.Title }}" loading="lazy">
+          <div class="thumb thumb--active" onclick="showImage(this, '{{ . | relURL }}')" data-type="image">
+            <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
           </div>
           {{ end }}
           {{ range .Params.gallery }}
-          <div class="thumb" onclick="showImage(this, '{{ . | absURL }}')" data-type="image">
-            <img src="{{ . | absURL }}" alt="{{ $.Title }}" loading="lazy">
+          <div class="thumb" onclick="showImage(this, '{{ . | relURL }}')" data-type="image">
+            <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
           </div>
           {{ end }}
           {{ range .Params.videos }}
-          <div class="thumb thumb--video" onclick="showVideo(this, '{{ . | absURL }}')" data-type="video">
-            <video src="{{ . | absURL }}" preload="metadata" muted></video>
+          <div class="thumb thumb--video" onclick="showVideo(this, '{{ . | relURL }}')" data-type="video">
+            <video src="{{ . | relURL }}" preload="metadata" muted></video>
             <span class="thumb-play">&#9654;</span>
           </div>
           {{ end }}

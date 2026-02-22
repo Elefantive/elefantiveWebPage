@@ -2,7 +2,7 @@
   <a href="{{ .RelPermalink }}">
     {{ with .Params.image }}
     <div class="product-image">
-      <img src="{{ . | absURL }}" alt="{{ $.Title }}" loading="lazy">
+      <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
     </div>
     {{ else }}
     <div class="product-image product-image--placeholder">
