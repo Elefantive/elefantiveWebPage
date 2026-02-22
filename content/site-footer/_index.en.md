@@ -1,5 +1,6 @@
 ---
 title: Site Footer
 ---
+© 2026 Elefantive — handmade creative concept — Bags, pouches, and creative concepts for the whole family.
 
-© 2026 Elefant'ive — handmade creative concept — Handcrafted with love
+Follow me :
