@@ -133,62 +133,38 @@
     CMS.registerPreviewStyle('.preview-intro ul, .preview-intro ol { padding-left: 1.5rem; margin: 0.5rem 0; } .preview-intro li { margin-bottom: 0.3rem; line-height: 1.6; } .preview-intro li p { margin: 0; } .preview-intro p { margin: 0 0 0.75rem 0; } .preview-intro p:last-child { margin-bottom: 0; }', { raw: true });
     CMS.registerPreviewTemplate('products', ProductPreview);
 
-    // Custom "media" widget: file picker + image/video preview
+    // "media" widget: file widget (shows all files) + image/video preview
+    var fileWidget = CMS.getWidget('file');
+    var FileControl = fileWidget.control;
+    var FilePreview = fileWidget.preview;
+
     var MediaControl = createClass({
-      getInitialState: function() {
-        return {};
-      },
-      handleChange: function(e) {
-        this.props.onChange(e);
-      },
-      handleOpenMediaLib: function() {
-        var that = this;
-        return this.props.mediaPaths && this.props.openMediaLibrary
-          ? this.props.openMediaLibrary({ controlID: this.props.field.get('name'), forImage: false })
-          : null;
-      },
-      handleRemove: function() {
-        this.props.onChange('');
-      },
       render: function() {
         var value = this.props.value || '';
         var isImg = /\.(jpg|jpeg|png|gif|svg|webp)$/i.test(value);
         var isVid = /\.(mp4|webm|mov)$/i.test(value);
 
-        var previewEl = null;
+        // Preview above the native file control
+        var preview = null;
         if (value && isImg) {
-          previewEl = h('img', { src: value, style: { maxWidth: '200px', maxHeight: '150px', borderRadius: '4px', marginBottom: '8px', display: 'block', objectFit: 'cover' } });
+          preview = h('div', { style: { marginBottom: '8px', maxWidth: '300px', borderRadius: '5px', overflow: 'hidden', border: '2px solid #dfdfe3' } },
+            h('img', { src: value, style: { width: '100%', display: 'block' } })
+          );
         } else if (value && isVid) {
-          previewEl = h('div', { style: { width: '200px', height: '80px', background: '#222', borderRadius: '4px', marginBottom: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' } },
-            h('span', { style: { color: '#fff', fontSize: '1.5rem' } }, '\u25B6'),
-            h('span', { style: { color: '#999', fontSize: '0.7rem', marginTop: '4px' } }, value.split('/').pop())
+          preview = h('div', { style: { marginBottom: '8px', maxWidth: '300px', borderRadius: '5px', overflow: 'hidden', border: '2px solid #dfdfe3', background: '#1a1a2e', padding: '24px', textAlign: 'center' } },
+            h('span', { style: { color: '#fff', fontSize: '2rem', display: 'block' } }, '\u25B6'),
+            h('span', { style: { color: '#aaa', fontSize: '0.75rem' } }, value.split('/').pop())
           );
         }
 
         return h('div', {},
-          previewEl,
-          value
-            ? h('div', { style: { display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' } },
-                h('span', { style: { fontSize: '0.85rem', color: '#555', wordBreak: 'break-all' } }, value.split('/').pop()),
-                h('button', { type: 'button', onClick: this.handleRemove, style: { fontSize: '0.8rem', cursor: 'pointer', background: '#eee', border: '1px solid #ccc', borderRadius: '4px', padding: '2px 8px' } }, 'Remove'),
-                h('button', { type: 'button', onClick: this.handleOpenMediaLib, style: { fontSize: '0.8rem', cursor: 'pointer', background: '#eee', border: '1px solid #ccc', borderRadius: '4px', padding: '2px 8px' } }, 'Replace')
-              )
-            : h('button', { type: 'button', onClick: this.handleOpenMediaLib, style: { cursor: 'pointer', background: '#2A706C', color: '#fff', border: 'none', borderRadius: '4px', padding: '6px 16px', fontSize: '0.9rem' } }, 'Choose file')
+          preview,
+          h(FileControl, this.props)
         );
       }
     });
 
-    var MediaPreview = createClass({
-      render: function() {
-        var value = this.props.value || '';
-        if (/\.(jpg|jpeg|png|gif|svg|webp)$/i.test(value)) {
-          return h('img', { src: value, style: { maxWidth: '100%' } });
-        }
-        return h('span', {}, value);
-      }
-    });
-
-    CMS.registerWidget('media', MediaControl, MediaPreview);
+    CMS.registerWidget('media', MediaControl, FilePreview);
   </script>
 </body>
 </html>
