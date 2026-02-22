@@ -18,7 +18,6 @@ summaryLength = 20
 
 [languages]
   [languages.en]
-    contentDir = "content/en"
     languageName = "English"
     languageCode = "en"
     weight = 1
@@ -49,7 +48,6 @@ summaryLength = 20
       weight = 3
 
   [languages.de]
-    contentDir = "content/de"
     languageName = "Deutsch"
     languageCode = "de"
     weight = 2
@@ -80,7 +78,6 @@ summaryLength = 20
       weight = 3
 
   [languages.fr]
-    contentDir = "content/fr"
     languageName = "Français"
     languageCode = "fr"
     weight = 3
@@ -111,7 +108,6 @@ summaryLength = 20
       weight = 3
 
   [languages.ro]
-    contentDir = "content/ro"
     languageName = "Română"
     languageCode = "ro"
     weight = 4

@@ -17,6 +17,13 @@
           {{ end }}
         </div>
         {{ end }}
+        {{ with .Params.videos }}
+        <div class="product-videos">
+          {{ range . }}
+          <video src="{{ . | absURL }}" controls playsinline preload="metadata"></video>
+          {{ end }}
+        </div>
+        {{ end }}
       </div>
       <div class="product-detail-info">
         <h1>{{ .Title }}</h1>

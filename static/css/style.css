@@ -312,7 +312,7 @@ h3 { font-size: 1.3rem; }
 }
 
 .product-image {
-  aspect-ratio: 4/3;
+  aspect-ratio: 1/1;
   overflow: hidden;
   background: var(--color-bg-warm);
 }
@@ -401,6 +401,19 @@ h3 { font-size: 1.3rem; }
 
 .product-gallery img:hover {
   border-color: var(--color-primary);
+}
+
+.product-videos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.product-videos video {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .product-detail-info h1 {
