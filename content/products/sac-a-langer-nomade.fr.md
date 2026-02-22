@@ -45,6 +45,7 @@ intro: >-
 versions:
   - name: Septembre 2024
     gallery:
+      - /assets/sac-a-langer-1.jpg
       - /assets/sac-a-langer-2.jpg
       - /assets/sac-a-langer-3.jpg
       - /assets/sac-a-langer-4.jpg
