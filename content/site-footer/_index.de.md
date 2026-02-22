@@ -1,5 +1,6 @@
 ---
 title: Site Footer
 ---
+© 2026 Elefantive — handmade creative concept — Taschen, Mäppchen, Kostüme für die ganze Familie
 
-© 2026 Elefant'ive — handmade creative concept — Handgefertigt mit Liebe
+Folge mir :

@@ -1,5 +1,6 @@
 ---
 title: Site Footer
 ---
+© 2026 Elefantive — Produits cousus main & arts créatifs — Sacs, pochettes, concepts créatifs pour toute la famille
 
-© 2026 Elefant'ive — handmade creative concept — Fait main avec amour
+Suivez moi :
