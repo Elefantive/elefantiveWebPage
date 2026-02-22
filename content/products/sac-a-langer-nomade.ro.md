@@ -12,11 +12,8 @@ videos:
   - "/videos/sac-a-langer-cropped.mp4"
 featured: true
 description: "Echipamentul indispensabil pentru parintii tineri! Pentru un schimb de scutece confortabil si eficient."
+intro: "Echipamentul indispensabil pentru parintii tineri! Pentru un schimb de scutece confortabil si eficient. Fara compromisuri si pentru orice teren, geanta va va insoti de la nastere pana cand copilul nu mai are nevoie de scutece."
 ---
-
-Echipamentul indispensabil pentru parintii tineri! Pentru un schimb de scutece confortabil si eficient.
-
-Fara compromisuri si pentru orice teren, geanta va va insoti de la nastere pana cand copilul nu mai are nevoie de scutece.
 
 - Deschidere usoara, chiar si cu bebelusul in brate
 - Acces total

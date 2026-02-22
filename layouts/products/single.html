@@ -1,6 +1,12 @@
 {{ define "main" }}
 <article class="product-detail">
   <div class="container">
+    <div class="product-detail-header">
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.intro }}
+      <div class="product-intro">{{ . | markdownify }}</div>
+      {{ end }}
+    </div>
     <div class="product-detail-grid">
       <div class="product-detail-media">
         {{/* Main display area with nav arrows */}}
@@ -44,7 +50,6 @@
       </div>
 
       <div class="product-detail-info">
-        <h1>{{ .Title }}</h1>
         {{ with .Params.price }}
         <p class="product-detail-price">{{ site.Params.priceLabel }}: {{ site.Params.currency }} {{ . }}</p>
         {{ end }}

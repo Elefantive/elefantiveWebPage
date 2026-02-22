@@ -12,11 +12,8 @@ videos:
   - "/videos/sac-a-langer-cropped.mp4"
 featured: true
 description: "Die unverzichtbare Ausrustung fur junge Eltern! Fur ein bequemes und effizientes Wickeln."
+intro: "Die unverzichtbare Ausrustung fur junge Eltern! Fur ein bequemes und effizientes Wickeln. Die Tasche ist kompromisslos und gelandegangig und begleitet Sie von der Geburt an, bis Ihr Kind sauber ist."
 ---
-
-Die unverzichtbare Ausrustung fur junge Eltern! Fur ein bequemes und effizientes Wickeln.
-
-Die Tasche ist kompromisslos und gelandegangig und begleitet Sie von der Geburt an, bis Ihr Kind sauber ist.
 
 - Einfach zu offnen, auch mit Baby auf dem Arm
 - Vollzugriff

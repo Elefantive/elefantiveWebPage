@@ -369,6 +369,30 @@ h3 { font-size: 1.3rem; }
   padding: 3rem 0;
 }
 
+.product-detail-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.product-detail-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.product-intro {
+  font-size: 1.15rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+  text-align: left;
+}
+
+.product-intro p {
+  margin-bottom: 0.75rem;
+}
+
+.product-intro p:last-child {
+  margin-bottom: 0;
+}
+
 .product-detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

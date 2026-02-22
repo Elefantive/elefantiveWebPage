@@ -12,11 +12,8 @@ videos:
   - "/videos/sac-a-langer-cropped.mp4"
 featured: true
 description: "L'equipement indispensable des jeunes parents ! Pour un change confortable et efficace."
+intro: "L'equipement indispensable des jeunes parents ! Pour un change confortable et efficace. Sans compromis et tout terrain, le sac vous accompagnera des la naissance jusqu'a ce que l'enfant soit propre."
 ---
-
-L'equipement indispensable des jeunes parents ! Pour un change confortable et efficace.
-
-Sans compromis et tout terrain, le sac vous accompagnera des la naissance jusqu'a ce que l'enfant soit propre.
 
 - Ouverture facile, meme avec bebe dans les bras
 - Acces total

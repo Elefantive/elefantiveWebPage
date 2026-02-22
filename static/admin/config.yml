@@ -30,8 +30,9 @@ collections:
       - { label: "Gallery Images", name: "gallery", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false, i18n: true }
       - { label: "Videos", name: "videos", widget: "list", field: { label: "Video", name: "video", widget: "file" }, required: false, i18n: true }
       - { label: "Featured", name: "featured", widget: "boolean", default: false, i18n: duplicate }
-      - { label: "Short Description", name: "description", widget: "string", i18n: true }
-      - { label: "Full Description", name: "body", widget: "markdown", i18n: true }
+      - { label: "Short Description (card)", name: "description", widget: "string", i18n: true }
+      - { label: "Intro Text (detail page)", name: "intro", widget: "markdown", required: false, i18n: true }
+      - { label: "Details", name: "body", widget: "markdown", i18n: true }
 
   # ==========================================
   # ABOUT PAGE — with language tabs
