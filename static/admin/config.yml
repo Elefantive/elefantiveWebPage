@@ -46,7 +46,7 @@ collections:
         i18n: true
         fields:
           - { label: "Version Name", name: "name", widget: "string" }
-          - { label: "Gallery (images & videos)", name: "gallery", widget: "list", field: { label: "File", name: "file", widget: "file" }, required: false }
+          - { label: "Gallery (images & videos)", name: "gallery", widget: "list", field: { label: "File", name: "file", widget: "image" }, required: false }
           - { label: "Details", name: "details", widget: "markdown" }
 
   - name: "product-footer"
