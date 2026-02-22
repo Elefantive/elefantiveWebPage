@@ -1,5 +1,5 @@
 ---
 title: Homepage
 heroTitle: Fait main avec amour
-heroSubtitle: Des créations artisanales uniques, chacune fabriquée avec soin et passion.
+heroSubtitle: Des créations faites main, uniques et confectionnées avec soin et passion.
 ---
