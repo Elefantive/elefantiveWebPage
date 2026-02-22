@@ -1,5 +1,5 @@
 ---
-title: Le sac a langer nomade test
+title: Le sac a langer nomade
 image: /images/sac-a-langer-1.jpg
 gallery:
   - /images/sac-a-langer-2.jpg
