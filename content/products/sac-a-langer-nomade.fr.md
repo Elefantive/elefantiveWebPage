@@ -1,8 +1,8 @@
 ---
 title: Le sac à langer nomade
 date: 2024-09-21T00:00:00.000Z
-image: /assets/main_sac-à-langer.jpg
-draft: true
+image: ""
+draft: false
 featured: true
 description: L'equipement indispensable des jeunes parents ! Pour un change
   confortable et efficace.
