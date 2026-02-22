@@ -59,4 +59,19 @@ versions:
 
 
       Intérieur en coton thème "jungle".
+  - name: Octobre 2024
+    gallery:
+      - /assets/1.jpg
+      - /assets/2.jpg
+      - /assets/3.jpg
+      - /assets/4.jpg
+      - /assets/5.jpg
+      - /assets/6.jpg
+      - /assets/20241013_222512.jpg
+      - /assets/sac-à-langer-croper.mp4
+    details: >-
+      Un nouveau petit sac à langer pour une famille lyonnaise.
+
+
+      Ce tissu bleu royal est absolument magnifique (même si pas évident à capturer en photo 😉) et se marie parfaitement avec le blanc à petits motifs bleus et jaunes.
 ---
