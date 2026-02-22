@@ -1,6 +1,6 @@
 ---
 title: Products Page
-pageTitle: Produkte
-pageDescription: Entdecken Sie unsere handgefertigten Produkte, jedes einzelne
-  einzigartig und mit Sorgfalt hergestellt.
+pageTitle: Meine Produkte
+pageDescription: Entdecken Sie meine Kreationen und lassen Sie sich inspirieren!
 ---
+Eine Mischung aus praktischen und kreativen Ideen. Ihr findet hier Sachen, mit denen ihr euch selbst und anderen eine Freude machen könnt, nützliche für den Alltag oder für besondere Gelegenheiten.
