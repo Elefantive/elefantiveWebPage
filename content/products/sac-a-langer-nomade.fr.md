@@ -86,4 +86,15 @@ versions:
       Il m’accompagne dans chaque aventure, que ce soit pour un pique-nique improvisé ou un séjour chez Mamine. Comme quoi, certains indispensables ne perdent jamais leur magie
     gallery:
       - /assets/sacmathis.png
+  - name: Décembre 2025
+    gallery:
+      - /assets/main_sac-à-langer_tissu.jpg
+    details: >-
+      Avez-vous vu la pile de tissus ?
+
+      Et bien… la voici transformée ! Même après l’avoir cousu encore et encore, je trouve ça toujours aussi magique : comment 46 morceaux de tissu, quelques fournitures et plusieurs heures de travail deviennent un sac à langer Nomade, pratique, fonctionnel et indispensable pour tout jeune parent. 
+
+      Pour cette nouvelle création, j’avais envie de vous embarquer avec moi… alors je vous propose une petite visite guidée ! 
+
+      Swipez pour découvrir tous les détails : poches, rangements, finitions… tout a été pensé pour vous faciliter la vie.
 ---
