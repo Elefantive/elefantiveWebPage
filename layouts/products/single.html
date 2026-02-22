@@ -2,29 +2,47 @@
 <article class="product-detail">
   <div class="container">
     <div class="product-detail-grid">
-      <div class="product-detail-image">
-        {{ with .Params.image }}
-        <img src="{{ . | absURL }}" alt="{{ $.Title }}">
-        {{ else }}
-        <div class="product-image product-image--placeholder product-image--large">
-          <span>&#9733;</span>
-        </div>
-        {{ end }}
-        {{ with .Params.gallery }}
-        <div class="product-gallery">
-          {{ range . }}
-          <img src="{{ . | absURL }}" alt="{{ $.Title }}" loading="lazy" onclick="document.querySelector('.product-detail-image > img').src = this.src">
+      <div class="product-detail-media">
+        {{/* Main display area with nav arrows */}}
+        <div class="media-main-wrap">
+          <div class="media-main" onclick="openLightbox()">
+            {{ with .Params.image }}
+            <img src="{{ . | absURL }}" alt="{{ $.Title }}" class="media-main-img">
+            {{ else }}
+            <div class="product-image product-image--placeholder product-image--large">
+              <span>&#9733;</span>
+            </div>
+            {{ end }}
+          </div>
+          {{ if or .Params.gallery .Params.videos }}
+          <button class="media-nav media-nav--prev" onclick="mainPrev(event)">&#10094;</button>
+          <button class="media-nav media-nav--next" onclick="mainNext(event)">&#10095;</button>
           {{ end }}
         </div>
-        {{ end }}
-        {{ with .Params.videos }}
-        <div class="product-videos">
-          {{ range . }}
-          <video src="{{ . | absURL }}" controls playsinline preload="metadata"></video>
+
+        {{/* Thumbnails: main image + gallery + videos */}}
+        {{ if or .Params.gallery .Params.videos }}
+        <div class="media-thumbs">
+          {{ with .Params.image }}
+          <div class="thumb thumb--active" onclick="showImage(this, '{{ . | absURL }}')" data-type="image">
+            <img src="{{ . | absURL }}" alt="{{ $.Title }}" loading="lazy">
+          </div>
+          {{ end }}
+          {{ range .Params.gallery }}
+          <div class="thumb" onclick="showImage(this, '{{ . | absURL }}')" data-type="image">
+            <img src="{{ . | absURL }}" alt="{{ $.Title }}" loading="lazy">
+          </div>
+          {{ end }}
+          {{ range .Params.videos }}
+          <div class="thumb thumb--video" onclick="showVideo(this, '{{ . | absURL }}')" data-type="video">
+            <video src="{{ . | absURL }}" preload="metadata" muted></video>
+            <span class="thumb-play">&#9654;</span>
+          </div>
           {{ end }}
         </div>
         {{ end }}
       </div>
+
       <div class="product-detail-info">
         <h1>{{ .Title }}</h1>
         {{ with .Params.price }}
@@ -44,4 +62,120 @@
     </div>
   </div>
 </article>
+
+{{/* Lightbox overlay with carousel */}}
+<div class="lightbox" id="lightbox" onclick="lbClick(event)">
+  <button class="lightbox-close" onclick="lbClose()">&times;</button>
+  <button class="lightbox-prev" onclick="lbPrev(event)">&#10094;</button>
+  <div class="lightbox-content" id="lightbox-content"></div>
+  <button class="lightbox-next" onclick="lbNext(event)">&#10095;</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<script>
+var mediaItems = [];
+var currentIndex = 0;
+var lbIndex = 0;
+
+(function() {
+  var thumbs = document.querySelectorAll('.thumb');
+  thumbs.forEach(function(t) {
+    var type = t.getAttribute('data-type');
+    if (type === 'image') {
+      var img = t.querySelector('img');
+      if (img) mediaItems.push({ type: 'image', src: img.src });
+    } else if (type === 'video') {
+      var vid = t.querySelector('video');
+      if (vid) mediaItems.push({ type: 'video', src: vid.src });
+    }
+  });
+})();
+
+function showByIndex(idx) {
+  if (!mediaItems.length) return;
+  currentIndex = idx;
+  var item = mediaItems[idx];
+  var main = document.querySelector('.media-main');
+  if (item.type === 'image') {
+    main.innerHTML = '<img src="' + item.src + '" alt="" class="media-main-img">';
+  } else {
+    main.innerHTML = '<video src="' + item.src + '" controls playsinline autoplay class="media-main-video"></video>';
+  }
+  var thumbs = document.querySelectorAll('.thumb');
+  thumbs.forEach(function(t, i) {
+    t.classList.toggle('thumb--active', i === idx);
+  });
+}
+
+function showImage(thumb, src) {
+  var thumbs = Array.from(document.querySelectorAll('.thumb'));
+  showByIndex(thumbs.indexOf(thumb));
+}
+
+function showVideo(thumb, src) {
+  var thumbs = Array.from(document.querySelectorAll('.thumb'));
+  showByIndex(thumbs.indexOf(thumb));
+}
+
+function mainNext(e) {
+  if (e) { e.stopPropagation(); e.preventDefault(); }
+  showByIndex((currentIndex + 1) % mediaItems.length);
+}
+
+function mainPrev(e) {
+  if (e) { e.stopPropagation(); e.preventDefault(); }
+  showByIndex((currentIndex - 1 + mediaItems.length) % mediaItems.length);
+}
+
+function openLightbox() {
+  lbIndex = currentIndex;
+  lbShow();
+  document.getElementById('lightbox').classList.add('lightbox--open');
+  document.body.style.overflow = 'hidden';
+}
+
+function lbShow() {
+  if (!mediaItems.length) return;
+  var item = mediaItems[lbIndex];
+  var content = document.getElementById('lightbox-content');
+  if (item.type === 'image') {
+    content.innerHTML = '<img src="' + item.src + '" alt="">';
+  } else {
+    content.innerHTML = '<video src="' + item.src + '" controls playsinline autoplay></video>';
+  }
+  document.getElementById('lightbox-counter').textContent = (lbIndex + 1) + ' / ' + mediaItems.length;
+}
+
+function lbNext(e) {
+  if (e) e.stopPropagation();
+  lbIndex = (lbIndex + 1) % mediaItems.length;
+  lbShow();
+}
+
+function lbPrev(e) {
+  if (e) e.stopPropagation();
+  lbIndex = (lbIndex - 1 + mediaItems.length) % mediaItems.length;
+  lbShow();
+}
+
+function lbClose() {
+  document.getElementById('lightbox').classList.remove('lightbox--open');
+  document.body.style.overflow = '';
+  var vid = document.querySelector('#lightbox-content video');
+  if (vid) vid.pause();
+}
+
+function lbClick(e) {
+  if (e.target.classList.contains('lightbox')) lbClose();
+}
+
+document.addEventListener('keydown', function(e) {
+  var lb = document.getElementById('lightbox');
+  if (lb.classList.contains('lightbox--open')) {
+    if (e.key === 'Escape') lbClose();
+    if (e.key === 'ArrowRight') lbNext();
+    if (e.key === 'ArrowLeft') lbPrev();
+  }
+});
+</script>
 {{ end }}
