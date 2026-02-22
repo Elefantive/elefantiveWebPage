@@ -1,6 +1,5 @@
 ---
 title: "Bougie artisanale en soja"
-price: "25.00"
 image: "/images/placeholder-candle.jpg"
 featured: true
 description: "Une bougie en soja magnifiquement coulée à la main avec des huiles essentielles naturelles."

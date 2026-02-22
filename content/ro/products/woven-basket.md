@@ -1,6 +1,5 @@
 ---
 title: "Coș împletit manual"
-price: "45.00"
 image: "/images/placeholder-basket.jpg"
 featured: true
 description: "Un coș împletit manual rezistent, perfect pentru depozitare sau decorare."

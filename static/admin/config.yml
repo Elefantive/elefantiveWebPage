@@ -18,7 +18,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Price", name: "price", widget: "string" }
+      - { label: "Price", name: "price", widget: "string", required: false }
       - { label: "Main Image", name: "image", widget: "image", required: false }
       - { label: "Gallery Images", name: "gallery", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
@@ -35,7 +35,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Titel", name: "title", widget: "string" }
-      - { label: "Preis", name: "price", widget: "string" }
+      - { label: "Preis", name: "price", widget: "string", required: false }
       - { label: "Hauptbild", name: "image", widget: "image", required: false }
       - { label: "Galerie", name: "gallery", widget: "list", field: { label: "Bild", name: "image", widget: "image" }, required: false }
       - { label: "Empfohlen", name: "featured", widget: "boolean", default: false }
@@ -52,7 +52,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Titre", name: "title", widget: "string" }
-      - { label: "Prix", name: "price", widget: "string" }
+      - { label: "Prix", name: "price", widget: "string", required: false }
       - { label: "Image principale", name: "image", widget: "image", required: false }
       - { label: "Galerie", name: "gallery", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false }
       - { label: "En vedette", name: "featured", widget: "boolean", default: false }
@@ -69,7 +69,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Titlu", name: "title", widget: "string" }
-      - { label: "Preț", name: "price", widget: "string" }
+      - { label: "Preț", name: "price", widget: "string", required: false }
       - { label: "Imagine principală", name: "image", widget: "image", required: false }
       - { label: "Galerie", name: "gallery", widget: "list", field: { label: "Imagine", name: "image", widget: "image" }, required: false }
       - { label: "Recomandat", name: "featured", widget: "boolean", default: false }

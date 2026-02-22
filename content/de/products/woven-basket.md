@@ -1,6 +1,5 @@
 ---
 title: "Handgewebter Korb"
-price: "45.00"
 image: "/images/placeholder-basket.jpg"
 featured: true
 description: "Ein stabiler handgewebter Korb, perfekt zur Aufbewahrung oder als Dekoration."

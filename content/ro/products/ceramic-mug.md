@@ -1,6 +1,5 @@
 ---
 title: "Cană ceramică artizanală"
-price: "18.00"
 image: "/images/placeholder-mug.jpg"
 featured: true
 description: "O cană ceramică artizanală unică, perfectă pentru cafeaua sau ceaiul de dimineață."

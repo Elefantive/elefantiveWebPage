@@ -1,6 +1,5 @@
 ---
 title: "Handgemachte Sojakerze"
-price: "25.00"
 image: "/images/placeholder-candle.jpg"
 featured: true
 description: "Eine wunderschön handgegossene Sojakerze mit natürlichen ätherischen Ölen."

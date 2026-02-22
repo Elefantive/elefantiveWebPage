@@ -1,6 +1,5 @@
 ---
 title: "Hand-Woven Basket"
-price: "45.00"
 image: "/images/placeholder-basket.jpg"
 featured: true
 description: "A sturdy hand-woven basket, perfect for storage or decoration."

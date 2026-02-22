@@ -1,6 +1,5 @@
 ---
 title: "Handmade Soy Candle"
-price: "25.00"
 image: "/images/placeholder-candle.jpg"
 featured: true
 description: "A beautifully hand-poured soy candle with natural essential oils."

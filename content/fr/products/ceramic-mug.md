@@ -1,6 +1,5 @@
 ---
 title: "Tasse en céramique artisanale"
-price: "18.00"
 image: "/images/placeholder-mug.jpg"
 featured: true
 description: "Une tasse en céramique artisanale unique, parfaite pour votre café ou thé du matin."
