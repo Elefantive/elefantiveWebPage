@@ -1,18 +1,21 @@
 ---
-title: "The Nomad Diaper Bag"
-image: "/images/sac-a-langer-1.jpg"
+title: The Nomad Diaper Bag
+image: /images/sac-a-langer-1.jpg
 gallery:
-  - "/images/sac-a-langer-2.jpg"
-  - "/images/sac-a-langer-3.jpg"
-  - "/images/sac-a-langer-4.jpg"
-  - "/images/sac-a-langer-5.jpg"
-  - "/images/sac-a-langer-6.jpg"
+  - /images/sac-a-langer-2.jpg
+  - /images/sac-a-langer-3.jpg
+  - /images/sac-a-langer-4.jpg
+  - /images/sac-a-langer-5.jpg
+  - /images/sac-a-langer-6.jpg
 videos:
-  - "/videos/sac-a-langer-square.mp4"
-  - "/videos/sac-a-langer-cropped.mp4"
+  - /videos/sac-a-langer-square.mp4
+  - /videos/sac-a-langer-cropped.mp4
 featured: true
-description: "The essential gear for young parents! For a comfortable and efficient diaper change."
-intro: "The essential gear for young parents! For a comfortable and efficient diaper change. No compromise, all-terrain — this bag will accompany you from birth until your child is potty trained."
+description: The essential gear for young parents! For a comfortable and
+  efficient diaper change.
+intro: The essential gear for young parents! For a comfortable and efficient
+  diaper change. No compromise, all-terrain — this bag will accompany you from
+  birth until your child is potty trained.
 ---
 
 - Easy to open, even with baby in your arms

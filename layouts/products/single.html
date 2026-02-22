@@ -3,8 +3,23 @@
   <div class="container">
     <div class="product-detail-header">
       <h1>{{ .Title }}</h1>
-      {{ with .Params.intro }}
-      <div class="product-intro">{{ . | markdownify }}</div>
+    </div>
+    <div class="product-hero">
+      <div class="product-hero-text">
+        {{ with .Params.intro }}
+        <div class="product-intro">{{ . | markdownify }}</div>
+        {{ end }}
+        {{ $subject := printf "%s: %s" site.Params.orderSubject .Title }}
+        {{ $body := printf "%s%s" site.Params.orderBody .Title }}
+        <a href="mailto:{{ site.Params.email }}?subject={{ $subject | urlquery }}&body={{ $body | urlquery }}"
+           class="btn btn-primary btn-order">
+          {{ site.Params.orderButtonText }}
+        </a>
+      </div>
+      {{ with .Params.image }}
+      <div class="product-hero-image">
+        <img src="{{ . | absURL }}" alt="{{ $.Title }}">
+      </div>
       {{ end }}
     </div>
     <div class="product-detail-grid">

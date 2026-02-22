@@ -1,18 +1,21 @@
 ---
-title: "Le sac a langer nomade"
-image: "/images/sac-a-langer-1.jpg"
+title: Le sac a langer nomade
+image: /images/sac-a-langer-1.jpg
 gallery:
-  - "/images/sac-a-langer-2.jpg"
-  - "/images/sac-a-langer-3.jpg"
-  - "/images/sac-a-langer-4.jpg"
-  - "/images/sac-a-langer-5.jpg"
-  - "/images/sac-a-langer-6.jpg"
+  - /images/sac-a-langer-2.jpg
+  - /images/sac-a-langer-3.jpg
+  - /images/sac-a-langer-4.jpg
+  - /images/sac-a-langer-5.jpg
+  - /images/sac-a-langer-6.jpg
 videos:
-  - "/videos/sac-a-langer-square.mp4"
-  - "/videos/sac-a-langer-cropped.mp4"
+  - /videos/sac-a-langer-square.mp4
+  - /videos/sac-a-langer-cropped.mp4
 featured: true
-description: "L'equipement indispensable des jeunes parents ! Pour un change confortable et efficace."
-intro: "L'equipement indispensable des jeunes parents ! Pour un change confortable et efficace. Sans compromis et tout terrain, le sac vous accompagnera des la naissance jusqu'a ce que l'enfant soit propre."
+description: L'equipement indispensable des jeunes parents ! Pour un change
+  confortable et efficace.
+intro: L'equipement indispensable des jeunes parents ! Pour un change
+  confortable et efficace. Sans compromis et tout terrain, le sac vous
+  accompagnera des la naissance jusqu'a ce que l'enfant soit propre.
 ---
 
 - Ouverture facile, meme avec bebe dans les bras

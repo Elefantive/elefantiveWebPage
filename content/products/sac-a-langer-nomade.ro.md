@@ -1,18 +1,22 @@
 ---
-title: "Geanta de infasat nomada"
-image: "/images/sac-a-langer-1.jpg"
+title: Geanta de infasat nomada
+image: /images/sac-a-langer-1.jpg
 gallery:
-  - "/images/sac-a-langer-2.jpg"
-  - "/images/sac-a-langer-3.jpg"
-  - "/images/sac-a-langer-4.jpg"
-  - "/images/sac-a-langer-5.jpg"
-  - "/images/sac-a-langer-6.jpg"
+  - /images/sac-a-langer-2.jpg
+  - /images/sac-a-langer-3.jpg
+  - /images/sac-a-langer-4.jpg
+  - /images/sac-a-langer-5.jpg
+  - /images/sac-a-langer-6.jpg
 videos:
-  - "/videos/sac-a-langer-square.mp4"
-  - "/videos/sac-a-langer-cropped.mp4"
+  - /videos/sac-a-langer-square.mp4
+  - /videos/sac-a-langer-cropped.mp4
 featured: true
-description: "Echipamentul indispensabil pentru parintii tineri! Pentru un schimb de scutece confortabil si eficient."
-intro: "Echipamentul indispensabil pentru parintii tineri! Pentru un schimb de scutece confortabil si eficient. Fara compromisuri si pentru orice teren, geanta va va insoti de la nastere pana cand copilul nu mai are nevoie de scutece."
+description: Echipamentul indispensabil pentru parintii tineri! Pentru un schimb
+  de scutece confortabil si eficient.
+intro: Echipamentul indispensabil pentru parintii tineri! Pentru un schimb de
+  scutece confortabil si eficient. Fara compromisuri si pentru orice teren,
+  geanta va va insoti de la nastere pana cand copilul nu mai are nevoie de
+  scutece.
 ---
 
 - Deschidere usoara, chiar si cu bebelusul in brate

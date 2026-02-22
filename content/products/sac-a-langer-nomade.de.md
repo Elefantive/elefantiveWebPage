@@ -1,18 +1,21 @@
 ---
-title: "Die Wickeltasche fur unterwegs"
-image: "/images/sac-a-langer-1.jpg"
+title: Die Wickeltasche fur unterwegs
+image: /images/sac-a-langer-1.jpg
 gallery:
-  - "/images/sac-a-langer-2.jpg"
-  - "/images/sac-a-langer-3.jpg"
-  - "/images/sac-a-langer-4.jpg"
-  - "/images/sac-a-langer-5.jpg"
-  - "/images/sac-a-langer-6.jpg"
+  - /images/sac-a-langer-2.jpg
+  - /images/sac-a-langer-3.jpg
+  - /images/sac-a-langer-4.jpg
+  - /images/sac-a-langer-5.jpg
+  - /images/sac-a-langer-6.jpg
 videos:
-  - "/videos/sac-a-langer-square.mp4"
-  - "/videos/sac-a-langer-cropped.mp4"
+  - /videos/sac-a-langer-square.mp4
+  - /videos/sac-a-langer-cropped.mp4
 featured: true
-description: "Die unverzichtbare Ausrustung fur junge Eltern! Fur ein bequemes und effizientes Wickeln."
-intro: "Die unverzichtbare Ausrustung fur junge Eltern! Fur ein bequemes und effizientes Wickeln. Die Tasche ist kompromisslos und gelandegangig und begleitet Sie von der Geburt an, bis Ihr Kind sauber ist."
+description: Die unverzichtbare Ausrustung fur junge Eltern! Fur ein bequemes
+  und effizientes Wickeln.
+intro: Die unverzichtbare Ausrustung fur junge Eltern! Fur ein bequemes und
+  effizientes Wickeln. Die Tasche ist kompromisslos und gelandegangig und
+  begleitet Sie von der Geburt an, bis Ihr Kind sauber ist.
 ---
 
 - Einfach zu offnen, auch mit Baby auf dem Arm
