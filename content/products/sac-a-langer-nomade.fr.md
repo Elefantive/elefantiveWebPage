@@ -97,4 +97,10 @@ versions:
       Pour cette nouvelle création, j’avais envie de vous embarquer avec moi… alors je vous propose une petite visite guidée ! 
 
       Swipez pour découvrir tous les détails : poches, rangements, finitions… tout a été pensé pour vous faciliter la vie.
+  - name: Zoom sur la fermeture réglable !
+    details: "Dans cette 2e vidéo, je vous montre comment le système
+      d’ouverture/fermeture du sac fonctionne avec: une bande scratch ajustable
+      pour fermer le sac , simple et efficace, et une boucle bretelle réglable
+      pour fermer le rabat. Pratique et modulable au quotidien !"
+    gallery: []
 ---
