@@ -1,8 +1,9 @@
 ---
 title: Geanta de infasat nomada
-price: null
 date: 2024-09-21T00:00:00.000Z
-image: /assets/sac-a-langer-1.jpg
+price: null
+image: /assets/main_sac-à-langer.jpg
+draft: true
 featured: true
 description: Echipamentul indispensabil pentru parintii tineri! Pentru un schimb
   de scutece confortabil si eficient.
