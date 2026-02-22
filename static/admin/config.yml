@@ -58,6 +58,18 @@ collections:
       - { label: "Title", name: "title", widget: "hidden", default: "Product Footer" }
       - { label: "Footer Text", name: "body", widget: "markdown", i18n: true }
 
+  - name: "order-email"
+    label: "Product Order Email"
+    folder: "content/order-email"
+    create: false
+    i18n: true
+    fields:
+      - { label: "Title", name: "title", widget: "hidden", default: "Order Email" }
+      - { label: "Email Address", name: "email", widget: "string", i18n: duplicate }
+      - { label: "Email Subject (use {{product}} for product name)", name: "subject", widget: "string", i18n: true }
+      - { label: "Email Body (use {{product}} for product name)", name: "emailBody", widget: "text", i18n: true }
+      - { label: "Button Text", name: "buttonText", widget: "string", i18n: true }
+
   # ==========================================
   # PAGES
   # ==========================================

@@ -1,4 +1,9 @@
 {{ define "main" }}
+{{ $oe := site.GetPage "/order-email" }}
+{{ $oeEmail := "" }}{{ with $oe }}{{ $oeEmail = .Params.email | default site.Params.email }}{{ else }}{{ $oeEmail = site.Params.email }}{{ end }}
+{{ $oeSubject := "" }}{{ with $oe }}{{ $oeSubject = replace (.Params.subject | default "") "{{product}}" $.Title }}{{ end }}
+{{ $oeBody := "" }}{{ with $oe }}{{ $oeBody = replace (.Params.emailBody | default "") "{{product}}" $.Title }}{{ end }}
+{{ $oeBtnText := "" }}{{ with $oe }}{{ $oeBtnText = .Params.buttonText | default site.Params.orderButtonText }}{{ else }}{{ $oeBtnText = site.Params.orderButtonText }}{{ end }}
 <article class="product-detail">
   <div class="container">
     {{/* ===== COMMON: Title ===== */}}
@@ -12,11 +17,9 @@
         {{ with .Params.intro }}
         <div class="product-intro">{{ . | markdownify }}</div>
         {{ end }}
-        {{ $subject := printf "%s: %s" site.Params.orderSubject .Title }}
-        {{ $body := printf "%s%s" site.Params.orderBody .Title }}
-        <a href="mailto:{{ site.Params.email }}?subject={{ $subject | urlquery }}&body={{ $body | urlquery }}"
+        <a href="mailto:{{ $oeEmail }}?subject={{ $oeSubject | urlquery }}&body={{ $oeBody | urlquery }}"
            class="btn btn-primary btn-order">
-          {{ site.Params.orderButtonText }}
+          {{ $oeBtnText }}
         </a>
       </div>
       {{ with .Params.image }}
@@ -163,11 +166,9 @@
       {{ with $footer }}
       <div class="product-footer-text">{{ .Content }}</div>
       {{ end }}
-      {{ $subject := printf "%s: %s" site.Params.orderSubject .Title }}
-      {{ $body := printf "%s%s" site.Params.orderBody .Title }}
-      <a href="mailto:{{ site.Params.email }}?subject={{ $subject | urlquery }}&body={{ $body | urlquery }}"
+      <a href="mailto:{{ $oeEmail }}?subject={{ $oeSubject | urlquery }}&body={{ $oeBody | urlquery }}"
          class="btn btn-primary btn-order">
-        {{ site.Params.orderButtonText }}
+        {{ $oeBtnText }}
       </a>
       <a href="{{ .Parent.RelPermalink }}" class="btn btn-secondary">&larr; {{ site.Params.allProductsText }}</a>
     </div>
