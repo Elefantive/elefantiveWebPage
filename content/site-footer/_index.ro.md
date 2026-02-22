@@ -1,5 +1,8 @@
 ---
 title: Site Footer
+instagram: https://instagram.com/elefantive
+facebook: https://facebook.com/elefantive
+email: cyrielle_eckel@hotmail.com
 ---
 
-© 2026 Elefant'ive — handmade creative concept — Lucrat manual cu dragoste
+© 2026 Elefantive — handmade creative concept — Lucrat manual cu dragoste

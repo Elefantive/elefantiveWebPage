@@ -728,6 +728,23 @@ h3 { font-size: 1.3rem; }
   text-decoration: underline;
 }
 
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.footer-social-link {
+  color: #9a9e9b;
+  transition: color 0.2s;
+}
+
+.footer-social-link:hover {
+  color: var(--color-white);
+  text-decoration: none;
+}
+
 /* ============================================
    Responsive
    ============================================ */
