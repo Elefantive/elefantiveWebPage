@@ -1,5 +1,5 @@
 ---
-title: "Despre noi"
+title: Despre noi
 ---
 
 Bine ați venit la Elefantive! Suntem artizani pasionați dedicați creării de produse artizanale frumoase.

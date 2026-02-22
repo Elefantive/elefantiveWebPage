@@ -1,9 +1,10 @@
 ---
-title: "À propos"
+title: À propos
 ---
+✨Bienvenue chez Elefant'ive ✨! 
 
-Bienvenue chez Elefantive ! Nous sommes des artisans passionnés, dédiés à la création de beaux produits artisanaux.
+Française, expatriée en Allemagne, je trouve mon inspiration dans ce Multi-culti permanent. Avec 2 petits trésors à la maison, je suis toujours motivée pour leur proposer des activités et des jeux originaux.🥳🧚💃
 
-Chaque pièce que nous créons est unique, fabriquée avec des matériaux de haute qualité et beaucoup d'amour. Nous croyons que les produits faits main apportent chaleur et caractère à votre maison.
+Vous trouverez je l'espère, des produits et des inspirations couture 🧵✂️ et arts créatifs 🎨🎭en général. Alliant mon esprit pratique à une bonne dose de créativité, je vous propose des petites choses bien utiles au quotidien et des belles choses pour se faire plaisir. Il y en a pour tout le monde, du bébé, enfants, homme et femme ! Vous allez pouvoir régaler toute la famille 🎁!
 
-Si vous avez des questions ou des demandes spéciales, n'hésitez pas à nous contacter par e-mail. Nous avons hâte de vous entendre !
+✍️N'hésitez pas à me contacter par email si vous êtes intéressé.e, je me ferai un plaisir de le confectionner pour vous selon vos goûts.

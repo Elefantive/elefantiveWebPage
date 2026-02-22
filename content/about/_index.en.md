@@ -1,9 +1,10 @@
 ---
-title: "About Us"
+title: About Me
 ---
+✨Welcome to Elefant'ive ✨! 
 
-Welcome to Elefantive! We are passionate artisans dedicated to creating beautiful handcrafted products.
+French and living in Germany, I find my inspiration in this constant multicultural environment. With two little treasures at home, I’m always motivated to create original activities and games for them.
 
-Every piece we create is unique, made with high-quality materials and a lot of love. We believe that handmade products bring warmth and character to your home.
+Discover creative sewing products 🧵✂️  and artsy inspiration 🎨🎭for the whole family. From practical everyday items to beautiful, unique pieces, there's something for babies, kids, men, and women 🎁.
 
-If you have any questions or special requests, feel free to contact us by email. We look forward to hearing from you!
+✍️Feel free to contact me (DM) if you're interested, I’d love to craft something just for you, tailored to your taste!
