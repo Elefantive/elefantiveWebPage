@@ -12,7 +12,7 @@
     <div class="product-info">
       <h3>{{ .Title }}</h3>
       {{ with .Params.price }}<p class="product-price">{{ site.Params.currency }} {{ . }}</p>{{ end }}
-      <p class="product-excerpt">{{ .Summary | plainify | truncate 120 }}</p>
+      {{ with .Params.description }}<p class="product-excerpt">{{ . }}</p>{{ end }}
     </div>
   </a>
 </article>
