@@ -423,17 +423,17 @@ h3 { font-size: 1.3rem; }
 
 .media-main-video {
   width: 100%;
+  max-height: 400px;
   display: block;
   border-radius: var(--radius);
 }
 
 /* Thumbnail strip */
 .media-thumbs {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 0.5rem;
   margin-top: 0.75rem;
-  overflow-x: auto;
-  padding-bottom: 0.25rem;
 }
 
 .thumb {
