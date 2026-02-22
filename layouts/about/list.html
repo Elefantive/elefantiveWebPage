@@ -1,0 +1,13 @@
+{{ define "main" }}
+<section class="page-header">
+  <div class="container">
+    <h1>{{ site.Params.aboutTitle }}</h1>
+  </div>
+</section>
+
+<section class="about-content">
+  <div class="container content-area">
+    {{ .Content }}
+  </div>
+</section>
+{{ end }}

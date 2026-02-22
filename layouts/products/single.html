@@ -1,0 +1,40 @@
+{{ define "main" }}
+<article class="product-detail">
+  <div class="container">
+    <div class="product-detail-grid">
+      <div class="product-detail-image">
+        {{ with .Params.image }}
+        <img src="{{ . | absURL }}" alt="{{ $.Title }}">
+        {{ else }}
+        <div class="product-image product-image--placeholder product-image--large">
+          <span>&#9733;</span>
+        </div>
+        {{ end }}
+        {{ with .Params.gallery }}
+        <div class="product-gallery">
+          {{ range . }}
+          <img src="{{ . | absURL }}" alt="{{ $.Title }}" loading="lazy" onclick="document.querySelector('.product-detail-image > img').src = this.src">
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+      <div class="product-detail-info">
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.price }}
+        <p class="product-detail-price">{{ site.Params.priceLabel }}: {{ site.Params.currency }} {{ . }}</p>
+        {{ end }}
+        <div class="product-detail-description">
+          {{ .Content }}
+        </div>
+        {{ $subject := printf "%s: %s" site.Params.orderSubject .Title }}
+        {{ $body := printf "%s%s" site.Params.orderBody .Title }}
+        <a href="mailto:{{ site.Params.email }}?subject={{ $subject | urlquery }}&body={{ $body | urlquery }}"
+           class="btn btn-primary btn-order">
+          {{ site.Params.orderButtonText }}
+        </a>
+        <a href="{{ .Parent.RelPermalink }}" class="btn btn-secondary">&larr; {{ site.Params.allProductsText }}</a>
+      </div>
+    </div>
+  </div>
+</article>
+{{ end }}

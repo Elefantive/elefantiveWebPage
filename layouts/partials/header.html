@@ -1,0 +1,18 @@
+<header class="site-header">
+  <div class="container">
+    <a href="{{ .Site.Home.RelPermalink }}" class="site-logo">
+      {{ site.Title }}
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu" onclick="document.querySelector('.site-nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav">
+      <ul>
+        {{- range .Site.Menus.main }}
+        <li><a href="{{ .URL | absURL }}"{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>{{ .Name }}</a></li>
+        {{- end }}
+      </ul>
+      {{- partial "language-switcher.html" . -}}
+    </nav>
+  </div>
+</header>

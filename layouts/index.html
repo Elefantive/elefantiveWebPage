@@ -1,0 +1,39 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="container">
+    <h1>{{ .Params.heroTitle | default site.Params.homeTitle }}</h1>
+    <p>{{ .Params.heroSubtitle | default site.Params.homeSubtitle }}</p>
+    {{ $productsPage := .Site.GetPage "/products" }}
+    <a href="{{ $productsPage.RelPermalink }}" class="btn btn-primary">{{ site.Params.browseText }}</a>
+  </div>
+</section>
+
+<section class="featured-products">
+  <div class="container">
+    <h2>{{ site.Params.featuredTitle }}</h2>
+    <div class="product-grid">
+      {{ $products := where .Site.RegularPages "Section" "products" }}
+      {{ range first 6 ($products | intersect (where $products ".Params.featured" true)) }}
+        {{ partial "product-card.html" . }}
+      {{ else }}
+        {{/* If no featured products, show first 6 */}}
+        {{ range first 6 $products }}
+          {{ partial "product-card.html" . }}
+        {{ end }}
+      {{ end }}
+    </div>
+    <div class="text-center">
+      {{ $productsPage2 := .Site.GetPage "/products" }}
+      <a href="{{ $productsPage2.RelPermalink }}" class="btn btn-secondary">{{ site.Params.viewAllText }}</a>
+    </div>
+  </div>
+</section>
+
+{{ with .Content }}
+<section class="home-content">
+  <div class="container">
+    {{ . }}
+  </div>
+</section>
+{{ end }}
+{{ end }}

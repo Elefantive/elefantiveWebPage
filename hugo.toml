@@ -1,0 +1,142 @@
+baseURL = "https://example.com/"
+title = "Elefantive — Handcraft"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true
+enableRobotsTXT = true
+summaryLength = 20
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+  email = "your-email@example.com"
+  description = "Handcrafted products made with love"
+  images = ["/images/og-default.jpg"]
+  currency = "€"
+
+[languages]
+  [languages.en]
+    contentDir = "content/en"
+    languageName = "English"
+    languageCode = "en"
+    weight = 1
+    [languages.en.params]
+      orderButtonText = "Order by Email"
+      allProductsText = "All Products"
+      homeTitle = "Handcrafted with Love"
+      homeSubtitle = "Unique handmade creations, each one crafted with care and passion."
+      featuredTitle = "Featured Products"
+      viewAllText = "View All Products"
+      aboutTitle = "About Us"
+      priceLabel = "Price"
+      orderSubject = "Order Inquiry"
+      orderBody = "Hello, I am interested in ordering: "
+      footerText = "Handcrafted with love"
+      browseText = "Browse Products"
+    [[languages.en.menus.main]]
+      name = "Home"
+      pageRef = "/"
+      weight = 1
+    [[languages.en.menus.main]]
+      name = "Products"
+      pageRef = "/products"
+      weight = 2
+    [[languages.en.menus.main]]
+      name = "About"
+      pageRef = "/about"
+      weight = 3
+
+  [languages.de]
+    contentDir = "content/de"
+    languageName = "Deutsch"
+    languageCode = "de"
+    weight = 2
+    [languages.de.params]
+      orderButtonText = "Per E-Mail bestellen"
+      allProductsText = "Alle Produkte"
+      homeTitle = "Handgefertigt mit Liebe"
+      homeSubtitle = "Einzigartige handgefertigte Kreationen, jede mit Sorgfalt und Leidenschaft gefertigt."
+      featuredTitle = "Ausgewählte Produkte"
+      viewAllText = "Alle Produkte ansehen"
+      aboutTitle = "Über uns"
+      priceLabel = "Preis"
+      orderSubject = "Bestellanfrage"
+      orderBody = "Hallo, ich interessiere mich für eine Bestellung: "
+      footerText = "Handgefertigt mit Liebe"
+      browseText = "Produkte durchstöbern"
+    [[languages.de.menus.main]]
+      name = "Startseite"
+      pageRef = "/"
+      weight = 1
+    [[languages.de.menus.main]]
+      name = "Produkte"
+      pageRef = "/products"
+      weight = 2
+    [[languages.de.menus.main]]
+      name = "Über uns"
+      pageRef = "/about"
+      weight = 3
+
+  [languages.fr]
+    contentDir = "content/fr"
+    languageName = "Français"
+    languageCode = "fr"
+    weight = 3
+    [languages.fr.params]
+      orderButtonText = "Commander par e-mail"
+      allProductsText = "Tous les produits"
+      homeTitle = "Fait main avec amour"
+      homeSubtitle = "Des créations artisanales uniques, chacune fabriquée avec soin et passion."
+      featuredTitle = "Produits en vedette"
+      viewAllText = "Voir tous les produits"
+      aboutTitle = "À propos"
+      priceLabel = "Prix"
+      orderSubject = "Demande de commande"
+      orderBody = "Bonjour, je suis intéressé(e) par la commande de : "
+      footerText = "Fait main avec amour"
+      browseText = "Parcourir les produits"
+    [[languages.fr.menus.main]]
+      name = "Accueil"
+      pageRef = "/"
+      weight = 1
+    [[languages.fr.menus.main]]
+      name = "Produits"
+      pageRef = "/products"
+      weight = 2
+    [[languages.fr.menus.main]]
+      name = "À propos"
+      pageRef = "/about"
+      weight = 3
+
+  [languages.ro]
+    contentDir = "content/ro"
+    languageName = "Română"
+    languageCode = "ro"
+    weight = 4
+    [languages.ro.params]
+      orderButtonText = "Comandă prin e-mail"
+      allProductsText = "Toate produsele"
+      homeTitle = "Lucrat manual cu dragoste"
+      homeSubtitle = "Creații artizanale unice, fiecare realizată cu grijă și pasiune."
+      featuredTitle = "Produse recomandate"
+      viewAllText = "Vezi toate produsele"
+      aboutTitle = "Despre noi"
+      priceLabel = "Preț"
+      orderSubject = "Cerere de comandă"
+      orderBody = "Bună ziua, sunt interesat(ă) de comanda: "
+      footerText = "Lucrat manual cu dragoste"
+      browseText = "Răsfoiește produsele"
+    [[languages.ro.menus.main]]
+      name = "Acasă"
+      pageRef = "/"
+      weight = 1
+    [[languages.ro.menus.main]]
+      name = "Produse"
+      pageRef = "/products"
+      weight = 2
+    [[languages.ro.menus.main]]
+      name = "Despre"
+      pageRef = "/about"
+      weight = 3

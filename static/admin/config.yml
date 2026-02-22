@@ -1,0 +1,108 @@
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/elefantive   # <-- CHANGE THIS to your GitHub repo
+  branch: main
+
+media_folder: "static/images"
+public_folder: "/images"
+
+# Each language gets its own collection for easy management
+collections:
+  # ==========================================
+  # ENGLISH PRODUCTS
+  # ==========================================
+  - name: "products-en"
+    label: "Products (English)"
+    folder: "content/en/products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Price", name: "price", widget: "string" }
+      - { label: "Main Image", name: "image", widget: "image", required: false }
+      - { label: "Gallery Images", name: "gallery", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Short Description", name: "description", widget: "string" }
+      - { label: "Full Description", name: "body", widget: "markdown" }
+
+  # ==========================================
+  # GERMAN PRODUCTS
+  # ==========================================
+  - name: "products-de"
+    label: "Produkte (Deutsch)"
+    folder: "content/de/products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Preis", name: "price", widget: "string" }
+      - { label: "Hauptbild", name: "image", widget: "image", required: false }
+      - { label: "Galerie", name: "gallery", widget: "list", field: { label: "Bild", name: "image", widget: "image" }, required: false }
+      - { label: "Empfohlen", name: "featured", widget: "boolean", default: false }
+      - { label: "Kurzbeschreibung", name: "description", widget: "string" }
+      - { label: "Beschreibung", name: "body", widget: "markdown" }
+
+  # ==========================================
+  # FRENCH PRODUCTS
+  # ==========================================
+  - name: "products-fr"
+    label: "Produits (Français)"
+    folder: "content/fr/products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Prix", name: "price", widget: "string" }
+      - { label: "Image principale", name: "image", widget: "image", required: false }
+      - { label: "Galerie", name: "gallery", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false }
+      - { label: "En vedette", name: "featured", widget: "boolean", default: false }
+      - { label: "Description courte", name: "description", widget: "string" }
+      - { label: "Description", name: "body", widget: "markdown" }
+
+  # ==========================================
+  # ROMANIAN PRODUCTS
+  # ==========================================
+  - name: "products-ro"
+    label: "Produse (Română)"
+    folder: "content/ro/products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titlu", name: "title", widget: "string" }
+      - { label: "Preț", name: "price", widget: "string" }
+      - { label: "Imagine principală", name: "image", widget: "image", required: false }
+      - { label: "Galerie", name: "gallery", widget: "list", field: { label: "Imagine", name: "image", widget: "image" }, required: false }
+      - { label: "Recomandat", name: "featured", widget: "boolean", default: false }
+      - { label: "Descriere scurtă", name: "description", widget: "string" }
+      - { label: "Descriere", name: "body", widget: "markdown" }
+
+  # ==========================================
+  # PAGES — About (all languages)
+  # ==========================================
+  - name: "pages-about"
+    label: "About Page"
+    files:
+      - label: "About (English)"
+        name: "about-en"
+        file: "content/en/about/_index.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Über uns (Deutsch)"
+        name: "about-de"
+        file: "content/de/about/_index.md"
+        fields:
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Inhalt", name: "body", widget: "markdown" }
+      - label: "À propos (Français)"
+        name: "about-fr"
+        file: "content/fr/about/_index.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+      - label: "Despre (Română)"
+        name: "about-ro"
+        file: "content/ro/about/_index.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Conținut", name: "body", widget: "markdown" }

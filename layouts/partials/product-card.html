@@ -1,0 +1,18 @@
+<article class="product-card">
+  <a href="{{ .RelPermalink }}">
+    {{ with .Params.image }}
+    <div class="product-image">
+      <img src="{{ . | absURL }}" alt="{{ $.Title }}" loading="lazy">
+    </div>
+    {{ else }}
+    <div class="product-image product-image--placeholder">
+      <span>&#9733;</span>
+    </div>
+    {{ end }}
+    <div class="product-info">
+      <h3>{{ .Title }}</h3>
+      {{ with .Params.price }}<p class="product-price">{{ site.Params.currency }} {{ . }}</p>{{ end }}
+      <p class="product-excerpt">{{ .Summary | plainify | truncate 120 }}</p>
+    </div>
+  </a>
+</article>
