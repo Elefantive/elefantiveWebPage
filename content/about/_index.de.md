@@ -1,5 +1,5 @@
 ---
-title: "Über uns"
+title: Über uns
 ---
 
 Willkommen bei Elefantive! Wir sind leidenschaftliche Kunsthandwerker, die sich der Herstellung schöner handgefertigter Produkte widmen.

@@ -1,5 +1,5 @@
 ---
-title: "About Us"
+title: About Us
 ---
 
 Welcome to Elefantive! We are passionate artisans dedicated to creating beautiful handcrafted products.
