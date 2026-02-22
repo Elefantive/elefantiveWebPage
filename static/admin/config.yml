@@ -4,7 +4,6 @@ backend:
   name: github
   repo: Elefantive/elefantiveWebPage
   branch: main
-  app_id: Ov23litR3uR4IROoVD0X
 
 publish_mode: editorial_workflow
 
