@@ -89,6 +89,7 @@ versions:
   - name: Décembre 2025
     gallery:
       - /assets/main_sac-à-langer_tissu.jpg
+      - /assets/visite-guidée-sac-à-langer-nomade-visite-guidée_bd.mp4
     details: >-
       Avez-vous vu la pile de tissus ?
 
