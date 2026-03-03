@@ -35,7 +35,9 @@ versions:
       - /assets/20260218_153504b.jpg
       - /assets/20260218_153337b.jpg
       - /assets/etui-20260218-154215155-bd.mp4
-    details: |-
-      
-      Petit modèle fleuri aux dimensions de son set Balck edition Faber Castell
+    details: >-
+      Petit modèle fleuri aux dimensions de son set Black Edition Faber Castell.
+
+
+      Petit mention spéciale : On adore ce cahier de coloriage magique ! Fait avec amour et beaucoup de talent par Christin Staubach. Elle laisse l'artiste s'exprimer tout en l'amenant dans son monde fantastique! C'est le vrai coup de coeur de ma fille. (Retrouvez le cahier sur [amazon](https://www.amazon.fr/Magisches-Malbuch-K%C3%B6rper-M%C3%A4rchenhafte-Vielfalt/dp/B0FX64FBQQ/ref=cm_cr_arp_d_product_top?ie=UTF8))
 ---
