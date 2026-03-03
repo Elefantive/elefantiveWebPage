@@ -2,7 +2,7 @@
 title: La mallette d’artiste
 date: 2026-03-03T21:32:00.000+01:00
 image: /assets/20250323_125412-b.png
-draft: false
+draft: true
 featured: true
 description: La mallette d’artiste c’est un rangement optimisé pour tout votre
   matériel artistique
@@ -32,5 +32,6 @@ versions:
     gallery:
       - /assets/20250323_125412-b.png
       - /assets/20250323_125242_001-b.png
+      - /assets/20250323_125230-b.png
     details: Une version estivale
 ---
