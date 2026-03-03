@@ -33,4 +33,6 @@ versions:
   - name: Février 2026
     gallery:
       - /assets/20260218_153504b.jpg
+      - /assets/20260218_153337b.jpg
+      - /assets/etui-20260218-154215155-bd.mp4
 ---
