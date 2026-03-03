@@ -7,26 +7,23 @@ draft: false
 featured: true
 description: Es ist eine optimale Aufbewahrung für all eure Kunst Materialien
 intro: >-
-  Parce que les petits (et les grands !) artistes méritent le meilleur,
-  découvrez notre mallette d’artiste ultra pratique. Idéale pour le dessin, la
-  peinture, le coloriage et le croquis, elle offre un rangement optimisé pour
-  tout votre matériel :
+  Kreativität immer griffbereit ! ✨🎨
 
-  ✅ Format confortable (32x38 cm, épaisseur 5 cm) pour l’emporter partout 🌍
+  Diese ultrapraktische Künstler-Mappe ist die ideale Begleitung für kleine & große Künstler. Perfekt für Malen, Zeichnen & Basteln, mit praktischen Fächern & herausnehmbaren Etuis. Sie bietet eine optimale Aufbewahrung für all eure Materialien:
 
-  ✅ Poche spéciale pour bloc A4 + demi-poche pour conserver précieusement vos œuvres
+  ✅ Praktisches Format (32x38 cm, 5 cm dick) – ideal zum Mitnehmen 🌍
 
-  ✅ 2 trousses amovibles ultra pratiques :
+  ✅ Spezialfach für A4-Blöcke + halbes Fach, um Kunstwerke sicher aufzubewahren
 
-  ✏️ Une trousse rectangle à ouverture totale pour un accès rapide à tous vos essentiels
+  ✅ 2 ultra-praktische herausnehmbare Mäppchen:
 
-  🖍️ Une trousse double étuis pour crayons, feutres et craies, toujours bien organisés !
+  ✏ Ein rechteckiges Mäppchen mit vollständiger Öffnung für schnellen Zugriff auf alle Essentials
 
-  Avec sa poignée simple et son renfort en carton amovible, elle est stable, robuste et facile à transporter 🚀. Idéale pour créer partout et tout le temps !
+  🖍 Ein Doppel-Etui für Stifte, Filzstifte und Kreiden – immer ordentlich verstaut!
 
-  💡 Plus de compromis quand on est en vadrouille ! Grâce à cette mallette, les activités manuelles sont toujours à portée de main pour occuper nos petits loups 🎨👧👦
+  Mit dem Griff und der herausnehmbaren Kartonverstärkung ist die Mappe stabil, robust und leicht zu transportieren 🚀. Perfekt, um überall und jederzeit kreativ zu sein!
 
-  📢 🎨 Prêt à embarquer dans l'aventure artistique ?
+  💡 Schluss mit Langeweile unterwegs! Dank dieser Mappe ist basteln & malen immer möglich – perfekt, um unsere kleinen Künstler zu beschäftigen 👧👦🎨
 versions:
   - name: März 2025
     gallery:
