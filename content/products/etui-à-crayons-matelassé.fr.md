@@ -35,4 +35,7 @@ versions:
       - /assets/20260218_153504b.jpg
       - /assets/20260218_153337b.jpg
       - /assets/etui-20260218-154215155-bd.mp4
+    details: |-
+      
+      Petit modèle fleuri aux dimensions de son set Balck edition Faber Castell
 ---
