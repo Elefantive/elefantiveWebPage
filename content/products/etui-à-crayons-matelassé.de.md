@@ -38,6 +38,10 @@ versions:
       - /assets/20260218_153504b.jpg
       - /assets/20260218_153337b.jpg
       - /assets/etui-20260218-154215155-bd.mp4
-    details: Kleines, geblümtes Modell – genau passend für ihr **Black Edition Set
-      von Faber-Castell**
+    details: >-
+      Kleines, geblümtes Modell – genau passend für ihr Black Edition Set von
+      Faber-Castell.
+
+
+      Eine besondere Erwähnung verdient dieses zauberhafte Malbuch: Wir sind begeistert! Mit viel Liebe und großem Talent von Christin Staubach gestaltet, lässt es dem Künstler freien Raum zur Entfaltung und entführt ihn zugleich in ihre fantastische Welt. Für meine Tochter ist es ein absolutes Lieblingsstück. (Das Malbuch ist auf [Amazon ](https://www.amazon.de/Magisches-Malbuch-K%C3%B6rper-M%C3%A4rchenhafte-Vielfalt/dp/B0FX64FBQQ/ref=cm_cr_arp_d_product_top?ie=UTF8)erhältlich.)
 ---
