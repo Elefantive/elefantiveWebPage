@@ -33,5 +33,6 @@ versions:
       - /assets/20250323_125412-b.png
       - /assets/20250323_125242_001-b.png
       - /assets/20250323_130859-b.png
+      - /assets/20250323_125309-b.png
     details: Une version estivale
 ---
