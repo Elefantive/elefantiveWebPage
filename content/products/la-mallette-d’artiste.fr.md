@@ -31,11 +31,12 @@ versions:
   - name: Mars 2025
     gallery:
       - /assets/20250323_125412-b.png
+      - /assets/20250323_131636-926-710-b.png
       - /assets/20250323_125242_001-b.png
       - /assets/20250323_130859-b.png
       - /assets/20250323_125309-b.png
       - /assets/20250323_131010-b.png
       - /assets/20250323_131200-b.png
-      - /assets/20250323_131636-926-710-b.png
+      - /assets/mallette-01instagram-bd.mp4
     details: Une version estivale
 ---
