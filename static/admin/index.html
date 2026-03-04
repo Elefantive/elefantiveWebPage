@@ -10,6 +10,7 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
     // Global toast notification system - styled to match Elefantive design
     var NotificationManager = {
@@ -57,21 +58,33 @@
     style.textContent = '@keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } } @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(400px); opacity: 0; } }';
     document.head.appendChild(style);
     
-// Helper to convert markdown to basic HTML (for links and formatting)
+// Helper to convert markdown to HTML using marked library
         function markdownToHtml(markdown) {
           if (!markdown) return '';
-          // Convert markdown links [text](url) to HTML
-          var html = markdown.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-          // Convert bold **text** to <strong>
-          html = html.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
-          // Convert newlines to <br>
-          html = html.replace(/\n\n/g, '</p><p>');
-          html = html.replace(/\n/g, '<br>');
-          // Wrap in paragraph tags if not already
-          if (!html.includes('<p>')) {
-            html = '<p>' + html + '</p>';
+          
+          // Ensure it's a string
+          markdown = String(markdown).trim();
+          if (!markdown) return '';
+          
+          try {
+            // Use marked library if available, otherwise fall back to simple regex
+            if (typeof marked !== 'undefined') {
+              return marked.parse(markdown);
+            } else {
+              // Fallback regex approach
+              var html = markdown.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+              html = html.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
+              html = html.replace(/\n\n/g, '</p><p>');
+              html = html.replace(/\n/g, '<br>');
+              if (!html.includes('<p>')) {
+                html = '<p>' + html + '</p>';
+              }
+              return html;
+            }
+          } catch (e) {
+            console.error('Error converting markdown:', e);
+            return '<p>' + String(markdown).replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</p>';
           }
-          return html;
         }
 
         // Helper: check if a file path is a video
@@ -86,7 +99,7 @@
         var title = entry.getIn(['data', 'title']) || '';
         var image = entry.getIn(['data', 'image']);
         var price = entry.getIn(['data', 'price']);
-        var introText = entry.getIn(['data', 'intro']) || '';
+        var introText = String(entry.getIn(['data', 'intro']) || '').trim();
         var introHtml = markdownToHtml(introText);
         var featured = entry.getIn(['data', 'featured']);
         var versions = entry.getIn(['data', 'versions']);
