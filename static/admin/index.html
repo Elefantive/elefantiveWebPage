@@ -152,38 +152,8 @@
       return hash.toString(36);
     }
     
-    function checkChangelogUpdate() {
-      // Only check and show if user is authenticated (main UI is visible)
-      var mainNav = document.querySelector('[class*="NavLink"]') || 
-                    document.querySelector('[class*="AppHeader"]') ||
-                    document.querySelector('[class*="Sidebar"]');
-      
-      if (!mainNav) {
-        return; // User not logged in, don't show anything
-      }
-      
-      fetch('/CHANGELOG.md')
-        .then(response => response.text())
-        .then(data => {
-          var currentHash = computeHash(data);
-          var stored = localStorage.getItem('changelogHash');
-          var dontShow = localStorage.getItem('dontShowChangelog');
-          
-          if (stored !== currentHash) {
-            changelogContent = data;
-            changelogHash = currentHash;
-            localStorage.setItem('changelogHash', currentHash);
-            localStorage.removeItem('dontShowChangelog');
-            document.getElementById('dont-show-again').checked = false;
-            
-            // Auto-show modal on login if changelog was updated
-            fetchAndShowChangelog();
-          }
-        })
-        .catch(error => {
-          console.error('Error checking changelog:', error);
-        });
-    }
+    // Removed: checkChangelogUpdate function - dialog should only open on button click
+    
     
     function fetchChangelog() {
       // Check if authenticated before showing
