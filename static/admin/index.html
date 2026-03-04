@@ -10,7 +10,6 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
     // Global toast notification system - styled to match Elefantive design
     var NotificationManager = {
@@ -58,59 +57,32 @@
     style.textContent = '@keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } } @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(400px); opacity: 0; } }';
     document.head.appendChild(style);
     
-// Helper to convert markdown to HTML using marked library
+// Helper to convert markdown links to HTML
         function markdownToHtml(markdown) {
           if (!markdown) return '';
           
-          // Ensure it's a string
-          markdown = String(markdown).trim();
-          if (!markdown) return '';
-          
-          console.log('Converting markdown:', markdown); // Debug log
+          var text = String(markdown).trim();
+          if (!text) return '';
           
           try {
-            // Use marked library if available, otherwise fall back to regex
-            if (typeof window.marked !== 'undefined' && window.marked.parse) {
-              var result = window.marked.parse(markdown);
-              console.log('Marked result:', result); // Debug log
-              return result;
-            } else {
-              console.log('Marked not available, using fallback'); // Debug log
-              // Fallback: Simple inline markdown conversion
-              var html = markdown;
-              
-              // Escape HTML first
-              html = html.replace(/&/g, '&amp;')
-                         .replace(/</g, '&lt;')
-                         .replace(/>/g, '&gt;');
-              
-              // Then convert markdown patterns
-              // Links: [text](url) or [text] (url) -> <a href="url">text</a>
-              html = html.replace(/\[([^\]]+)\]\s*\(([^)]+)\)/g, 
-                '<a href="$2" target="_blank" rel="noopener">$1</a>');
-              
-              // Bold: **text** -> <strong>text</strong>
-              html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-              
-              // Italic: *text* -> <em>text</em>
-              html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-              
-              // Line breaks
-              html = html.replace(/\n\n+/g, '</p><p>');
-              html = html.replace(/\n/g, '<br>');
-              
-              // Wrap in paragraph
-              if (!html.match(/<(p|h[1-6]|ul|ol|blockquote)/)) {
-                html = '<p>' + html + '</p>';
-              }
-              
-              console.log('Fallback result:', html); // Debug log
-              return html;
+            // Replace markdown links [text](url) with HTML links
+            var result = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+            
+            // Replace **bold** with <strong>
+            result = result.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+            
+            // Replace *italic* with <em>
+            result = result.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+            
+            // Wrap in paragraph if needed
+            if (!result.includes('<p>') && !result.includes('<div>')) {
+              result = '<p>' + result + '</p>';
             }
+            
+            return result;
           } catch (e) {
-            console.error('Error converting markdown:', e);
-            // Last resort: just escape and return
-            return '<p>' + String(markdown).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</p>';
+            console.error('markdown conversion error:', e);
+            return '<p>' + text + '</p>';
           }
         }
 
