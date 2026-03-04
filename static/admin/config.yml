@@ -18,10 +18,6 @@ backend:
 media_folder: "static/assets"
 public_folder: "/assets"
 
-media_library:
-  max_file_size: 5242880
-  allow_multiple: true
-
 i18n:
   structure: multiple_files
   locales: [fr, en, de, ro]
