@@ -57,35 +57,6 @@
     style.textContent = '@keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } } @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(400px); opacity: 0; } }';
     document.head.appendChild(style);
     
-// Helper to convert markdown links to HTML
-        function markdownToHtml(markdown) {
-          if (!markdown) return '';
-          
-          var text = String(markdown).trim();
-          if (!text) return '';
-          
-          try {
-            // Replace markdown links [text](url) with HTML links
-            var result = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-            
-            // Replace **bold** with <strong>
-            result = result.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-            
-            // Replace *italic* with <em>
-            result = result.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-            
-            // Wrap in paragraph if needed
-            if (!result.includes('<p>') && !result.includes('<div>')) {
-              result = '<p>' + result + '</p>';
-            }
-            
-            return result;
-          } catch (e) {
-            console.error('markdown conversion error:', e);
-            return '<p>' + text + '</p>';
-          }
-        }
-
         // Helper: check if a file path is a video
         function isVideo(path) {
           if (!path) return false;
@@ -98,8 +69,7 @@
         var title = entry.getIn(['data', 'title']) || '';
         var image = entry.getIn(['data', 'image']);
         var price = entry.getIn(['data', 'price']);
-        var introText = String(entry.getIn(['data', 'intro']) || '').trim();
-        var introHtml = markdownToHtml(introText);
+        var introWidget = this.props.widgetFor('intro');
         var featured = entry.getIn(['data', 'featured']);
         var versions = entry.getIn(['data', 'versions']);
 
@@ -194,7 +164,7 @@
           // Hero
           h('div', { style: s.hero },
             h('div', { style: s.heroText },
-              introHtml ? h('div', { style: s.intro, className: 'preview-intro', dangerouslySetInnerHTML: { __html: introHtml } }) : null,
+              introWidget ? h('div', { style: s.intro, className: 'preview-intro' }, introWidget) : null,
               h('a', { style: s.btn }, 'Order by Email')
             ),
             imgSrc ? h('img', { src: imgSrc, style: s.heroImg }) : null
