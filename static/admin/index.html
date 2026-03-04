@@ -313,6 +313,97 @@
 
     CMS.registerPreviewTemplate('site-footer', SiteFooterPreview);
 
+    // Homepage preview
+    var HomepagePreview = createClass({
+      render: function() {
+        var entry = this.props.entry;
+        var heroTitle = entry.getIn(['data', 'heroTitle']) || 'Handcrafted with Love';
+        var heroSubtitle = entry.getIn(['data', 'heroSubtitle']) || '';
+        var content = this.props.widgetFor('body');
+
+        var s = {
+          page: { fontFamily: "'Josefin Sans', sans-serif", color: '#231F20', background: '#fff' },
+          hero: { background: 'linear-gradient(135deg, #2A706C 0%, #1e5451 100%)', color: '#fff', padding: '6rem 2rem', textAlign: 'center' },
+          heroTitle: { fontFamily: "'Baloo 2', cursive", fontSize: '3rem', fontWeight: 700, marginBottom: '0.5rem', lineHeight: 1.2 },
+          heroSubtitle: { fontSize: '1.2rem', fontWeight: 300, opacity: 0.95, lineHeight: 1.6 },
+          section: { padding: '4rem 2rem', maxWidth: '1200px', marginLeft: 'auto', marginRight: 'auto' },
+          sectionTitle: { fontFamily: "'Baloo 2', cursive", fontSize: '2rem', fontWeight: 700, marginBottom: '2rem', textAlign: 'center', color: '#2A706C' },
+          productGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '2rem', marginBottom: '2rem' },
+          productPlaceholder: { aspectRatio: '4/5', background: '#f0f1f0', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999', fontSize: '0.9rem', textAlign: 'center', padding: '1rem' },
+          contentSection: { padding: '4rem 2rem', background: '#f7f8f7', borderTopLeftRadius: 0, borderTopRightRadius: 0 }
+        };
+
+        return h('div', { style: s.page },
+          // Hero section
+          h('section', { style: s.hero },
+            h('h1', { style: s.heroTitle }, heroTitle),
+            h('p', { style: s.heroSubtitle }, heroSubtitle)
+          ),
+          // Featured products section
+          h('section', { style: s.section },
+            h('h2', { style: s.sectionTitle }, 'Featured Products'),
+            h('div', { style: s.productGrid },
+              h('div', { style: s.productPlaceholder }, '📦 Product 1'),
+              h('div', { style: s.productPlaceholder }, '📦 Product 2'),
+              h('div', { style: s.productPlaceholder }, '📦 Product 3'),
+              h('div', { style: s.productPlaceholder }, '📦 Product 4'),
+              h('div', { style: s.productPlaceholder }, '📦 Product 5'),
+              h('div', { style: s.productPlaceholder }, '📦 Product 6')
+            )
+          ),
+          // Content section (if body exists)
+          content ? h('section', { style: s.contentSection }, content) : null
+        );
+      }
+    });
+
+    CMS.registerPreviewTemplate('homepage', HomepagePreview);
+
+    // Products page preview
+    var ProductsPagePreview = createClass({
+      render: function() {
+        var entry = this.props.entry;
+        var title = entry.getIn(['data', 'title']) || 'Products';
+        var pageTitle = entry.getIn(['data', 'pageTitle']) || 'My products';
+        var pageDescription = entry.getIn(['data', 'pageDescription']) || '';
+        var content = this.props.widgetFor('body');
+
+        var s = {
+          page: { fontFamily: "'Josefin Sans', sans-serif", color: '#231F20', background: '#fff' },
+          header: { background: '#eeefee', padding: '3rem 2rem', textAlign: 'center', marginBottom: 0 },
+          h1: { fontFamily: "'Baloo 2', cursive", fontSize: '2.2rem', fontWeight: 700, margin: 0, lineHeight: 1.3, color: '#231F20', marginBottom: '1rem' },
+          description: { fontSize: '1rem', color: '#666', lineHeight: 1.6, maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' },
+          contentSection: { padding: '2rem 2rem', fontSize: '0.95rem', color: '#666', lineHeight: 1.6, maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto', marginBottom: '2rem', borderBottom: '1px solid #e0e0e0' },
+          section: { padding: '4rem 2rem', maxWidth: '1200px', marginLeft: 'auto', marginRight: 'auto' },
+          productGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '2rem' },
+          productPlaceholder: { aspectRatio: '4/5', background: '#f0f1f0', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999', fontSize: '0.9rem' }
+        };
+
+        return h('div', { style: s.page },
+          // Grey header
+          h('div', { style: s.header },
+            h('h1', { style: s.h1 }, pageTitle),
+            pageDescription ? h('div', { style: s.description }, pageDescription) : null
+          ),
+          // Description content (if body exists)
+          content ? h('div', { style: s.contentSection }, content) : null,
+          // Products grid section
+          h('section', { style: s.section },
+            h('div', { style: s.productGrid },
+              h('div', { style: s.productPlaceholder }, '📦'),
+              h('div', { style: s.productPlaceholder }, '📦'),
+              h('div', { style: s.productPlaceholder }, '📦'),
+              h('div', { style: s.productPlaceholder }, '📦'),
+              h('div', { style: s.productPlaceholder }, '📦'),
+              h('div', { style: s.productPlaceholder }, '📦')
+            )
+          )
+        );
+      }
+    });
+
+    CMS.registerPreviewTemplate('products-page', ProductsPagePreview);
+
     // "media" widget: file widget (shows all files) + image/video preview
     var fileWidget = CMS.getWidget('file');
     var FileControl = fileWidget.control;
