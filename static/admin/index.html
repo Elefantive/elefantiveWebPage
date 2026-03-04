@@ -156,12 +156,24 @@
     
     
     function fetchChangelog() {
-      // Check if authenticated before showing
-      var mainNav = document.querySelector('[class*="NavLink"]') || 
-                    document.querySelector('[class*="AppHeader"]') ||
-                    document.querySelector('[class*="Sidebar"]');
+      // Check if NOT on login page
+      var loginForm = document.querySelector('input[type="password"]') || 
+                      document.querySelector('[class*="LoginPage"]') ||
+                      document.querySelector('form[role="presentation"]');
       
-      if (!mainNav) {
+      if (loginForm) {
+        console.warn('Not authenticated - on login page');
+        return;
+      }
+      
+      // Check for authenticated UI
+      var authUI = document.querySelector('[class*="App"]') && 
+                   !loginForm &&
+                   (document.body.innerText.includes('Collections') || 
+                    document.body.innerText.includes('Publish') ||
+                    document.querySelector('[role="navigation"]'));
+      
+      if (!authUI) {
         console.warn('Not authenticated');
         return;
       }
@@ -231,18 +243,31 @@
     
     // Add changelog button to CMS interface only after user login
     function initChangelogButton() {
-      // Check if user is NOT on login page
+      // Check if already added
+      if (document.getElementById('cms-changelog-btn')) {
+        return true;
+      }
+      
+      // Must NOT have a password field (login page indicator)
       var loginForm = document.querySelector('input[type="password"]') || 
-                      document.querySelector('[class*="LoginPage"]');
+                      document.querySelector('[class*="LoginPage"]') ||
+                      document.querySelector('form[role="presentation"]');
       
       if (loginForm) {
-        // User is on login page, don't add button yet
+        // User is on login page, don't add button
         return false;
       }
       
-      // Check if button already exists
-      if (document.getElementById('cms-changelog-btn')) {
-        return true;
+      // Must have authenticated UI elements
+      var authUI = document.querySelector('[class*="App"]') && 
+                   !loginForm &&
+                   (document.body.innerText.includes('Collections') || 
+                    document.body.innerText.includes('Publish') ||
+                    document.querySelector('[role="navigation"]'));
+      
+      if (!authUI) {
+        // Not authenticated yet
+        return false;
       }
       
       // User is logged in, add the button
@@ -263,8 +288,8 @@
           clearInterval(interval);
         }
         attempt++;
-        // Stop trying after 30 seconds
-        if (attempt > 30) {
+        // Stop trying after 60 seconds
+        if (attempt > 60) {
           clearInterval(interval);
         }
       }, 500);
