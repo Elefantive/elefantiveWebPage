@@ -319,18 +319,21 @@
         var content = this.props.widgetFor('body');
 
         var s = {
-          wrap: { fontFamily: "'Josefin Sans', sans-serif" },
-          footer: { paddingTop: '2rem', marginTop: '3rem', borderTop: '2px solid #85908A', textAlign: 'center', background: '#fff' },
-          content: { fontSize: '1.15rem', color: '#3a3536', marginBottom: '1.5rem', lineHeight: 1.8 }
+          container: { fontFamily: "'Josefin Sans', sans-serif", color: '#231F20', background: '#fff', padding: '2rem', maxWidth: '750px', marginLeft: 'auto', marginRight: 'auto' },
+          footer: { marginTop: '3rem', paddingTop: '2rem', borderTop: '2px solid #85908A', textAlign: 'center' },
+          content: { fontSize: '1.15rem', color: '#3a3536', marginBottom: '1.5rem', lineHeight: 1.8 },
+          buttonGroup: { display: 'flex', justifyContent: 'center', gap: '0.5rem', flexWrap: 'wrap' },
+          btn: { display: 'inline-block', padding: '0.75rem 1.8rem', background: '#2A706C', color: '#fff', borderRadius: '8px', fontWeight: 600, textDecoration: 'none', border: 'none', cursor: 'pointer' },
+          btnSecondary: { display: 'inline-block', padding: '0.75rem 1.8rem', background: 'transparent', color: '#2A706C', borderRadius: '8px', fontWeight: 600, textDecoration: 'none', border: '2px solid #2A706C', cursor: 'pointer' }
         };
 
-        return h('div', { style: s.wrap },
+        return h('div', { style: s.container },
           h('div', { style: s.footer },
-            h('div', { style: s.content },
-              content
-            ),
-            h('a', { style: { display: 'inline-block', padding: '0.75rem 1.8rem', marginLeft: '0.5rem', marginRight: '0.5rem', marginBottom: '0.5rem', background: '#2A706C', color: '#fff', borderRadius: '8px', fontWeight: 600, textDecoration: 'none' } }, 'Order by Email'),
-            h('a', { style: { display: 'inline-block', padding: '0.75rem 1.8rem', marginLeft: '0.5rem', marginRight: '0.5rem', marginBottom: '0.5rem', background: 'transparent', color: '#2A706C', borderRadius: '8px', fontWeight: 600, textDecoration: 'none', border: '2px solid #2A706C' } }, '← Back')
+            content ? h('div', { style: s.content }, content) : null,
+            h('div', { style: s.buttonGroup },
+              h('a', { style: s.btn }, 'Order by Email'),
+              h('a', { style: s.btnSecondary }, '← Back to Products')
+            )
           )
         );
       }
