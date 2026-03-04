@@ -11,6 +11,52 @@
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
+    // Global toast notification system - styled to match Elefantive design
+    var NotificationManager = {
+      container: null,
+      init: function() {
+        if (!this.container) {
+          this.container = document.createElement('div');
+          this.container.id = 'toast-container';
+          this.container.style.cssText = 'position:fixed; top:20px; right:20px; z-index:10000; font-family:"Josefin Sans", sans-serif;';
+          document.body.appendChild(this.container);
+        }
+      },
+      
+      show: function(message, type, duration) {
+        this.init();
+        type = type || 'info'; // 'success', 'error', 'info'
+        duration = duration || 3000;
+        
+        // Match Elefantive color scheme
+        var colors = {
+          success: { bg: '#2A706C', border: '#1e5451', icon: '✓' },
+          error: { bg: '#c41c3b', border: '#8b0000', icon: '⚠' },
+          info: { bg: '#85908A', border: '#2A706C', icon: 'ℹ' }
+        };
+        var c = colors[type] || colors.info;
+        
+        var toast = document.createElement('div');
+        toast.style.cssText = 'background:' + c.bg + '; color:white; padding:14px 18px; margin-bottom:10px; border-radius:6px; border-left:4px solid ' + c.border + '; box-shadow:0 4px 12px rgba(0,0,0,0.15); font-size:14px; font-weight:500; animation:slideIn 0.3s ease-out; font-family:"Josefin Sans", sans-serif;';
+        toast.innerHTML = '<span style="margin-right:8px;">' + c.icon + '</span>' + message;
+        
+        this.container.appendChild(toast);
+        
+        if (duration > 0) {
+          setTimeout(function() {
+            toast.style.animation = 'slideOut 0.3s ease-out';
+            toast.style.opacity = '0';
+            setTimeout(function() { toast.remove(); }, 300);
+          }, duration);
+        }
+      }
+    };
+    
+    // Add CSS animations
+    var style = document.createElement('style');
+    style.textContent = '@keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } } @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(400px); opacity: 0; } }';
+    document.head.appendChild(style);
+    
     // Helper: check if a file path is a video
     function isVideo(path) {
       if (!path) return false;
@@ -154,6 +200,12 @@
         // If value changed and we were uploading, upload is complete
         if (this.state.isUploading && nextValue && nextValue !== prevValue) {
           this.setState({ isUploading: false, lastValue: nextValue });
+          // Show success notification
+          if (this.state.uploadQueue.length === 1) {
+            NotificationManager.show('File uploaded successfully', 'success');
+          } else {
+            NotificationManager.show(this.state.uploadQueue.length + ' files uploaded successfully', 'success');
+          }
         }
         // If value changed for any reason, update lastValue
         if (nextValue !== prevValue) {
