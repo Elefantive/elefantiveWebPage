@@ -121,7 +121,17 @@ collections:
     i18n: true
     fields:
       - { label: "Title", name: "title", widget: "string", i18n: true }
-      - { label: "Body", name: "body", widget: "markdown", i18n: true }
+      - { label: "Featured Image", name: "image", widget: "image", required: false, i18n: duplicate }
+      - label: "Content Sections"
+        name: "sections"
+        widget: "list"
+        required: false
+        i18n: true
+        fields:
+          - { label: "Section Type", name: "type", widget: "select", options: ["text", "image-text", "text-image"], i18n: false }
+          - { label: "Content", name: "content", widget: "markdown", i18n: true }
+          - { label: "Image (for image-text/text-image)", name: "image", widget: "image", required: false, i18n: duplicate }
+      - { label: "Legacy Body (for compatibility)", name: "body", widget: "markdown", required: false, i18n: true }
 
   - name: "site-footer"
     label: "Site Footer"

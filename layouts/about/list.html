@@ -1,13 +1,56 @@
 {{ define "main" }}
 <section class="page-header">
   <div class="container">
-    <h1>{{ site.Params.aboutTitle }}</h1>
+    <h1>{{ .Title }}</h1>
   </div>
 </section>
 
+{{ with .Params.image }}
+<section class="about-hero">
+  <div class="container">
+    <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="about-hero-image">
+  </div>
+</section>
+{{ end }}
+
 <section class="about-content">
-  <div class="container content-area">
-    {{ .Content }}
+  <div class="container">
+    {{ if .Params.sections }}
+      {{ range $i, $section := .Params.sections }}
+        {{ if eq $section.type "text" }}
+          <div class="about-section about-section-text">
+            <div class="section-content">
+              {{ $section.content | markdownify }}
+            </div>
+          </div>
+        {{ else if eq $section.type "image-text" }}
+          <div class="about-section about-section-pair">
+            <div class="section-image">
+              {{ with $section.image }}<img src="{{ . | relURL }}" alt="Section {{ add $i 1 }}">{{ end }}
+            </div>
+            <div class="section-content">
+              {{ $section.content | markdownify }}
+            </div>
+          </div>
+        {{ else if eq $section.type "text-image" }}
+          <div class="about-section about-section-pair about-section-pair--reversed">
+            <div class="section-content">
+              {{ $section.content | markdownify }}
+            </div>
+            <div class="section-image">
+              {{ with $section.image }}<img src="{{ . | relURL }}" alt="Section {{ add $i 1 }}">{{ end }}
+            </div>
+          </div>
+        {{ end }}
+      {{ end }}
+    {{ else }}
+      {{/* Fallback: render legacy body content */}}
+      <div class="about-section about-section-text">
+        <div class="section-content">
+          {{ .Content }}
+        </div>
+      </div>
+    {{ end }}
   </div>
 </section>
 {{ end }}

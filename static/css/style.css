@@ -695,6 +695,79 @@ h3 { font-size: 1.3rem; }
   max-width: 750px;
 }
 
+/* Story-style About page sections */
+.about-hero {
+  padding: 2rem 0;
+  background: var(--color-bg-warm);
+}
+
+.about-hero-image {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.about-section {
+  margin-bottom: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.about-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.about-section-text {
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-content {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.section-content p {
+  margin-bottom: 1rem;
+}
+
+.section-content p:last-child {
+  margin-bottom: 0;
+}
+
+.section-content strong {
+  color: var(--color-primary);
+}
+
+.about-section-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.section-image img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.about-section-pair--reversed {
+  direction: rtl;
+}
+
+.about-section-pair--reversed .section-content,
+.about-section-pair--reversed .section-image {
+  direction: ltr;
+}
+
 .home-content {
   padding: 3rem 0;
   background: var(--color-white);
@@ -806,6 +879,15 @@ h3 { font-size: 1.3rem; }
 
   .product-grid {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+
+  .about-section-pair {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-section-pair--reversed {
+    direction: ltr;
   }
 
   h1 { font-size: 1.8rem; }
