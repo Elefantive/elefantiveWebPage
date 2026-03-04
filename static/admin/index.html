@@ -66,24 +66,51 @@
           markdown = String(markdown).trim();
           if (!markdown) return '';
           
+          console.log('Converting markdown:', markdown); // Debug log
+          
           try {
-            // Use marked library if available, otherwise fall back to simple regex
-            if (typeof marked !== 'undefined') {
-              return marked.parse(markdown);
+            // Use marked library if available, otherwise fall back to regex
+            if (typeof window.marked !== 'undefined' && window.marked.parse) {
+              var result = window.marked.parse(markdown);
+              console.log('Marked result:', result); // Debug log
+              return result;
             } else {
-              // Fallback regex approach
-              var html = markdown.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-              html = html.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
-              html = html.replace(/\n\n/g, '</p><p>');
+              console.log('Marked not available, using fallback'); // Debug log
+              // Fallback: Simple inline markdown conversion
+              var html = markdown;
+              
+              // Escape HTML first
+              html = html.replace(/&/g, '&amp;')
+                         .replace(/</g, '&lt;')
+                         .replace(/>/g, '&gt;');
+              
+              // Then convert markdown patterns
+              // Links: [text](url) -> <a href="url">text</a>
+              html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, 
+                '<a href="$2" target="_blank" rel="noopener">$1</a>');
+              
+              // Bold: **text** -> <strong>text</strong>
+              html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+              
+              // Italic: *text* -> <em>text</em>
+              html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+              
+              // Line breaks
+              html = html.replace(/\n\n+/g, '</p><p>');
               html = html.replace(/\n/g, '<br>');
-              if (!html.includes('<p>')) {
+              
+              // Wrap in paragraph
+              if (!html.match(/<(p|h[1-6]|ul|ol|blockquote)/)) {
                 html = '<p>' + html + '</p>';
               }
+              
+              console.log('Fallback result:', html); // Debug log
               return html;
             }
           } catch (e) {
             console.error('Error converting markdown:', e);
-            return '<p>' + String(markdown).replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</p>';
+            // Last resort: just escape and return
+            return '<p>' + String(markdown).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</p>';
           }
         }
 
