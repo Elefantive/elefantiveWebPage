@@ -329,7 +329,11 @@
           section: { padding: '4rem 2rem', maxWidth: '1200px', marginLeft: 'auto', marginRight: 'auto' },
           sectionTitle: { fontFamily: "'Baloo 2', cursive", fontSize: '2rem', fontWeight: 700, marginBottom: '2rem', textAlign: 'center', color: '#2A706C' },
           productGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '2rem', marginBottom: '2rem' },
-          productPlaceholder: { aspectRatio: '4/5', background: '#f0f1f0', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999', fontSize: '0.9rem', textAlign: 'center', padding: '1rem' },
+          productCard: { background: '#fff', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' },
+          productImage: { aspectRatio: '4/5', background: 'linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%)', backgroundSize: '200% 100%', animation: 'loading 1.5s infinite' },
+          productInfo: { padding: '1rem' },
+          productTitle: { height: '20px', background: '#e0e0e0', borderRadius: '4px', marginBottom: '0.75rem' },
+          productPrice: { height: '16px', background: '#f0f0f0', borderRadius: '4px', width: '50%' },
           contentSection: { padding: '4rem 2rem', background: '#f7f8f7', borderTopLeftRadius: 0, borderTopRightRadius: 0 }
         };
 
@@ -339,20 +343,25 @@
             h('h1', { style: s.heroTitle }, heroTitle),
             h('p', { style: s.heroSubtitle }, heroSubtitle)
           ),
-          // Featured products section
+          // Featured products section with skeleton loaders
           h('section', { style: s.section },
             h('h2', { style: s.sectionTitle }, 'Featured Products'),
             h('div', { style: s.productGrid },
-              h('div', { style: s.productPlaceholder }, '📦 Product 1'),
-              h('div', { style: s.productPlaceholder }, '📦 Product 2'),
-              h('div', { style: s.productPlaceholder }, '📦 Product 3'),
-              h('div', { style: s.productPlaceholder }, '📦 Product 4'),
-              h('div', { style: s.productPlaceholder }, '📦 Product 5'),
-              h('div', { style: s.productPlaceholder }, '📦 Product 6')
+              [1,2,3,4,5,6].map(function(i) {
+                return h('div', { key: 'prod' + i, style: s.productCard },
+                  h('div', { style: s.productImage }),
+                  h('div', { style: s.productInfo },
+                    h('div', { style: s.productTitle }),
+                    h('div', { style: s.productPrice })
+                  )
+                );
+              })
             )
           ),
           // Content section (if body exists)
-          content ? h('section', { style: s.contentSection }, content) : null
+          content ? h('section', { style: s.contentSection }, content) : null,
+          // Add CSS animation for skeleton loading
+          h('style', {}, '@keyframes loading { 0% { backgroundPosition: 200% 0; } 100% { backgroundPosition: -200% 0; } }')
         );
       }
     });
@@ -375,7 +384,11 @@
           description: { fontSize: '1rem', color: '#666', lineHeight: 1.6, maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' },
           section: { padding: '4rem 2rem', maxWidth: '1200px', marginLeft: 'auto', marginRight: 'auto' },
           productGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '2rem', marginBottom: '2rem' },
-          productPlaceholder: { aspectRatio: '4/5', background: '#f0f1f0', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999', fontSize: '0.9rem' },
+          productCard: { background: '#fff', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' },
+          productImage: { aspectRatio: '4/5', background: 'linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%)', backgroundSize: '200% 100%', animation: 'loading 1.5s infinite' },
+          productInfo: { padding: '1rem' },
+          productTitle: { height: '20px', background: '#e0e0e0', borderRadius: '4px', marginBottom: '0.75rem' },
+          productPrice: { height: '16px', background: '#f0f0f0', borderRadius: '4px', width: '50%' },
           contentSection: { padding: '2rem 2rem 4rem', fontSize: '0.95rem', color: '#666', lineHeight: 1.6, maxWidth: '750px', marginLeft: 'auto', marginRight: 'auto', borderTop: '1px solid #e0e0e0' }
         };
 
@@ -385,19 +398,24 @@
             h('h1', { style: s.h1 }, pageTitle),
             pageDescription ? h('div', { style: s.description }, pageDescription) : null
           ),
-          // Products grid section
+          // Products grid section with skeleton loaders
           h('section', { style: s.section },
             h('div', { style: s.productGrid },
-              h('div', { style: s.productPlaceholder }, '📦'),
-              h('div', { style: s.productPlaceholder }, '📦'),
-              h('div', { style: s.productPlaceholder }, '📦'),
-              h('div', { style: s.productPlaceholder }, '📦'),
-              h('div', { style: s.productPlaceholder }, '📦'),
-              h('div', { style: s.productPlaceholder }, '📦')
+              [1,2,3,4,5,6].map(function(i) {
+                return h('div', { key: 'prod' + i, style: s.productCard },
+                  h('div', { style: s.productImage }),
+                  h('div', { style: s.productInfo },
+                    h('div', { style: s.productTitle }),
+                    h('div', { style: s.productPrice })
+                  )
+                );
+              })
             )
           ),
           // Additional content section below (if body exists)
-          content ? h('section', { style: s.contentSection }, content) : null
+          content ? h('section', { style: s.contentSection }, content) : null,
+          // Add CSS animation for skeleton loading
+          h('style', {}, '@keyframes loading { 0% { backgroundPosition: 200% 0; } 100% { backgroundPosition: -200% 0; } }')
         );
       }
     });
