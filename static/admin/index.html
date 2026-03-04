@@ -9,6 +9,42 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Changelog Modal -->
+  <div id="changelog-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 10000; overflow-y: auto;">
+    <div style="background: #fff; margin: 2rem auto; max-width: 700px; border-radius: 8px; padding: 2rem; font-family: 'Josefin Sans', sans-serif; color: #231F20; max-height: 85vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h2 style="margin: 0; font-family: 'Baloo 2', cursive; font-size: 1.8rem; color: #2A706C;">What's New</h2>
+        <button onclick="closeChangelog()" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: #999; padding: 0; width: 30px; height: 30px;">×</button>
+      </div>
+      <div id="changelog-content" style="font-size: 0.95rem; line-height: 1.7; color: #3a3536;">
+        <p style="text-align: center; color: #999;">Loading changelog...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Changelog Button (injected into CMS header) -->
+  <style>
+    #cms-changelog-btn {
+      position: fixed;
+      top: 15px;
+      right: 100px;
+      z-index: 5000;
+      background: #2A706C;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    #cms-changelog-btn:hover {
+      background: #1e5451;
+    }
+  </style>
+
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
     // Global toast notification system - styled to match Elefantive design
@@ -56,6 +92,67 @@
     var style = document.createElement('style');
     style.textContent = '@keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } } @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(400px); opacity: 0; } }';
     document.head.appendChild(style);
+    
+    // Changelog functionality
+    var changelogContent = `
+# Changelog - Elefantive CMS Updates
+
+## March 4, 2026
+
+### Product Links Now Display Correctly
+When editing product intro text, markdown links like [amazon](https://...) now display as proper clickable blue links in the preview pane.
+
+### Homepage Content Positioning Fixed
+Additional content on the homepage now appears in the grey header box at the top, exactly as it appears on the live site.
+
+### Product Footer Preview Added
+You can now see a live preview of how your product footer text appears at the bottom of product detail pages.
+
+### Language Switcher Stays in Fixed Position
+Language buttons (FR - EN - DE - RO) now always stay in the same order. Only the highlight changes when switching languages.
+    `;
+    
+    function openChangelog() {
+      document.getElementById('changelog-modal').style.display = 'block';
+      var contentEl = document.getElementById('changelog-content');
+      contentEl.innerHTML = changelogContent.split('\\n').map(function(line) {
+        if (line.startsWith('# ')) {
+          return '<h2 style="margin: 1.5rem 0 1rem; font-family: \\'Baloo 2\\', cursive; font-size: 1.6rem; color: #2A706C;">' + line.substring(2) + '</h2>';
+        } else if (line.startsWith('## ')) {
+          return '<h3 style="margin: 1.2rem 0 0.8rem; font-family: \\'Baloo 2\\', cursive; font-size: 1.2rem; color: #2A706C; border-bottom: 2px solid #edf0ee; padding-bottom: 0.5rem;">' + line.substring(3) + '</h3>';
+        } else if (line.startsWith('### ')) {
+          return '<h4 style="margin: 1rem 0 0.5rem; font-family: \\'Baloo 2\\', cursive; font-size: 1rem; color: #2A706C; font-weight: 600;">' + line.substring(4) + '</h4>';
+        } else if (line.trim() === '') {
+          return '<p style="margin: 0.5rem 0;"></p>';
+        } else {
+          return '<p style="margin: 0.5rem 0;">' + line + '</p>';
+        }
+      }).join('');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeChangelog() {
+      document.getElementById('changelog-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Add changelog button to CMS interface
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var btn = document.createElement('button');
+        btn.id = 'cms-changelog-btn';
+        btn.textContent = '📣 What\\'s New';
+        btn.onclick = openChangelog;
+        document.body.appendChild(btn);
+      }, 1000);
+    });
+    
+    // Close modal when clicking outside
+    document.getElementById('changelog-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeChangelog();
+      }
+    });
     
         // Helper: check if a file path is a video
         function isVideo(path) {
