@@ -24,6 +24,36 @@
 
   <!-- Changelog Button (injected into CMS header) -->
   <style>
+    /* Scrollbar styling for changelog modal */
+    #changelog-modal::-webkit-scrollbar {
+      width: 8px;
+    }
+    #changelog-modal::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.1);
+    }
+    #changelog-modal::-webkit-scrollbar-thumb {
+      background: #2A706C;
+      border-radius: 4px;
+    }
+    #changelog-modal::-webkit-scrollbar-thumb:hover {
+      background: #1e5451;
+    }
+
+    /* Modal content scrollbar */
+    #changelog-modal > div:first-child::-webkit-scrollbar {
+      width: 8px;
+    }
+    #changelog-modal > div:first-child::-webkit-scrollbar-track {
+      background: #f5f5f5;
+    }
+    #changelog-modal > div:first-child::-webkit-scrollbar-thumb {
+      background: #85908A;
+      border-radius: 4px;
+    }
+    #changelog-modal > div:first-child::-webkit-scrollbar-thumb:hover {
+      background: #2A706C;
+    }
+
     #cms-changelog-btn {
       position: fixed;
       bottom: 20px;
