@@ -127,7 +127,6 @@ collections:
           - { label: "Section Type", name: "type", widget: "select", options: ["text", "image-text", "text-image"], i18n: false }
           - { label: "Content", name: "content", widget: "markdown", i18n: true }
           - { label: "Image (for image-text/text-image)", name: "image", widget: "image", required: false, i18n: duplicate }
-      - { label: "Legacy Body (for compatibility)", name: "body", widget: "markdown", required: false, i18n: true }
 
   - name: "site-footer"
     label: "Site Footer"
