@@ -11,9 +11,9 @@
 <body>
   <!-- Changelog Modal -->
   <div id="changelog-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 10000; overflow-y: auto;">
-    <div style="background: #fff; margin: 2rem auto; max-width: 700px; border-radius: 8px; padding: 2rem; font-family: 'Josefin Sans', sans-serif; color: #231F20; max-height: 85vh; overflow-y: auto;">
+    <div style="background: #fff; margin: 2rem auto; max-width: 700px; border-radius: 8px; padding: 2rem; font-family: Josefin Sans, sans-serif; color: #231F20; max-height: 85vh; overflow-y: auto;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-        <h2 style="margin: 0; font-family: 'Baloo 2', cursive; font-size: 1.8rem; color: #2A706C;">What's New</h2>
+        <h2 style="margin: 0; font-family: Baloo 2, cursive; font-size: 1.8rem; color: #2A706C;">What is New</h2>
         <button onclick="closeChangelog()" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: #999; padding: 0; width: 30px; height: 30px;">×</button>
       </div>
       <div id="changelog-content" style="font-size: 0.95rem; line-height: 1.7; color: #3a3536;">
@@ -117,11 +117,11 @@ Language buttons (FR - EN - DE - RO) now always stay in the same order. Only the
       var contentEl = document.getElementById('changelog-content');
       contentEl.innerHTML = changelogContent.split('\n').map(function(line) {
         if (line.startsWith('# ')) {
-          return '<h2 style="margin: 1.5rem 0 1rem; font-family: \'Baloo 2\', cursive; font-size: 1.6rem; color: #2A706C;">' + line.substring(2) + '</h2>';
+          return "<h2 style=\"margin: 1.5rem 0 1rem; font-family: Baloo 2, cursive; font-size: 1.6rem; color: #2A706C;\">" + line.substring(2) + "</h2>";
         } else if (line.startsWith('## ')) {
-          return '<h3 style="margin: 1.2rem 0 0.8rem; font-family: \'Baloo 2\', cursive; font-size: 1.2rem; color: #2A706C; border-bottom: 2px solid #edf0ee; padding-bottom: 0.5rem;">' + line.substring(3) + '</h3>';
+          return "<h3 style=\"margin: 1.2rem 0 0.8rem; font-family: Baloo 2, cursive; font-size: 1.2rem; color: #2A706C; border-bottom: 2px solid #edf0ee; padding-bottom: 0.5rem;\">" + line.substring(3) + "</h3>";
         } else if (line.startsWith('### ')) {
-          return '<h4 style="margin: 1rem 0 0.5rem; font-family: \'Baloo 2\', cursive; font-size: 1rem; color: #2A706C; font-weight: 600;">' + line.substring(4) + '</h4>';
+          return "<h4 style=\"margin: 1rem 0 0.5rem; font-family: Baloo 2, cursive; font-size: 1rem; color: #2A706C; font-weight: 600;\">" + line.substring(4) + "</h4>";
         } else if (line.trim() === '') {
           return '<p style="margin: 0.5rem 0;"></p>';
         } else {
