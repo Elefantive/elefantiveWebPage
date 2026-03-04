@@ -329,13 +329,22 @@
           section: { padding: '4rem 2rem', maxWidth: '1200px', marginLeft: 'auto', marginRight: 'auto' },
           sectionTitle: { fontFamily: "'Baloo 2', cursive", fontSize: '2rem', fontWeight: 700, marginBottom: '2rem', textAlign: 'center', color: '#2A706C' },
           productGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '2rem', marginBottom: '2rem' },
-          productCard: { background: '#fff', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' },
-          productImage: { aspectRatio: '4/5', background: 'linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%)', backgroundSize: '200% 100%', animation: 'loading 1.5s infinite' },
+          productCard: { background: '#fff', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.08)', transition: 'transform 0.2s' },
+          productImage: { aspectRatio: '4/5', background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999', fontSize: '3rem' },
           productInfo: { padding: '1rem' },
-          productTitle: { height: '20px', background: '#e0e0e0', borderRadius: '4px', marginBottom: '0.75rem' },
-          productPrice: { height: '16px', background: '#f0f0f0', borderRadius: '4px', width: '50%' },
+          productTitle: { fontFamily: "'Baloo 2', cursive", fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.5rem', color: '#231F20' },
+          productPrice: { fontSize: '1.05rem', fontWeight: 600, color: '#2A706C' },
           contentSection: { padding: '4rem 2rem', background: '#f7f8f7', borderTopLeftRadius: 0, borderTopRightRadius: 0 }
         };
+
+        var products = [
+          { name: 'Handmade Pouch', price: '€18' },
+          { name: 'Creative Bag', price: '€35' },
+          { name: 'Craft Holder', price: '€22' },
+          { name: 'Travel Case', price: '€28' },
+          { name: 'Design Pocket', price: '€15' },
+          { name: 'Gift Package', price: '€42' }
+        ];
 
         return h('div', { style: s.page },
           // Hero section
@@ -343,25 +352,23 @@
             h('h1', { style: s.heroTitle }, heroTitle),
             h('p', { style: s.heroSubtitle }, heroSubtitle)
           ),
-          // Featured products section with skeleton loaders
+          // Featured products section with realistic cards
           h('section', { style: s.section },
             h('h2', { style: s.sectionTitle }, 'Featured Products'),
             h('div', { style: s.productGrid },
-              [1,2,3,4,5,6].map(function(i) {
+              products.map(function(prod, i) {
                 return h('div', { key: 'prod' + i, style: s.productCard },
-                  h('div', { style: s.productImage }),
+                  h('div', { style: s.productImage }, '🎁'),
                   h('div', { style: s.productInfo },
-                    h('div', { style: s.productTitle }),
-                    h('div', { style: s.productPrice })
+                    h('h3', { style: s.productTitle }, prod.name),
+                    h('p', { style: s.productPrice }, prod.price)
                   )
                 );
               })
             )
           ),
           // Content section (if body exists)
-          content ? h('section', { style: s.contentSection }, content) : null,
-          // Add CSS animation for skeleton loading
-          h('style', {}, '@keyframes loading { 0% { backgroundPosition: 200% 0; } 100% { backgroundPosition: -200% 0; } }')
+          content ? h('section', { style: s.contentSection }, content) : null
         );
       }
     });
@@ -384,13 +391,24 @@
           description: { fontSize: '1rem', color: '#666', lineHeight: 1.6, maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' },
           section: { padding: '4rem 2rem', maxWidth: '1200px', marginLeft: 'auto', marginRight: 'auto' },
           productGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '2rem', marginBottom: '2rem' },
-          productCard: { background: '#fff', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' },
-          productImage: { aspectRatio: '4/5', background: 'linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%)', backgroundSize: '200% 100%', animation: 'loading 1.5s infinite' },
+          productCard: { background: '#fff', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.08)', transition: 'transform 0.2s' },
+          productImage: { aspectRatio: '4/5', background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999', fontSize: '3rem' },
           productInfo: { padding: '1rem' },
-          productTitle: { height: '20px', background: '#e0e0e0', borderRadius: '4px', marginBottom: '0.75rem' },
-          productPrice: { height: '16px', background: '#f0f0f0', borderRadius: '4px', width: '50%' },
+          productTitle: { fontFamily: "'Baloo 2', cursive", fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.5rem', color: '#231F20' },
+          productPrice: { fontSize: '1.05rem', fontWeight: 600, color: '#2A706C' },
           contentSection: { padding: '2rem 2rem 4rem', fontSize: '0.95rem', color: '#666', lineHeight: 1.6, maxWidth: '750px', marginLeft: 'auto', marginRight: 'auto', borderTop: '1px solid #e0e0e0' }
         };
+
+        var products = [
+          { name: 'Sac à Langer Nomade', price: '€54' },
+          { name: 'Pencil Pouch', price: '€18' },
+          { name: 'Craft Bag', price: '€32' },
+          { name: 'Travel Organizer', price: '€28' },
+          { name: 'Gift Pouch', price: '€15' },
+          { name: 'Multi Purpose', price: '€42' },
+          { name: 'Small Pocket', price: '€12' },
+          { name: 'Premium Pack', price: '€65' }
+        ];
 
         return h('div', { style: s.page },
           // Grey header with title and description only
@@ -398,24 +416,22 @@
             h('h1', { style: s.h1 }, pageTitle),
             pageDescription ? h('div', { style: s.description }, pageDescription) : null
           ),
-          // Products grid section with skeleton loaders
+          // Products grid section with realistic cards
           h('section', { style: s.section },
             h('div', { style: s.productGrid },
-              [1,2,3,4,5,6].map(function(i) {
+              products.map(function(prod, i) {
                 return h('div', { key: 'prod' + i, style: s.productCard },
-                  h('div', { style: s.productImage }),
+                  h('div', { style: s.productImage }, '🎁'),
                   h('div', { style: s.productInfo },
-                    h('div', { style: s.productTitle }),
-                    h('div', { style: s.productPrice })
+                    h('h3', { style: s.productTitle }, prod.name),
+                    h('p', { style: s.productPrice }, prod.price)
                   )
                 );
               })
             )
           ),
           // Additional content section below (if body exists)
-          content ? h('section', { style: s.contentSection }, content) : null,
-          // Add CSS animation for skeleton loading
-          h('style', {}, '@keyframes loading { 0% { backgroundPosition: 200% 0; } 100% { backgroundPosition: -200% 0; } }')
+          content ? h('section', { style: s.contentSection }, content) : null
         );
       }
     });
