@@ -59,33 +59,24 @@
     }
 
     #cms-changelog-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 5000;
-      background: #2A706C;
-      color: white;
+      background: transparent;
+      color: rgba(255,255,255,0.7);
       border: none;
-      padding: 10px 16px;
-      border-radius: 4px;
+      padding: 0 12px;
       cursor: pointer;
-      font-family: Josefin Sans, sans-serif;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: background 0.2s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      font-family: inherit;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 1;
+      height: 100%;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
       white-space: nowrap;
+      transition: color 0.2s;
     }
     #cms-changelog-btn:hover {
-      background: #1e5451;
-    }
-    @media (max-width: 768px) {
-      #cms-changelog-btn {
-        bottom: 10px;
-        right: 10px;
-        padding: 8px 12px;
-        font-size: 0.8rem;
-      }
+      color: white;
     }
   </style>
 
@@ -290,12 +281,29 @@
         return false;
       }
       
-      // User is logged in, add the button
+      // Find the Media nav link and insert after it
+      var navLinks = document.querySelectorAll('a, button');
+      var mediaLink = null;
+      for (var i = 0; i < navLinks.length; i++) {
+        var text = navLinks[i].textContent.trim();
+        if (text === 'Media' || text === 'Médias' || text === 'Medien' || text === 'Medii') {
+          mediaLink = navLinks[i];
+          break;
+        }
+      }
+      
       var btn = document.createElement('button');
       btn.id = 'cms-changelog-btn';
       btn.textContent = '📣 What\'s New';
       btn.onclick = fetchChangelog;
-      document.body.appendChild(btn);
+      
+      if (mediaLink && mediaLink.parentNode) {
+        mediaLink.parentNode.insertBefore(btn, mediaLink.nextSibling);
+      } else {
+        // Fallback: append to body fixed
+        btn.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:5000;background:#2A706C;color:white;border:none;padding:10px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.9rem;box-shadow:0 2px 8px rgba(0,0,0,0.2);';
+        document.body.appendChild(btn);
+      }
       
       return true;
     }
