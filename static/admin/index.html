@@ -193,12 +193,12 @@
         var imgSrc = image ? this.props.getAsset(image).toString() : null;
 
         var s = {
-          page: { fontFamily: "'Josefin Sans', sans-serif", color: '#231F20', minHeight: '100vh', background: '#fff' },
-          header: { background: '#f0f1f0', padding: '3rem 0', textAlign: 'center', marginBottom: 0 },
-          h1: { fontFamily: "'Baloo 2', cursive", fontSize: '2.2rem', fontWeight: 700, margin: 0, lineHeight: 1.3 },
-          content: { padding: '4rem 2rem', maxWidth: '750px', marginLeft: 'auto', marginRight: 'auto' },
-          heroSection: { marginBottom: '3rem', textAlign: 'center' },
+          page: { fontFamily: "'Josefin Sans', sans-serif", color: '#231F20', background: '#fff' },
+          header: { background: '#eeefee', padding: '3rem 2rem', textAlign: 'center', marginBottom: 0 },
+          h1: { fontFamily: "'Baloo 2', cursive", fontSize: '2.2rem', fontWeight: 700, margin: 0, lineHeight: 1.3, color: '#231F20' },
+          heroSection: { paddingTop: '2rem', paddingBottom: '2rem', paddingLeft: '2rem', paddingRight: '2rem', textAlign: 'center', background: '#fff' },
           heroImg: { width: '100%', maxWidth: '600px', borderRadius: '8px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)' },
+          content: { padding: '4rem 2rem', maxWidth: '750px', marginLeft: 'auto', marginRight: 'auto', background: '#fff' },
           section: { marginBottom: '4rem', paddingBottom: '3rem', borderBottom: '1px solid #d0d5d2' },
           sectionLast: { borderBottom: 'none', marginBottom: 0, paddingBottom: 0 },
           sectionText: { fontSize: '1.05rem', lineHeight: 1.8, color: '#231F20' },
@@ -250,15 +250,15 @@
         }
 
         return h('div', { style: s.page },
-          // Grey header box
-          h('section', { style: s.header },
+          // Grey header box with title only
+          h('div', { style: s.header },
             h('h1', { style: s.h1 }, title)
           ),
-          // Featured image
+          // Featured image (if exists)
           imgSrc ? h('div', { style: s.heroSection }, h('img', { src: imgSrc, style: s.heroImg })) : null,
-          // Content with spacing
-          h('section', { style: s.content },
-            h('div', {}, sectionElements)
+          // Content sections below with white background
+          h('div', { style: s.content },
+            sectionElements
           )
         );
       }
