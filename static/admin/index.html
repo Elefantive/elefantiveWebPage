@@ -261,36 +261,28 @@
     
     // Add changelog button to CMS interface only after user login
     function initChangelogButton() {
-      // Check if user is authenticated - look for login button (sign of NOT authenticated)
-      // or look for the main editor area (sign of being authenticated)
-      var loginForm = document.querySelector('[class*="LoginPage"]') || 
-                      document.querySelector('form[role="presentation"]') ||
-                      document.querySelector('input[type="password"]');
+      // Check if user is NOT on login page
+      var loginForm = document.querySelector('input[type="password"]') || 
+                      document.querySelector('[class*="LoginPage"]');
       
       if (loginForm) {
-        // User is on login page, don't add button
+        // User is on login page, don't add button yet
         return false;
       }
       
-      // Check for authenticated dashboard elements
-      var dashboard = document.querySelector('[class*="EditorProvider"]') || 
-                      document.querySelector('[class*="NetlifyCmsApp"]') ||
-                      document.querySelector('[class*="WorkflowView"]') ||
-                      document.querySelector('[class*="CollectionPage"]');
-      
-      if (dashboard) {
-        // User is logged in, add the button
-        var btn = document.createElement('button');
-        btn.id = 'cms-changelog-btn';
-        btn.textContent = '📣 What\'s New';
-        btn.onclick = fetchChangelog;
-        document.body.appendChild(btn);
-        
-        // Don't auto-show on login - only show when user explicitly clicks the button
+      // Check if button already exists
+      if (document.getElementById('cms-changelog-btn')) {
         return true;
       }
       
-      return false;
+      // User is logged in, add the button
+      var btn = document.createElement('button');
+      btn.id = 'cms-changelog-btn';
+      btn.textContent = '📣 What\'s New';
+      btn.onclick = fetchChangelog;
+      document.body.appendChild(btn);
+      
+      return true;
     }
     
     // Try to init the button on page load, then poll if not ready yet
