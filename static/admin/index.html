@@ -197,6 +197,16 @@
     }
     
     function fetchAndShowChangelog() {
+      // Check authentication first
+      var loginForm = document.querySelector('input[type="password"]') || 
+                      document.querySelector('[class*="LoginPage"]') ||
+                      document.querySelector('form[role="presentation"]');
+      
+      if (loginForm) {
+        console.warn('Not authenticated - on login page');
+        return;
+      }
+      
       if (!changelogContent) {
         fetchChangelog();
       } else {
@@ -205,6 +215,16 @@
     }
     
     function openChangelog() {
+      // Check authentication before displaying
+      var loginForm = document.querySelector('input[type="password"]') || 
+                      document.querySelector('[class*="LoginPage"]') ||
+                      document.querySelector('form[role="presentation"]');
+      
+      if (loginForm) {
+        console.warn('Not authenticated - blocking modal display');
+        return;
+      }
+      
       document.getElementById('changelog-modal').style.display = 'flex';
       var contentEl = document.getElementById('changelog-content');
       contentEl.innerHTML = changelogContent.split('\n').map(function(line) {
