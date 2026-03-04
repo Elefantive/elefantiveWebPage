@@ -140,7 +140,7 @@
 
     var MediaControl = createClass({
       getInitialState: function() {
-        return { isUploading: false, lastValue: '' };
+        return { isUploading: false, lastValue: '', uploadQueue: [] };
       },
       
       componentDidMount: function() {
@@ -162,9 +162,13 @@
       },
 
       handleChange: function(e) {
-        // Show uploading state when file is selected
+        // Show uploading state when file(s) selected
         if (e && e.target && e.target.files && e.target.files.length > 0) {
-          this.setState({ isUploading: true });
+          var fileCount = e.target.files.length;
+          this.setState({ 
+            isUploading: true,
+            uploadQueue: Array.from(e.target.files).map(f => f.name)
+          });
         }
         // Call original handler
         if (this.props.onChange) {
@@ -186,7 +190,6 @@
                 src: value, 
                 style: { width: '100%', display: 'block' },
                 onError: function(e) {
-                  // If image fails to load, might be path issue - log it
                   console.warn('Failed to load image preview:', value);
                 } 
               })
@@ -199,11 +202,16 @@
           }
         }
 
-        // Show uploading state
-        var uploadStatus = this.state.isUploading ? 
-          h('div', { style: { marginBottom: '8px', padding: '8px 12px', background: '#e8f5e9', border: '1px solid #4caf50', borderRadius: '4px', color: '#2e7d32', fontSize: '0.9rem' } },
-            '📤 Uploading... Please wait for preview to appear.'
-          ) : null;
+        // Show uploading state with file count
+        var uploadStatus = null;
+        if (this.state.isUploading) {
+          var message = this.state.uploadQueue.length === 1 
+            ? '📤 Uploading 1 file...'
+            : '📤 Uploading ' + this.state.uploadQueue.length + ' files...';
+          uploadStatus = h('div', { style: { marginBottom: '8px', padding: '8px 12px', background: '#e8f5e9', border: '1px solid #4caf50', borderRadius: '4px', color: '#2e7d32', fontSize: '0.9rem' } },
+            message + ' Please wait for preview to appear.'
+          );
+        }
 
         return h('div', {},
           uploadStatus,
