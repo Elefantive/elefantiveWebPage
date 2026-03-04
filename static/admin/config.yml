@@ -15,7 +15,7 @@ backend:
 # Use draft field on products to control visibility
 
 # Global media settings
-media_folder: "static/assets"
+media_folder: "/static/assets"
 public_folder: "/assets"
 
 i18n:
@@ -36,7 +36,7 @@ collections:
     sortable_fields: ["title", "date"]
     i18n: true
     # Ensure media library always shows all assets, even in draft mode
-    media_folder: "static/assets"
+    media_folder: "/static/assets"
     public_folder: "/assets"
     fields:
       - { label: "Title", name: "title", widget: "string", i18n: true }
