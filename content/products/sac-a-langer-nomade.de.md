@@ -3,7 +3,7 @@ title: Die Wickeltasche fur unterwegs
 date: 2024-09-21T00:00:00.000Z
 price: null
 image: /assets/main_sac-à-langer.jpg
-draft: false
+draft: true
 featured: true
 description: Die unverzichtbare Ausrustung fur junge Eltern! Fur ein bequemes
   und effizientes Wickeln.
