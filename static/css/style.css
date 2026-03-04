@@ -691,6 +691,10 @@ h3 { font-size: 1.3rem; }
   margin-bottom: 1rem;
 }
 
+.about-content {
+  padding: 4rem 0;
+}
+
 .about-content .container {
   max-width: 750px;
 }
