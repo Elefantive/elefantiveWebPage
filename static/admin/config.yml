@@ -1,3 +1,6 @@
+site_url: https://elefantive.com
+display_url: https://elefantive.com
+
 local_backend: true
 
 backend:
@@ -8,10 +11,16 @@ backend:
   auth_endpoint: auth
   site_id: calm-bavarois-517955.netlify.app
 
-publish_mode: editorial_workflow
+# No editorial workflow - saves directly to main branch
+# Use draft field on products to control visibility
 
+# Global media settings
 media_folder: "static/assets"
 public_folder: "/assets"
+
+media_library:
+  max_file_size: 5242880
+  allow_multiple: true
 
 i18n:
   structure: multiple_files
@@ -30,6 +39,9 @@ collections:
     slug: "{{slug}}"
     sortable_fields: ["title", "date"]
     i18n: true
+    # Ensure media library always shows all assets, even in draft mode
+    media_folder: "static/assets"
+    public_folder: "/assets"
     fields:
       - { label: "Title", name: "title", widget: "string", i18n: true }
       - { label: "Publish Date", name: "date", widget: "datetime", i18n: duplicate }

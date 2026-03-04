@@ -139,27 +139,76 @@
     var FilePreview = fileWidget.preview;
 
     var MediaControl = createClass({
+      getInitialState: function() {
+        return { isUploading: false, lastValue: '' };
+      },
+      
+      componentDidMount: function() {
+        this.setState({ lastValue: this.props.value || '' });
+      },
+
+      componentWillReceiveProps: function(nextProps) {
+        var prevValue = this.props.value || '';
+        var nextValue = nextProps.value || '';
+        
+        // If value changed and we were uploading, upload is complete
+        if (this.state.isUploading && nextValue && nextValue !== prevValue) {
+          this.setState({ isUploading: false, lastValue: nextValue });
+        }
+        // If value changed for any reason, update lastValue
+        if (nextValue !== prevValue) {
+          this.setState({ lastValue: nextValue });
+        }
+      },
+
+      handleChange: function(e) {
+        // Show uploading state when file is selected
+        if (e && e.target && e.target.files && e.target.files.length > 0) {
+          this.setState({ isUploading: true });
+        }
+        // Call original handler
+        if (this.props.onChange) {
+          this.props.onChange(e);
+        }
+      },
+
       render: function() {
-        var value = this.props.value || '';
+        var value = this.state.lastValue || this.props.value || '';
         var isImg = /\.(jpg|jpeg|png|gif|svg|webp)$/i.test(value);
         var isVid = /\.(mp4|webm|mov)$/i.test(value);
 
-        // Preview above the native file control
+        // Preview above the native file control - only show if not uploading and value exists
         var preview = null;
-        if (value && isImg) {
-          preview = h('div', { style: { marginBottom: '8px', maxWidth: '300px', borderRadius: '5px', overflow: 'hidden', border: '2px solid #dfdfe3' } },
-            h('img', { src: value, style: { width: '100%', display: 'block' } })
-          );
-        } else if (value && isVid) {
-          preview = h('div', { style: { marginBottom: '8px', maxWidth: '300px', borderRadius: '5px', overflow: 'hidden', border: '2px solid #dfdfe3', background: '#1a1a2e', padding: '24px', textAlign: 'center' } },
-            h('span', { style: { color: '#fff', fontSize: '2rem', display: 'block' } }, '\u25B6'),
-            h('span', { style: { color: '#aaa', fontSize: '0.75rem' } }, value.split('/').pop())
-          );
+        if (value && !this.state.isUploading) {
+          if (isImg) {
+            preview = h('div', { style: { marginBottom: '8px', maxWidth: '300px', borderRadius: '5px', overflow: 'hidden', border: '2px solid #dfdfe3' } },
+              h('img', { 
+                src: value, 
+                style: { width: '100%', display: 'block' },
+                onError: function(e) {
+                  // If image fails to load, might be path issue - log it
+                  console.warn('Failed to load image preview:', value);
+                } 
+              })
+            );
+          } else if (isVid) {
+            preview = h('div', { style: { marginBottom: '8px', maxWidth: '300px', borderRadius: '5px', overflow: 'hidden', border: '2px solid #dfdfe3', background: '#1a1a2e', padding: '24px', textAlign: 'center' } },
+              h('span', { style: { color: '#fff', fontSize: '2rem', display: 'block' } }, '\u25B6'),
+              h('span', { style: { color: '#aaa', fontSize: '0.75rem' } }, value.split('/').pop())
+            );
+          }
         }
 
+        // Show uploading state
+        var uploadStatus = this.state.isUploading ? 
+          h('div', { style: { marginBottom: '8px', padding: '8px 12px', background: '#e8f5e9', border: '1px solid #4caf50', borderRadius: '4px', color: '#2e7d32', fontSize: '0.9rem' } },
+            '📤 Uploading... Please wait for preview to appear.'
+          ) : null;
+
         return h('div', {},
+          uploadStatus,
           preview,
-          h(FileControl, this.props)
+          h(FileControl, Object.assign({}, this.props, { onChange: this.handleChange }))
         );
       }
     });
