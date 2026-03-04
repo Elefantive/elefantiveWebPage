@@ -19,6 +19,10 @@
       <div id="changelog-content" style="font-size: 0.95rem; line-height: 1.7; color: #3a3536;">
         <p style="text-align: center; color: #999;">Loading changelog...</p>
       </div>
+      <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #edf0ee; display: flex; align-items: center;">
+        <input type="checkbox" id="dont-show-again" style="margin-right: 0.5rem; cursor: pointer;">
+        <label for="dont-show-again" style="cursor: pointer; font-size: 0.9rem; color: #666;">Don't show again until next update</label>
+      </div>
     </div>
   </div>
 
@@ -136,6 +140,38 @@
     // Changelog functionality
     // Fetch and display the full changelog
     var changelogContent = '';
+    var changelogHash = '';
+    
+    function computeHash(str) {
+      var hash = 0;
+      for (var i = 0; i < str.length; i++) {
+        var char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+      }
+      return hash.toString(36);
+    }
+    
+    function checkChangelogUpdate() {
+      fetch('/CHANGELOG.md')
+        .then(response => response.text())
+        .then(data => {
+          var currentHash = computeHash(data);
+          var stored = localStorage.getItem('changelogHash');
+          
+          if (stored !== currentHash) {
+            changelogContent = data;
+            changelogHash = currentHash;
+            localStorage.setItem('changelogHash', currentHash);
+            localStorage.removeItem('dontShowChangelog');
+            document.getElementById('dont-show-again').checked = false;
+            fetchAndShowChangelog();
+          }
+        })
+        .catch(error => {
+          console.error('Error checking changelog:', error);
+        });
+    }
     
     function fetchChangelog() {
       if (!changelogContent) {
@@ -143,6 +179,7 @@
           .then(response => response.text())
           .then(data => {
             changelogContent = data;
+            changelogHash = computeHash(data);
             openChangelog();
           })
           .catch(error => {
@@ -150,6 +187,14 @@
             changelogContent = '# Error loading changelog\n\nSorry, we could not load the changelog. Please try again.';
             openChangelog();
           });
+      } else {
+        openChangelog();
+      }
+    }
+    
+    function fetchAndShowChangelog() {
+      if (!changelogContent) {
+        fetchChangelog();
       } else {
         openChangelog();
       }
@@ -183,9 +228,16 @@
     function closeChangelog() {
       document.getElementById('changelog-modal').style.display = 'none';
       document.body.style.overflow = 'auto';
+      
+      if (document.getElementById('dont-show-again').checked) {
+        localStorage.setItem('dontShowChangelog', 'true');
+        if (changelogHash) {
+          localStorage.setItem('changelogHash', changelogHash);
+        }
+      }
     }
     
-    // Add changelog button to CMS interface
+    // Add changelog button to CMS interface and check for updates on startup
     window.addEventListener('load', function() {
       setTimeout(function() {
         var btn = document.createElement('button');
@@ -193,6 +245,9 @@
         btn.textContent = '📣 What\'s New';
         btn.onclick = fetchChangelog;
         document.body.appendChild(btn);
+        
+        // Check if changelog has been updated
+        checkChangelogUpdate();
       }, 1000);
     });
     
