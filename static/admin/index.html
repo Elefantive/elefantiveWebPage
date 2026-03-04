@@ -115,13 +115,13 @@ Language buttons (FR - EN - DE - RO) now always stay in the same order. Only the
     function openChangelog() {
       document.getElementById('changelog-modal').style.display = 'block';
       var contentEl = document.getElementById('changelog-content');
-      contentEl.innerHTML = changelogContent.split('\\n').map(function(line) {
+      contentEl.innerHTML = changelogContent.split('\n').map(function(line) {
         if (line.startsWith('# ')) {
-          return '<h2 style="margin: 1.5rem 0 1rem; font-family: \\'Baloo 2\\', cursive; font-size: 1.6rem; color: #2A706C;">' + line.substring(2) + '</h2>';
+          return '<h2 style="margin: 1.5rem 0 1rem; font-family: \'Baloo 2\', cursive; font-size: 1.6rem; color: #2A706C;">' + line.substring(2) + '</h2>';
         } else if (line.startsWith('## ')) {
-          return '<h3 style="margin: 1.2rem 0 0.8rem; font-family: \\'Baloo 2\\', cursive; font-size: 1.2rem; color: #2A706C; border-bottom: 2px solid #edf0ee; padding-bottom: 0.5rem;">' + line.substring(3) + '</h3>';
+          return '<h3 style="margin: 1.2rem 0 0.8rem; font-family: \'Baloo 2\', cursive; font-size: 1.2rem; color: #2A706C; border-bottom: 2px solid #edf0ee; padding-bottom: 0.5rem;">' + line.substring(3) + '</h3>';
         } else if (line.startsWith('### ')) {
-          return '<h4 style="margin: 1rem 0 0.5rem; font-family: \\'Baloo 2\\', cursive; font-size: 1rem; color: #2A706C; font-weight: 600;">' + line.substring(4) + '</h4>';
+          return '<h4 style="margin: 1rem 0 0.5rem; font-family: \'Baloo 2\', cursive; font-size: 1rem; color: #2A706C; font-weight: 600;">' + line.substring(4) + '</h4>';
         } else if (line.trim() === '') {
           return '<p style="margin: 0.5rem 0;"></p>';
         } else {
@@ -141,7 +141,7 @@ Language buttons (FR - EN - DE - RO) now always stay in the same order. Only the
       setTimeout(function() {
         var btn = document.createElement('button');
         btn.id = 'cms-changelog-btn';
-        btn.textContent = '📣 What\\'s New';
+        btn.textContent = '📣 What\'s New';
         btn.onclick = openChangelog;
         document.body.appendChild(btn);
       }, 1000);
