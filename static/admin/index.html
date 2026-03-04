@@ -261,13 +261,24 @@
     
     // Add changelog button to CMS interface only after user login
     function initChangelogButton() {
-      // Check if user is authenticated by looking for the main editor UI
-      // The editor navigation and main content only exist after login
-      var mainNav = document.querySelector('[class*="NavLink"]') || 
-                    document.querySelector('[class*="AppHeader"]') ||
-                    document.querySelector('[class*="Sidebar"]');
+      // Check if user is authenticated - look for login button (sign of NOT authenticated)
+      // or look for the main editor area (sign of being authenticated)
+      var loginForm = document.querySelector('[class*="LoginPage"]') || 
+                      document.querySelector('form[role="presentation"]') ||
+                      document.querySelector('input[type="password"]');
       
-      if (mainNav) {
+      if (loginForm) {
+        // User is on login page, don't add button
+        return false;
+      }
+      
+      // Check for authenticated dashboard elements
+      var dashboard = document.querySelector('[class*="EditorProvider"]') || 
+                      document.querySelector('[class*="NetlifyCmsApp"]') ||
+                      document.querySelector('[class*="WorkflowView"]') ||
+                      document.querySelector('[class*="CollectionPage"]');
+      
+      if (dashboard) {
         // User is logged in, add the button
         var btn = document.createElement('button');
         btn.id = 'cms-changelog-btn';
@@ -275,10 +286,10 @@
         btn.onclick = fetchChangelog;
         document.body.appendChild(btn);
         
-        // Check if changelog has been updated on login
-        checkChangelogUpdate();
+        // Don't auto-show on login - only show when user explicitly clicks the button
         return true;
       }
+      
       return false;
     }
     
