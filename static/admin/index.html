@@ -57,11 +57,30 @@
     style.textContent = '@keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } } @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(400px); opacity: 0; } }';
     document.head.appendChild(style);
     
-    // Helper: check if a file path is a video
-    function isVideo(path) {
-      if (!path) return false;
-      return /\.(mp4|webm|mov)$/i.test(path);
-    }
+// Helper to convert markdown to basic HTML (for links and formatting)
+        function markdownToHtml(markdown) {
+          if (!markdown) return '';
+          // Convert markdown links [text](url) to HTML
+          var html = markdown.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+          // Convert bold **text** to <strong>
+          html = html.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
+          // Convert newlines to <br>
+          html = html.replace(/\n\n/g, '</p><p>');
+          html = html.replace(/\n/g, '<br>');
+          // Wrap in paragraph tags if not already
+          if (!html.includes('<p>')) {
+            html = '<p>' + html + '</p>';
+          }
+          return html;
+        }
+
+        // Helper: check if a file path is a video
+        function isVideo(path) {
+          if (!path) return false;
+          return /\.(mp4|webm|mov)$/i.test(path);
+        }
+
+        var introHtml = markdownToHtml(introText);
 
     var ProductPreview = createClass({
       render: function() {
@@ -69,7 +88,7 @@
         var title = entry.getIn(['data', 'title']) || '';
         var image = entry.getIn(['data', 'image']);
         var price = entry.getIn(['data', 'price']);
-        var introWidget = this.props.widgetFor('intro');
+        var introText = entry.getIn(['data', 'intro']) || '';
         var featured = entry.getIn(['data', 'featured']);
         var versions = entry.getIn(['data', 'versions']);
 
@@ -164,7 +183,7 @@
           // Hero
           h('div', { style: s.hero },
             h('div', { style: s.heroText },
-              introWidget ? h('div', { style: s.intro, className: 'preview-intro' }, introWidget) : null,
+              introHtml ? h('div', { style: s.intro, className: 'preview-intro', dangerouslySetInnerHTML: { __html: introHtml } }) : null,
               h('a', { style: s.btn }, 'Order by Email')
             ),
             imgSrc ? h('img', { src: imgSrc, style: s.heroImg }) : null
@@ -176,7 +195,7 @@
     });
 
     CMS.registerPreviewStyle('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Josefin+Sans:wght@300;400;600&display=swap');
-    CMS.registerPreviewStyle('.preview-intro ul, .preview-intro ol { padding-left: 1.5rem; margin: 0.5rem 0; } .preview-intro li { margin-bottom: 0.3rem; line-height: 1.6; } .preview-intro li p { margin: 0; } .preview-intro p { margin: 0 0 0.75rem 0; } .preview-intro p:last-child { margin-bottom: 0; }', { raw: true });
+    CMS.registerPreviewStyle('.preview-intro ul, .preview-intro ol { padding-left: 1.5rem; margin: 0.5rem 0; } .preview-intro li { margin-bottom: 0.3rem; line-height: 1.6; } .preview-intro li p { margin: 0; } .preview-intro p { margin: 0 0 0.75rem 0; } .preview-intro p:last-child { margin-bottom: 0; } .preview-intro a { color: #2A706C; text-decoration: underline; font-weight: 500; } .preview-intro a:hover { color: #1e5451; }', { raw: true });
     
     // Page content preview styling - match site CSS
     CMS.registerPreviewStyle('.netlify-cms-preview-pane { background: #f7f8f7; } .netlify-cms-preview-pane p { font-family: "Josefin Sans", sans-serif; color: #231F20; font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem; } .netlify-cms-preview-pane p:last-child { margin-bottom: 0; } .netlify-cms-preview-pane h1, .netlify-cms-preview-pane h2, .netlify-cms-preview-pane h3 { font-family: "Baloo 2", cursive; color: #2A706C; margin-top: 1.5rem; margin-bottom: 0.75rem; } .netlify-cms-preview-pane h1 { font-size: 2.2rem; font-weight: 700; } .netlify-cms-preview-pane h2 { font-size: 1.8rem; } .netlify-cms-preview-pane h3 { font-size: 1.4rem; } .netlify-cms-preview-pane strong { color: #2A706C; font-weight: 600; } .netlify-cms-preview-pane em { font-style: italic; } .netlify-cms-preview-pane ul, .netlify-cms-preview-pane ol { padding-left: 1.5rem; margin: 1rem 0; } .netlify-cms-preview-pane li { margin-bottom: 0.5rem; line-height: 1.7; } .netlify-cms-preview-pane blockquote { border-left: 4px solid #2A706C; padding-left: 1rem; color: #3a3536; font-style: italic; margin: 1.5rem 0; }', { raw: true });
