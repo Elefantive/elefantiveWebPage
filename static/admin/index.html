@@ -85,8 +85,8 @@
                          .replace(/>/g, '&gt;');
               
               // Then convert markdown patterns
-              // Links: [text](url) -> <a href="url">text</a>
-              html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, 
+              // Links: [text](url) or [text] (url) -> <a href="url">text</a>
+              html = html.replace(/\[([^\]]+)\]\s*\(([^)]+)\)/g, 
                 '<a href="$2" target="_blank" rel="noopener">$1</a>');
               
               // Bold: **text** -> <strong>text</strong>
