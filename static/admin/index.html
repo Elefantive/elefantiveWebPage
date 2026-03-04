@@ -153,6 +153,15 @@
     }
     
     function checkChangelogUpdate() {
+      // Only check and show if user is authenticated (main UI is visible)
+      var mainNav = document.querySelector('[class*="NavLink"]') || 
+                    document.querySelector('[class*="AppHeader"]') ||
+                    document.querySelector('[class*="Sidebar"]');
+      
+      if (!mainNav) {
+        return; // User not logged in, don't show anything
+      }
+      
       fetch('/CHANGELOG.md')
         .then(response => response.text())
         .then(data => {
@@ -177,6 +186,16 @@
     }
     
     function fetchChangelog() {
+      // Check if authenticated before showing
+      var mainNav = document.querySelector('[class*="NavLink"]') || 
+                    document.querySelector('[class*="AppHeader"]') ||
+                    document.querySelector('[class*="Sidebar"]');
+      
+      if (!mainNav) {
+        console.warn('Not authenticated');
+        return;
+      }
+      
       if (!changelogContent) {
         fetch('/CHANGELOG.md')
           .then(response => response.text())
@@ -240,21 +259,43 @@
       }
     }
     
-    // Add changelog button to CMS interface after user login and check for updates
-    if (window.CMS && typeof window.CMS.onLoad === 'function') {
-      window.CMS.onLoad(function() {
-        setTimeout(function() {
-          var btn = document.createElement('button');
-          btn.id = 'cms-changelog-btn';
-          btn.textContent = '📣 What\'s New';
-          btn.onclick = fetchChangelog;
-          document.body.appendChild(btn);
-          
-          // Check if changelog has been updated on login
-          checkChangelogUpdate();
-        }, 500);
-      });
+    // Add changelog button to CMS interface only after user login
+    function initChangelogButton() {
+      // Check if user is authenticated by looking for the main editor UI
+      // The editor navigation and main content only exist after login
+      var mainNav = document.querySelector('[class*="NavLink"]') || 
+                    document.querySelector('[class*="AppHeader"]') ||
+                    document.querySelector('[class*="Sidebar"]');
+      
+      if (mainNav) {
+        // User is logged in, add the button
+        var btn = document.createElement('button');
+        btn.id = 'cms-changelog-btn';
+        btn.textContent = '📣 What\'s New';
+        btn.onclick = fetchChangelog;
+        document.body.appendChild(btn);
+        
+        // Check if changelog has been updated on login
+        checkChangelogUpdate();
+        return true;
+      }
+      return false;
     }
+    
+    // Try to init the button on page load, then poll if not ready yet
+    window.addEventListener('load', function() {
+      var attempt = 0;
+      var interval = setInterval(function() {
+        if (initChangelogButton()) {
+          clearInterval(interval);
+        }
+        attempt++;
+        // Stop trying after 30 seconds
+        if (attempt > 30) {
+          clearInterval(interval);
+        }
+      }, 500);
+    });
     
     // Close modal when clicking outside
     document.getElementById('changelog-modal').addEventListener('click', function(e) {
