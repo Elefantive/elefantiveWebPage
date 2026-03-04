@@ -312,7 +312,29 @@
     });
 
     CMS.registerPreviewTemplate('site-footer', SiteFooterPreview);
+    // Product Footer preview
+    var ProductFooterPreview = createClass({
+      render: function() {
+        var entry = this.props.entry;
+        var content = this.props.widgetFor('body');
 
+        var s = {
+          wrap: { fontFamily: "'Josefin Sans', sans-serif" },
+          footer: { background: '#231F20', color: '#dfd8d3', padding: '2rem', minHeight: '120px', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+          content: { fontSize: '0.9rem', lineHeight: 1.6, textAlign: 'center', maxWidth: '600px' }
+        };
+
+        return h('div', { style: s.wrap },
+          h('footer', { style: s.footer },
+            h('div', { style: s.content },
+              content
+            )
+          )
+        );
+      }
+    });
+
+    CMS.registerPreviewTemplate('product-footer', ProductFooterPreview);
     // Homepage preview
     var HomepagePreview = createClass({
       render: function() {
