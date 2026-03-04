@@ -1,16 +1,20 @@
 <div class="language-switcher">
-  {{ $current := . }}
-  {{ if .IsTranslated }}
-    {{ range .Translations }}
-      <a href="{{ .RelPermalink }}" class="lang-link" title="{{ .Language.LanguageName }}">{{ .Lang | upper }}</a>
-    {{ end }}
-    <a href="{{ .RelPermalink }}" class="lang-link active" title="{{ .Language.LanguageName }}">{{ .Lang | upper }}</a>
-  {{ else }}
-    {{ range site.Languages }}
-      {{ if eq $.Lang .Lang }}
-        <a href="{{ $.RelPermalink }}" class="lang-link active" title="{{ .LanguageName }}">{{ .Lang | upper }}</a>
-      {{ else }}
-        <a href="{{ (site.Home.Translations | lang.Merge site.Home).RelPermalink }}" class="lang-link" title="{{ .LanguageName }}">{{ .Lang | upper }}</a>
+  {{ range site.Languages }}
+    {{ $langCode := .Lang }}
+    {{ if eq $.Lang $langCode }}
+      <a href="{{ $.RelPermalink }}" class="lang-link active" title="{{ .LanguageName }}">{{ $langCode | upper }}</a>
+    {{ else }}
+      {{ $found := false }}
+      {{ if $.IsTranslated }}
+        {{ range $.Translations }}
+          {{ if eq .Lang $langCode }}
+            <a href="{{ .RelPermalink }}" class="lang-link" title="{{ $.Language.LanguageName }}">{{ $langCode | upper }}</a>
+            {{ $found = true }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+      {{ if not $found }}
+        <a href="{{ $.RelPermalink }}" class="lang-link" title="{{ .LanguageName }}">{{ $langCode | upper }}</a>
       {{ end }}
     {{ end }}
   {{ end }}
