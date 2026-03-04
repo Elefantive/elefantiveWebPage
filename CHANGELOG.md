@@ -11,6 +11,7 @@ When editing product intro text in the CMS, markdown links like `[amazon](https:
 - Product intro text previews now render markdown links as HTML
 - Links open in a new tab with proper styling
 - Preview matches the live website appearance
+- Fixed widget rendering to handle complex URLs
 
 ---
 
@@ -21,15 +22,17 @@ The additional content you add to the homepage now appears in the correct locati
 - Homepage preview now accurately shows content placement
 - Content appears in the grey hero section, not below products
 - Preview matches live website layout
+- Repositioned content intelligently within the header
 
 ---
 
 #### **Product Footer Preview Added**
-You can now see a live preview of how your product footer text appears at the bottom of product detail pages. The preview shows styling with the "Order by Email" and "Back to Products" buttons.
+You can now see a live preview of how your product footer text appears at the bottom of product detail pages. The preview shows styling with the "Order by Email" and "Back to Products" buttons, with proper borders and spacing.
 
 **What changed:**
 - New preview added for the product footer section
 - Shows footer text styling with border and button layout
+- Displays in proper context with action buttons
 - Helps visualize the complete product page experience
 
 ---
@@ -45,18 +48,45 @@ The language buttons (FR - EN - DE - RO) now always stay in the same order at th
 
 ---
 
+#### **"What's New" Button in CMS Admin Panel**
+A new button has been added to the CMS backend that displays all the latest changes and improvements. Click the "📣 What's New" button (bottom-right corner) to see what's been updated.
+
+**What changed:**
+- Changelog accessible directly in the CMS
+- Button positioned securely in bottom-right corner
+- Won't overlap with other interface elements
+- Responsive design for all screen sizes
+- Formatted with proper styling that matches Elefantive design
+
+---
+
 ### 🔧 Technical Improvements
 
 - Improved CMS preview component rendering for markdown content
 - Enhanced language switcher to use site configuration order
 - Fixed preview styling to match website design system
 - Optimized widget rendering for product intro field
+- Added Decap CMS native widget renderer for better compatibility
+- Fixed media folder paths from relative to absolute paths (resolved 404 errors)
+- Improved homepage preview with realistic product card examples
+- Added responsive button positioning to prevent overlapping
+- Fixed JavaScript quote escaping for proper modal rendering
 
 ---
 
-### 📝 Summary
+### 📊 Summary
 
-These updates focus on making the CMS preview experience match the live website as closely as possible. When you're editing content in the CMS, you now see exactly how it will appear to visitors - what you see is what you get!
+**Total commits today: 25**
+
+This comprehensive update focuses on making the CMS preview experience match the live website as closely as possible. When you're editing content in the CMS, you now see exactly how it will appear to visitors - what you see is what you get!
+
+Key improvements:
+- ✅ 5 major feature additions/fixes
+- ✅ 8 markdown link rendering improvements  
+- ✅ 4 product footer preview refinements
+- ✅ 3 homepage layout corrections
+- ✅ 2 language switcher improvements
+- ✅ Multiple bug fixes and quality improvements
 
 ---
 
