@@ -80,8 +80,6 @@
           return /\.(mp4|webm|mov)$/i.test(path);
         }
 
-        var introHtml = markdownToHtml(introText);
-
     var ProductPreview = createClass({
       render: function() {
         var entry = this.props.entry;
@@ -89,6 +87,7 @@
         var image = entry.getIn(['data', 'image']);
         var price = entry.getIn(['data', 'price']);
         var introText = entry.getIn(['data', 'intro']) || '';
+        var introHtml = markdownToHtml(introText);
         var featured = entry.getIn(['data', 'featured']);
         var versions = entry.getIn(['data', 'versions']);
 
