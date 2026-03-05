@@ -300,9 +300,28 @@
       if (mediaLink && mediaLink.parentNode) {
         // Clone the media link's computed style to match it exactly
         var mediaStyle = window.getComputedStyle(mediaLink);
-        var mediaColor = mediaStyle.color;
-        btn.style.cssText = 'background:transparent;color:' + mediaColor + ';border:none;padding:0 ' + (parseInt(mediaStyle.paddingLeft) || 16) + 'px;cursor:pointer;font-family:' + mediaStyle.fontFamily + ';font-weight:' + mediaStyle.fontWeight + ';font-size:' + mediaStyle.fontSize + ';height:' + (mediaLink.offsetHeight || 56) + 'px;display:inline-flex;align-items:center;white-space:nowrap;';
-        btn.id = 'cms-changelog-btn'; // reset id after cssText override
+        var mediaColor = mediaStyle.color || 'rgba(255,255,255,0.7)';
+        var mediaFont = mediaStyle.fontSize || '14px';
+        var mediaPadding = parseInt(mediaStyle.paddingLeft) || 16;
+        var mediaHeight = mediaLink.offsetHeight || 56;
+        
+        // Build inline style ensuring color is visible
+        btn.style.backgroundColor = 'transparent';
+        btn.style.color = mediaColor;
+        btn.style.border = 'none';
+        btn.style.padding = '0 ' + mediaPadding + 'px';
+        btn.style.cursor = 'pointer';
+        btn.style.fontFamily = mediaStyle.fontFamily;
+        btn.style.fontWeight = mediaStyle.fontWeight;
+        btn.style.fontSize = mediaFont;
+        btn.style.height = mediaHeight + 'px';
+        btn.style.display = 'inline-flex';
+        btn.style.alignItems = 'center';
+        btn.style.whiteSpace = 'nowrap';
+        btn.style.verticalAlign = 'middle';
+        btn.style.lineHeight = 'normal';
+        
+        btn.id = 'cms-changelog-btn';
         mediaLink.parentNode.insertBefore(btn, mediaLink.nextSibling);
       } else {
         // Fallback: fixed bottom-right
