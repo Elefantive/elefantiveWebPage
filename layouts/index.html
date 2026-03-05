@@ -13,7 +13,7 @@
   <div class="container">
     <h2>{{ site.Params.featuredTitle }}</h2>
     <div class="product-grid">
-      {{ $products := where (where .Site.RegularPages "Section" "products") "Params.draft" false }}
+      {{ $products := where (where .Site.RegularPages "Section" "products") ".Draft" false }}
       {{ range first 6 ($products | intersect (where $products ".Params.featured" true)) }}
         {{ partial "product-card.html" . }}
       {{ else }}
