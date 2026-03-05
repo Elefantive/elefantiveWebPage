@@ -294,35 +294,23 @@
       
       var btn = document.createElement('button');
       btn.id = 'cms-changelog-btn';
-      btn.textContent = '\uD83D\uDCE3 What\'s New';
       btn.onclick = fetchChangelog;
       
+      // Create span inside button like other nav buttons
+      var span = document.createElement('span');
+      span.textContent = '\ud83d\udce3 What\'s New';
+      btn.appendChild(span);
+      
       if (mediaLink && mediaLink.parentNode) {
-        // Clone the media link's computed style to match it exactly
-        var mediaStyle = window.getComputedStyle(mediaLink);
-        var mediaColor = mediaStyle.color || 'rgba(255,255,255,0.7)';
-        var mediaFont = mediaStyle.fontSize || '14px';
-        var mediaPadding = parseInt(mediaStyle.paddingLeft) || 16;
-        var mediaHeight = mediaLink.offsetHeight || 56;
-        
-        // Build inline style ensuring color is visible
-        btn.style.backgroundColor = 'transparent';
-        btn.style.color = mediaColor;
-        btn.style.border = 'none';
-        btn.style.padding = '0 ' + mediaPadding + 'px';
-        btn.style.cursor = 'pointer';
-        btn.style.fontFamily = mediaStyle.fontFamily;
-        btn.style.fontWeight = mediaStyle.fontWeight;
-        btn.style.fontSize = mediaFont;
-        btn.style.height = mediaHeight + 'px';
-        btn.style.display = 'inline-flex';
-        btn.style.alignItems = 'center';
-        btn.style.whiteSpace = 'nowrap';
-        btn.style.verticalAlign = 'middle';
-        btn.style.lineHeight = 'normal';
-        
-        btn.id = 'cms-changelog-btn';
+        // Insert into the nav container next to Media link
         mediaLink.parentNode.insertBefore(btn, mediaLink.nextSibling);
+        // Apply minimal styling - let the nav's CSS handle layout
+        btn.style.background = 'none';
+        btn.style.border = 'none';
+        btn.style.padding = '0';
+        btn.style.cursor = 'pointer';
+        btn.style.font = 'inherit';
+        btn.style.color = 'inherit';
       } else {
         // Fallback: fixed bottom-right
         btn.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:5000;background:#2A706C;color:white;border:none;padding:10px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.9rem;box-shadow:0 2px 8px rgba(0,0,0,0.2);';
