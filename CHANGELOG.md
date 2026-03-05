@@ -1,8 +1,65 @@
 # What's New - For Elefantive Users
 
+## March 5, 2026 - About Page Gallery & Navigation Polish
+
+Great news! We've refined your About page to match your beautiful product pages, and polished the CMS navigation.
+
+---
+
+## 🎯 What You Can Now Do
+
+### **1. About Page Now Has a Beautiful Gallery Layout**
+Your About page has been redesigned to showcase photos and videos the same way your product pages do! Each section can now have its own gallery.
+
+**How to use it:**
+1. Go to Pages → About
+2. View the About page sections - each one can now have a section title, description text, and a gallery of images or videos
+3. The preview shows multiple images in a grid, with a larger main image at the top
+4. Upload photos and videos to tell your story with style
+5. Your customers will see a more visual, engaging About page
+
+**What changed:** The About page now matches the professional gallery layout of your product pages, making your brand look cohesive and polished.
+
+---
+
+### **2. Navigation Button Alignment Fixed**
+The "📣 What's New" button in the CMS now aligns perfectly with the other navigation items.
+
+**How to use it:**
+1. Log into the CMS
+2. Look at the top navigation bar - the "What's New" button now sits smoothly with Media, Pages, and other menu items
+3. It looks like it belongs there, not awkwardly positioned
+4. You can still click it anytime to see updates
+
+**What changed:** The button styling was refined so it matches the native CMS navigation perfectly.
+
+---
+
+## ✨ Benefits for You
+
+### **Tell Your Story Better**
+Your About page now has the same visual impact as your products - with beautiful galleries and sections that engage visitors.
+
+### **Polished CMS Interface**
+The navigation feels more professional and cohesive when all buttons align properly.
+
+### **More Control Over Content**
+Structure your About page story with:
+- Meaningful section titles
+- Written content/descriptions
+- Photo galleries for each section
+
+---
+
+---
+
 ## March 4, 2026 - CMS Preview Improvements
 
-Hello! Here's what has changed in your CMS and how you can benefit from these improvements.
+Here's what changed earlier this week in your CMS and how you can benefit.
+
+---
+
+## 🎯 Previous Updates
 
 ---
 
@@ -128,4 +185,4 @@ All changes are safe and don't affect your existing content.
 
 ---
 
-**Last updated:** March 4, 2026
+**Last updated:** March 5, 2026
