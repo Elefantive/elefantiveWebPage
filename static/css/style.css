@@ -369,6 +369,10 @@ h3 { font-size: 1.3rem; }
   padding: 3rem 0;
 }
 
+.about-detail {
+  padding: 3rem 0;
+}
+
 .product-detail-header {
   margin-bottom: 1.5rem;
   text-align: center;

@@ -120,18 +120,24 @@ collections:
     folder: "content/about"
     create: false
     i18n: true
+    media_folder: "/static/assets"
+    public_folder: "/assets"
     fields:
       - { label: "Title", name: "title", widget: "string", i18n: true }
-      - { label: "Featured Image", name: "image", widget: "image", required: false, i18n: duplicate }
-      - label: "Content Sections"
+      - label: "Story Sections"
         name: "sections"
         widget: "list"
         required: false
         i18n: true
         fields:
-          - { label: "Section Type", name: "type", widget: "select", options: ["text", "image-text", "text-image"], i18n: false }
+          - { label: "Section Title", name: "name", widget: "string", required: false, i18n: true }
           - { label: "Content", name: "content", widget: "markdown", i18n: true }
-          - { label: "Image (for image-text/text-image)", name: "image", widget: "image", required: false, i18n: duplicate }
+          - label: "Gallery (images & videos)"
+            name: "gallery"
+            widget: "list"
+            required: false
+            i18n: duplicate
+            field: { label: "Media", name: "src", widget: "image" }
 
   - name: "site-footer"
     label: "Site Footer"

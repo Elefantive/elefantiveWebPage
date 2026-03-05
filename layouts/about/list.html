@@ -5,43 +5,183 @@
   </div>
 </section>
 
-{{ with .Params.image }}
-<section class="about-hero">
+<article class="about-detail">
   <div class="container">
-    <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="about-hero-image">
-  </div>
-</section>
-{{ end }}
+    {{ range $si, $section := .Params.sections }}
+    <div class="product-version" data-version="{{ $si }}">
+      {{ with $section.name }}<h2 class="product-version-title">{{ . }}</h2>{{ end }}
+      <div class="product-detail-grid">
 
-<section class="about-content">
-  <div class="container">
-    {{ range $i, $section := .Params.sections }}
-      {{ if eq $section.type "text" }}
-        <div class="about-section about-section-text">
-          <div class="section-content">
+        {{ if $section.gallery }}
+        <div class="product-detail-media">
+          <div class="media-main-wrap">
+            <div class="media-main" onclick="openLightbox({{ $si }})">
+              {{ $first := index $section.gallery 0 }}
+              {{ $firstExt := path.Ext $first }}
+              {{ $firstIsVideo := or (eq $firstExt ".mp4") (eq $firstExt ".webm") (eq $firstExt ".mov") (eq $firstExt ".MP4") }}
+              {{ if $firstIsVideo }}
+              <video src="{{ $first | relURL }}" class="media-main-video" preload="metadata" muted></video>
+              {{ else }}
+              <img src="{{ $first | relURL }}" alt="{{ $section.name }}" class="media-main-img">
+              {{ end }}
+            </div>
+            {{ if gt (len $section.gallery) 1 }}
+            <button class="media-nav media-nav--prev" onclick="verPrev(event, {{ $si }})">&#10094;</button>
+            <button class="media-nav media-nav--next" onclick="verNext(event, {{ $si }})">&#10095;</button>
+            {{ end }}
+          </div>
+
+          <div class="media-thumbs">
+            {{ range $gi, $item := $section.gallery }}
+            {{ $ext := path.Ext $item }}
+            {{ $isVideo := or (eq $ext ".mp4") (eq $ext ".webm") (eq $ext ".mov") (eq $ext ".MP4") }}
+            {{ if $isVideo }}
+            <div class="thumb thumb--video{{ if eq $gi 0 }} thumb--active{{ end }}" onclick="verShow({{ $si }}, {{ $gi }})" data-type="video">
+              <video src="{{ $item | relURL }}" preload="metadata" muted></video>
+              <span class="thumb-play">&#9654;</span>
+            </div>
+            {{ else }}
+            <div class="thumb{{ if eq $gi 0 }} thumb--active{{ end }}" onclick="verShow({{ $si }}, {{ $gi }})" data-type="image">
+              <img src="{{ $item | relURL }}" alt="{{ $section.name }}" loading="lazy">
+            </div>
+            {{ end }}
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+
+        <div class="product-detail-info">
+          <div class="product-detail-description">
             {{ $section.content | markdownify }}
           </div>
         </div>
-      {{ else if eq $section.type "image-text" }}
-        <div class="about-section about-section-pair">
-          <div class="section-image">
-            {{ with $section.image }}<img src="{{ . | relURL }}" alt="Section {{ add $i 1 }}">{{ end }}
-          </div>
-          <div class="section-content">
-            {{ $section.content | markdownify }}
-          </div>
-        </div>
-      {{ else if eq $section.type "text-image" }}
-        <div class="about-section about-section-pair about-section-pair--reversed">
-          <div class="section-content">
-            {{ $section.content | markdownify }}
-          </div>
-          <div class="section-image">
-            {{ with $section.image }}<img src="{{ . | relURL }}" alt="Section {{ add $i 1 }}">{{ end }}
-          </div>
-        </div>
-      {{ end }}
+
+      </div>
+    </div>
     {{ end }}
   </div>
-</section>
+</article>
+
+{{/* Lightbox overlay (shared) */}}
+<div class="lightbox" id="lightbox" onclick="lbClick(event)">
+  <button class="lightbox-close" onclick="lbClose()">&times;</button>
+  <button class="lightbox-prev" onclick="lbPrev(event)">&#10094;</button>
+  <div class="lightbox-content" id="lightbox-content"></div>
+  <button class="lightbox-next" onclick="lbNext(event)">&#10095;</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<script>
+var versions = [];
+(function() {
+  var sections = document.querySelectorAll('.product-version');
+  sections.forEach(function(section) {
+    var items = [];
+    var thumbs = section.querySelectorAll('.thumb');
+    thumbs.forEach(function(t) {
+      var type = t.getAttribute('data-type');
+      if (type === 'image') {
+        var img = t.querySelector('img');
+        if (img) items.push({ type: 'image', src: img.src });
+      } else if (type === 'video') {
+        var vid = t.querySelector('video');
+        if (vid) items.push({ type: 'video', src: vid.src });
+      }
+    });
+    versions.push({ items: items, currentIndex: 0 });
+  });
+})();
+
+var activeLbVersion = 0;
+var lbIndex = 0;
+
+function verShow(vi, idx) {
+  var ver = versions[vi];
+  if (!ver || !ver.items.length) return;
+  ver.currentIndex = idx;
+  var item = ver.items[idx];
+  var section = document.querySelectorAll('.product-version')[vi];
+  var main = section.querySelector('.media-main');
+  if (item.type === 'image') {
+    main.innerHTML = '<img src="' + item.src + '" alt="" class="media-main-img">';
+  } else {
+    main.innerHTML = '<video src="' + item.src + '" controls playsinline autoplay class="media-main-video"></video>';
+  }
+  var thumbs = section.querySelectorAll('.thumb');
+  thumbs.forEach(function(t, i) { t.classList.toggle('thumb--active', i === idx); });
+}
+
+function verNext(e, vi) {
+  if (e) { e.stopPropagation(); e.preventDefault(); }
+  var ver = versions[vi];
+  if (!ver || !ver.items.length) return;
+  verShow(vi, (ver.currentIndex + 1) % ver.items.length);
+}
+
+function verPrev(e, vi) {
+  if (e) { e.stopPropagation(); e.preventDefault(); }
+  var ver = versions[vi];
+  if (!ver || !ver.items.length) return;
+  verShow(vi, (ver.currentIndex - 1 + ver.items.length) % ver.items.length);
+}
+
+function openLightbox(vi) {
+  activeLbVersion = vi;
+  var ver = versions[vi];
+  if (!ver || !ver.items.length) return;
+  lbIndex = ver.currentIndex;
+  lbShow();
+  document.getElementById('lightbox').classList.add('lightbox--open');
+  document.body.style.overflow = 'hidden';
+}
+
+function lbShow() {
+  var ver = versions[activeLbVersion];
+  if (!ver || !ver.items.length) return;
+  var item = ver.items[lbIndex];
+  var content = document.getElementById('lightbox-content');
+  if (item.type === 'image') {
+    content.innerHTML = '<img src="' + item.src + '" alt="">';
+  } else {
+    content.innerHTML = '<video src="' + item.src + '" controls playsinline autoplay></video>';
+  }
+  document.getElementById('lightbox-counter').textContent = (lbIndex + 1) + ' / ' + ver.items.length;
+}
+
+function lbNext(e) {
+  if (e) e.stopPropagation();
+  var ver = versions[activeLbVersion];
+  if (!ver) return;
+  lbIndex = (lbIndex + 1) % ver.items.length;
+  lbShow();
+}
+
+function lbPrev(e) {
+  if (e) e.stopPropagation();
+  var ver = versions[activeLbVersion];
+  if (!ver) return;
+  lbIndex = (lbIndex - 1 + ver.items.length) % ver.items.length;
+  lbShow();
+}
+
+function lbClose() {
+  document.getElementById('lightbox').classList.remove('lightbox--open');
+  document.body.style.overflow = '';
+  var vid = document.querySelector('#lightbox-content video');
+  if (vid) vid.pause();
+}
+
+function lbClick(e) {
+  if (e.target.classList.contains('lightbox')) lbClose();
+}
+
+document.addEventListener('keydown', function(e) {
+  var lb = document.getElementById('lightbox');
+  if (lb.classList.contains('lightbox--open')) {
+    if (e.key === 'Escape') lbClose();
+    if (e.key === 'ArrowRight') lbNext();
+    if (e.key === 'ArrowLeft') lbPrev();
+  }
+});
+</script>
 {{ end }}
