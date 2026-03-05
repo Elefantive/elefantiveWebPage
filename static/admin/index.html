@@ -300,7 +300,8 @@
       if (mediaLink && mediaLink.parentNode) {
         // Clone the media link's computed style to match it exactly
         var mediaStyle = window.getComputedStyle(mediaLink);
-        btn.style.cssText = 'background:transparent;color:rgba(255,255,255,0.7);border:none;padding:0 ' + (parseInt(mediaStyle.paddingLeft) || 16) + 'px;cursor:pointer;font-family:' + mediaStyle.fontFamily + ';font-weight:' + mediaStyle.fontWeight + ';font-size:' + mediaStyle.fontSize + ';height:' + (mediaLink.offsetHeight || 56) + 'px;display:inline-flex;align-items:center;white-space:nowrap;';
+        var mediaColor = mediaStyle.color;
+        btn.style.cssText = 'background:transparent;color:' + mediaColor + ';border:none;padding:0 ' + (parseInt(mediaStyle.paddingLeft) || 16) + 'px;cursor:pointer;font-family:' + mediaStyle.fontFamily + ';font-weight:' + mediaStyle.fontWeight + ';font-size:' + mediaStyle.fontSize + ';height:' + (mediaLink.offsetHeight || 56) + 'px;display:inline-flex;align-items:center;white-space:nowrap;';
         btn.id = 'cms-changelog-btn'; // reset id after cssText override
         mediaLink.parentNode.insertBefore(btn, mediaLink.nextSibling);
       } else {
