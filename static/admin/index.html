@@ -169,22 +169,19 @@
         return;
       }
       
-      if (!changelogContent) {
-        fetch('/CHANGELOG.md')
-          .then(response => response.text())
-          .then(data => {
-            changelogContent = data;
-            changelogHash = computeHash(data);
-            openChangelog();
-          })
-          .catch(error => {
-            console.error('Error loading changelog:', error);
-            changelogContent = '# Error loading changelog\n\nSorry, we could not load the changelog. Please try again.';
-            openChangelog();
-          });
-      } else {
-        openChangelog();
-      }
+      // Always fetch fresh from server (cache busting with timestamp)
+      fetch('/CHANGELOG.md?t=' + Date.now())
+        .then(response => response.text())
+        .then(data => {
+          changelogContent = data;
+          changelogHash = computeHash(data);
+          openChangelog();
+        })
+        .catch(error => {
+          console.error('Error loading changelog:', error);
+          changelogContent = '# Error loading changelog\n\nSorry, we could not load the changelog. Please try again.';
+          openChangelog();
+        });
     }
     
     function fetchAndShowChangelog() {
