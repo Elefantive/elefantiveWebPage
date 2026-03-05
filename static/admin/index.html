@@ -467,84 +467,88 @@
     CMS.registerPreviewStyle('.netlify-cms-preview-pane { background: #f7f8f7; } .netlify-cms-preview-pane p { font-family: "Josefin Sans", sans-serif; color: #231F20; font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem; } .netlify-cms-preview-pane p:last-child { margin-bottom: 0; } .netlify-cms-preview-pane h1, .netlify-cms-preview-pane h2, .netlify-cms-preview-pane h3 { font-family: "Baloo 2", cursive; color: #2A706C; margin-top: 1.5rem; margin-bottom: 0.75rem; } .netlify-cms-preview-pane h1 { font-size: 2.2rem; font-weight: 700; } .netlify-cms-preview-pane h2 { font-size: 1.8rem; } .netlify-cms-preview-pane h3 { font-size: 1.4rem; } .netlify-cms-preview-pane strong { color: #2A706C; font-weight: 600; } .netlify-cms-preview-pane em { font-style: italic; } .netlify-cms-preview-pane ul, .netlify-cms-preview-pane ol { padding-left: 1.5rem; margin: 1rem 0; } .netlify-cms-preview-pane li { margin-bottom: 0.5rem; line-height: 1.7; } .netlify-cms-preview-pane blockquote { border-left: 4px solid #2A706C; padding-left: 1rem; color: #3a3536; font-style: italic; margin: 1.5rem 0; }', { raw: true });
     CMS.registerPreviewTemplate('products', ProductPreview);
 
-    // About page preview - story-style layout
+    // About page preview - gallery-style layout like products
     var AboutPagePreview = createClass({
       render: function() {
         var entry = this.props.entry;
         var title = entry.getIn(['data', 'title']) || '';
-        var image = entry.getIn(['data', 'image']);
         var sections = entry.getIn(['data', 'sections']);
 
-        var imgSrc = image ? this.props.getAsset(image).toString() : null;
-
         var s = {
-          page: { fontFamily: "'Josefin Sans', sans-serif", color: '#231F20', background: '#fff' },
+          wrap: { fontFamily: "'Josefin Sans', sans-serif", background: '#fff', color: '#231F20' },
           header: { background: '#eeefee', padding: '3rem 2rem', textAlign: 'center', marginBottom: 0 },
           h1: { fontFamily: "'Baloo 2', cursive", fontSize: '2.2rem', fontWeight: 700, margin: 0, lineHeight: 1.3, color: '#231F20' },
-          heroSection: { paddingTop: '2rem', paddingBottom: '2rem', paddingLeft: '2rem', paddingRight: '2rem', textAlign: 'center', background: '#fff' },
-          heroImg: { width: '100%', maxWidth: '600px', borderRadius: '8px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)' },
-          content: { padding: '4rem 2rem', maxWidth: '750px', marginLeft: 'auto', marginRight: 'auto', background: '#fff' },
-          section: { marginBottom: '4rem', paddingBottom: '3rem', borderBottom: '1px solid #d0d5d2' },
-          sectionLast: { borderBottom: 'none', marginBottom: 0, paddingBottom: 0 },
-          sectionText: { fontSize: '1.05rem', lineHeight: 1.8, color: '#231F20' },
-          sectionPair: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' },
-          sectionImage: { width: '100%', borderRadius: '8px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)' },
-          sectionPairReversed: { direction: 'rtl' },
-          sectionContent: { direction: 'ltr' }
+          sectionWrap: { paddingTop: '3rem', paddingBottom: '3rem', borderBottom: '1px solid #e0e5e2' },
+          sectionWrapLast: { borderBottom: 'none' },
+          sectionTitle: { fontFamily: "'Baloo 2', cursive", fontSize: '1.8rem', fontWeight: 600, color: '#2A706C', marginBottom: '1.5rem', textAlign: 'center' },
+          grid: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', maxWidth: '1200px', marginLeft: 'auto', marginRight: 'auto', padding: '0 2rem' },
+          content: { padding: '4rem 2rem', maxWidth: '750px', margin: '0 auto' },
+          body: { fontSize: '1.05rem', lineHeight: 1.8, color: '#231F20', marginBottom: '1rem' },
+          mainImg: { width: '100%', borderRadius: '8px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)', marginBottom: '1rem' },
+          thumbGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem', marginTop: '1rem' },
+          thumb: { width: '100%', aspectRatio: '1', objectFit: 'cover', borderRadius: '4px', cursor: 'pointer', opacity: 0.7, transition: 'opacity 0.3s' }
         };
+
+        // Build gallery thumbnail preview
+        var buildThumbs = function(gal) {
+          var thumbs = [];
+          if (gal && gal.size > 0) {
+            for (var i = 0; i < gal.size && i < 8; i++) {
+              var file = gal.getIn([i, 'file']);
+              if (file) {
+                var src = this.props.getAsset(file).toString();
+                thumbs.push(
+                  h('div', { key: 'thumb' + i, style: { overflow: 'hidden', borderRadius: '4px' } },
+                    h('img', { src: src, style: s.thumb })
+                  )
+                );
+              }
+            }
+          }
+          return thumbs;
+        }.bind(this);
 
         var sectionElements = [];
         if (sections && sections.size > 0) {
           sections.forEach(function(sec, i) {
-            var secType = sec.get('type');
-            var secContent = sec.get('content');
-            var secImage = sec.get('image');
-            var secImgSrc = secImage ? this.props.getAsset(secImage).toString() : null;
+            var secName = sec.get('name') || 'Section ' + (i + 1);
+            var secContent = sec.get('content') || '';
+            var secGallery = sec.get('gallery');
             var isLast = i === sections.size - 1;
-
-            if (secType === 'text') {
-              sectionElements.push(
-                h('div', { key: 'sec' + i, style: Object.assign({}, s.section, isLast ? s.sectionLast : {}) },
-                  h('div', { style: s.sectionText, dangerouslySetInnerHTML: { __html: secContent } })
-                )
-              );
-            } else if (secType === 'image-text') {
-              sectionElements.push(
-                h('div', { key: 'sec' + i, style: Object.assign({}, s.section, isLast ? s.sectionLast : {}) },
-                  h('div', { style: s.sectionPair },
-                    h('div', {},
-                      secImgSrc ? h('img', { src: secImgSrc, style: s.sectionImage }) : null
-                    ),
-                    h('div', { style: s.sectionContent, dangerouslySetInnerHTML: { __html: secContent } })
-                  )
-                )
-              );
-            } else if (secType === 'text-image') {
-              sectionElements.push(
-                h('div', { key: 'sec' + i, style: Object.assign({}, s.section, isLast ? s.sectionLast : {}) },
-                  h('div', { style: Object.assign({}, s.sectionPair, s.sectionPairReversed) },
-                    h('div', { style: s.sectionContent, dangerouslySetInnerHTML: { __html: secContent } }),
-                    h('div', {},
-                      secImgSrc ? h('img', { src: secImgSrc, style: s.sectionImage }) : null
-                    )
-                  )
-                )
-              );
+            
+            // Get first image from gallery
+            var secFirstImg = null;
+            if (secGallery && secGallery.size > 0) {
+              var firstFile = secGallery.getIn([0, 'file']);
+              if (firstFile) {
+                secFirstImg = this.props.getAsset(firstFile).toString();
+              }
             }
+            
+            var thumbs = buildThumbs(secGallery);
+
+            sectionElements.push(
+              h('div', { key: 'sec' + i, style: Object.assign({}, s.sectionWrap, isLast ? s.sectionWrapLast : {}) },
+                h('h2', { style: s.sectionTitle }, secName),
+                h('div', { style: s.grid },
+                  h('div', {},
+                    secFirstImg ? h('img', { src: secFirstImg, style: s.mainImg }) : h('div', { style: { background: '#f0f0f0', height: '300px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999' } }, 'No image'),
+                    thumbs.length > 0 ? h('div', { style: s.thumbGrid }, thumbs) : null
+                  ),
+                  h('div', { style: s.content },
+                    h('div', { style: s.body, dangerouslySetInnerHTML: { __html: secContent } })
+                  )
+                )
+              )
+            );
           }.bind(this));
         }
 
-        return h('div', { style: s.page },
-          // Grey header box with title only
+        return h('div', { style: s.wrap },
           h('div', { style: s.header },
             h('h1', { style: s.h1 }, title)
           ),
-          // Featured image (if exists)
-          imgSrc ? h('div', { style: s.heroSection }, h('img', { src: imgSrc, style: s.heroImg })) : null,
-          // Content sections below with white background
-          h('div', { style: s.content },
-            sectionElements
-          )
+          h('div', {}, sectionElements)
         );
       }
     });
