@@ -132,12 +132,7 @@ collections:
         fields:
           - { label: "Section Title", name: "name", widget: "string", required: false, i18n: true }
           - { label: "Content", name: "content", widget: "markdown", i18n: true }
-          - label: "Gallery (images & videos)"
-            name: "gallery"
-            widget: "list"
-            required: false
-            i18n: true
-            field: { label: "File", name: "file", widget: "media" }
+          - { label: "Gallery (images & videos)", name: "gallery", widget: "list", field: { label: "File", name: "file", widget: "media" }, required: false }
 
   - name: "site-footer"
     label: "Site Footer"
